@@ -5,16 +5,16 @@ interface DialogData {
   id: number;
   oldProtocolId: string;
   protocolId: string;
-  /*oldCustomer: string;
+  oldCustomer: string;
   oldTest: string;
   oldSampleType: string;
   oldOrderAmount: number;
- //  oldDate: Date;
+  //oldDate: Date;
   customer: string;
   test: string;
   sampleType: string;
   orderAmount: number;
-  // date: Date;*/
+  // date: Date;
 }
 
 @Component({
@@ -29,11 +29,11 @@ export class ModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
     data.oldProtocolId = data.protocolId;
-   /* data.oldCustomer = data.customer;
+    data.oldCustomer = data.customer;
     data.oldTest = data.test;
     data.oldSampleType = data.sampleType;
-    data.oldOrderAmount = data.orderAmount;*/
-   // data.oldDate = data.date;
+    data.oldOrderAmount = data.orderAmount;
+    // data.oldDate = data.date;
   }
 
   ngOnInit() {

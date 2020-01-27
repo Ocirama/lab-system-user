@@ -14,9 +14,9 @@ import java.util.Date;
 public class Order {
     private Integer id;
     private String protocolId;
-    /*private String customer;
+    private String customer;
     private String test;
     private String sampleType;
-    private int orderAmount;*/
+    private int orderAmount;
     //private LocalDate date;
 }

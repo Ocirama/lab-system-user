@@ -16,11 +16,11 @@ import java.time.LocalDate;
 public class OrderSave {
 
     private Integer id;
-    private String protocoldId;
-    /*private String customer;
+    private String protocolId;
+    private String customer;
     private String test;
     private String sampleType;
-    private int orderAmount;*/
+    private int orderAmount;
     //private LocalDate date;
 }
 

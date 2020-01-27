@@ -8,10 +8,10 @@ import {ModalComponent} from '../modal/modal.component';
 interface Order {
   id: number;
   protocolId: string;
-  /*customer: string;
+  customer: string;
   test: string;
   sampleType: string;
-  orderAmount: number;*/
+  orderAmount: number;
   // date: Date;
 }
 
@@ -21,7 +21,7 @@ interface Order {
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'protocolId' /*'customer', 'test', 'sampleType', 'orderAmount' 'date'*/, 'actions'];
+  displayedColumns: string[] = ['no', 'protocolId', 'customer', 'test', 'sampleType', 'orderAmount', /*'date'*/ 'actions'];
   orders: Order[] = [];
 
   constructor(
@@ -35,7 +35,7 @@ export class ListComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.api.delete(`/orders/${id}`).subscribe(
+    this.api.delete(`/lei/orders/${id}`).subscribe(
       () => this.orders = this.orders.filter(item => item.id !== id)
     );
   }
@@ -46,10 +46,10 @@ export class ListComponent implements OnInit {
       data: {
         id: order ? order.id : null,
         protocolId: order ? order.protocolId : null,
-        /*customer: order ? order.customer : null,
+        customer: order ? order.customer : null,
         test: order ? order.test : null,
         sampleType: order ? order.sampleType : null,
-        orderAmount: order ? order.orderAmount : null,*/
+        orderAmount: order ? order.orderAmount : null
         // date: order ? order.date : null
       }
     });
@@ -60,10 +60,10 @@ export class ListComponent implements OnInit {
             const row = this.orders.find(item => item.id === result.id);
             if (row) {
               row.protocolId = result.protocolId;
-             /* row.customer = result.customer;
+              row.customer = result.customer;
               row.test = result.test;
               row.sampleType = result.sampleType;
-              row.orderAmount = result.orderAmount;*/
+              row.orderAmount = result.orderAmount;
               // row.date = result.date;
             } else {
               this.orders = [...this.orders, result];

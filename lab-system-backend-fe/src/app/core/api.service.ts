@@ -12,23 +12,20 @@ export class ApiService {
   }
 
   get(url: string) {
-    return this.http.get(this.urlPrefix + url, this.getRequestOptions());
+    return this.http.get(this.urlPrefix + url);
   }
 
   post(url: string, data: object) {
-    return this.http.post(this.urlPrefix + url, data, this.getRequestOptions());
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+    const requestOptions = {
+      headers
+    };
+    return this.http.post(this.urlPrefix + url, data, requestOptions);
   }
 
   delete(url: string) {
     return this.http.delete(`${this.urlPrefix}${url}`);
-  }
-  private getRequestOptions() {
-    const headers = {
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + sessionStorage.getItem('token')
-    };
-    return {
-      headers
-    };
   }
 }

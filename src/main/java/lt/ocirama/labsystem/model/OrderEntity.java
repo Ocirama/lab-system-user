@@ -1,17 +1,23 @@
 package lt.ocirama.labsystem.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "order_log")
 public class OrderEntity extends AbstractEntity {
@@ -27,11 +33,7 @@ public class OrderEntity extends AbstractEntity {
     @Column(name = "order_amount", nullable = false)
     private int orderAmount;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<SampleEntity> samples;
-
-    public List<SampleEntity> getSamples() {
-        return samples;
-    }
+    @OneToMany(cascade = {CascadeType.ALL},mappedBy = "order",orphanRemoval = true)
+    private List<SampleEntity> samples = new ArrayList<>();
 
 }

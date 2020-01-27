@@ -25,12 +25,12 @@ public class OrderConverter {
     public Order convert(OrderEntity order) {
         return new Order(
                 order.getId(),
-                order.getProtocolId()
-               /* order.getCustomer(),
+                order.getProtocolId(),
+                order.getCustomer(),
                 order.getTest(),
                 order.getSampleType(),
-                order.getOrderAmount()*/
-               // order.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+                order.getOrderAmount()
+                //order.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
         );
     }
 }

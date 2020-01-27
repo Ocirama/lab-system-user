@@ -23,19 +23,19 @@ public class OrderEntityConverter {
 
         if (Objects.isNull(order.getId())) {
             result = new OrderEntity();
-            result.setProtocolId(order.getProtocoldId());
-           /* result.setCustomer(order.getCustomer());
+            result.setProtocolId(order.getProtocolId());
+            result.setCustomer(order.getCustomer());
             result.setTest(order.getTest());
             result.setSampleType(order.getSampleType());
-            result.setOrderAmount(order.getOrderAmount());*/
+            result.setOrderAmount(order.getOrderAmount());
             //result.setDate(java.sql.Date.valueOf(order.getDate()));
         } else {
             result = orderRepository.findOneById(order.getId());
-            result.setProtocolId(order.getProtocoldId());
-           /* result.setCustomer(order.getCustomer());
+            result.setProtocolId(order.getProtocolId());
+            result.setCustomer(order.getCustomer());
             result.setTest(order.getTest());
             result.setSampleType(order.getSampleType());
-            result.setOrderAmount(order.getOrderAmount());*/
+            result.setOrderAmount(order.getOrderAmount());
             //result.setDate(java.sql.Date.valueOf(order.getDate()));
         }
 
