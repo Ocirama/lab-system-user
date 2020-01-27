@@ -2,28 +2,47 @@ package lt.ocirama.labsystem.services;
 
 import java.util.List;
 import lt.ocirama.labsystem.converters.OrderConverter;
+import lt.ocirama.labsystem.converters.OrderEntityConverter;
 import lt.ocirama.labsystem.model.OrderEntity;
 import lt.ocirama.labsystem.model.dto.Order;
+import lt.ocirama.labsystem.model.dto.OrderSave;
 import lt.ocirama.labsystem.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class OrderService {
 
-    private final OrderRepository orderRepository;
     private final OrderConverter orderConverter;
+    private final OrderEntityConverter orderEntityConverter;
+    private final OrderRepository orderRepository;
 
-
-    public OrderService(OrderRepository orderRepository, OrderConverter orderConverter) {
-        this.orderRepository = orderRepository;
+    public OrderService(OrderConverter orderConverter, OrderEntityConverter orderEntityConverter, OrderRepository orderRepository) {
         this.orderConverter = orderConverter;
+        this.orderEntityConverter = orderEntityConverter;
+        this.orderRepository = orderRepository;
     }
 
-    @GetMapping
-    public List<String> getOrders(){
-        List<OrderEntity> orderEntities = orderRepository.findAll();
-        List<String> result = orderConverter.convert(orderEntities);
-        return result;
+
+    public List<Order> getAll() {
+        List<OrderEntity> orders = orderRepository.findAll();
+
+        return orderConverter.convert(orders);
+    }
+
+    public Order getOrder(Integer id) {
+        OrderEntity order = orderRepository.findOneById(id);
+
+        return orderConverter.convert(order);
+    }
+
+    public Order save(OrderSave university) {
+        OrderEntity universityEntity = orderEntityConverter.convert(university);
+        OrderEntity result = orderRepository.save(universityEntity);
+
+        return orderConverter.convert(result);
+    }
+
+    public void delete(Integer id) {
+        orderRepository.deleteById(id);
     }
 }

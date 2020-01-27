@@ -1,0 +1,26 @@
+.example-form {
+  min-width: 150px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+
+}
+
+.example-full-width {
+  width: 100%;
+ padding-bottom: 50px;
+}
+
+td {
+  padding-right: 8px;
+}
+h3 {
+  text-align: center;
+}
+div{
+
+}
+.example-margin{
+margin-right: 50px;
+}
+

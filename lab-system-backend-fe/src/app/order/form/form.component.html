@@ -1,0 +1,72 @@
+<div>
+<form class="example-form">
+  <h3> Užsakymo forma </h3>
+  <mat-form-field class="example-full-width">
+    <label>
+      <input matInput placeholder="Protokolas" >
+    </label>
+  </mat-form-field>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <form [formGroup]="customerForm">
+          <mat-form-field>
+            <label>
+              <input type="text" matInput placeholder="Užsakovas" formControlName="customerGroup" required
+                     [matAutocomplete]="autoGroup">
+            </label>
+            <mat-autocomplete #autoGroup="matAutocomplete">
+              <mat-optgroup *ngFor="let group of customerGroupOptions | async" [label]="group.letter">
+                <mat-option *ngFor="let name of group.names" [value]="name">
+                  {{name}}
+                </mat-option>
+              </mat-optgroup>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </td>
+    </tr>
+  </table>
+      <section class="example-section">
+        <mat-checkbox class="example-margin" >D</mat-checkbox>
+        <mat-checkbox class="example-margin" >P</mat-checkbox>
+        <mat-checkbox class="example-margin" >Š</mat-checkbox>
+        <mat-checkbox class="example-margin" >C</mat-checkbox>
+        <mat-checkbox class="example-margin" >H</mat-checkbox>
+        <mat-checkbox class="example-margin" >N</mat-checkbox>
+        <mat-checkbox class="example-margin" >S</mat-checkbox>
+        <mat-checkbox class="example-margin" >Cl</mat-checkbox>
+        <mat-checkbox class="example-margin" >Elementai</mat-checkbox>
+        <mat-checkbox class="example-margin" >Tankis</mat-checkbox>
+      </section>
+
+    <mat-form-field class="example-full-width">
+      <label>
+        <textarea matInput placeholder="Kuro rūšis"></textarea>
+      </label>
+    </mat-form-field>
+
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Kiekis">
+        </mat-form-field>
+      </td>
+    </tr>
+    <mat-form-field class="example-full-width">
+      <label>
+        <textarea matInput placeholder="Mėginių Id"></textarea>
+      </label>
+    </mat-form-field>
+
+    <button mat-button style="float: right;" >Registruoti </button>
+    <button mat-button style="float: right;" >Išvalyti formą </button>
+  </table>
+
+
+</form>
+</div>
+
