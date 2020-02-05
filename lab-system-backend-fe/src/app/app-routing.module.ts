@@ -9,6 +9,11 @@ const routes: Routes = [
       import('./log/log.module').then(m => m.LogModule)
   },
   {
+    path: 'sample',
+    loadChildren: () =>
+      import('./sample/sample.module').then(m => m.SampleModule)
+  },
+  {
     path: 'order',
     loadChildren: () =>
       import('./order/order.module').then(m => m.OrderModule)
@@ -17,7 +22,7 @@ const routes: Routes = [
     path: 'log',
     loadChildren: () =>
       import('./log/log.module').then(m => m.LogModule)
-  },
+  }
 ];
 
 @NgModule({

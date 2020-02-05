@@ -1,11 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {ApiService} from '../../core/api.service';
 
 export interface CustomerGroup {
   letter: string;
   names: string[];
+}
+
+interface Order {
+  id: number;
+  protocolId: string;
+  customer: string;
+  test: string;
+  sampleType: string;
+  orderAmount: number;
+  // date: Date;
 }
 
 
@@ -25,6 +36,7 @@ export class FormComponent implements OnInit {
   customerForm: FormGroup = this._formBuilder.group({
     customerGroup: '',
   });
+  orders: Order[] = [];
 
   customerGroups: CustomerGroup[] = [{
     letter: 'A',
@@ -37,11 +49,15 @@ export class FormComponent implements OnInit {
 
 
   // tslint:disable-next-line:variable-name
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder,
+              private api: ApiService,
+  ) {
   }
+
 
   ngOnInit() {
 
+    // tslint:disable-next-line:no-non-null-assertion
     this.customerGroupOptions = this.customerForm.get('customerGroup')!.valueChanges
       .pipe(
         startWith(''),
@@ -60,6 +76,14 @@ export class FormComponent implements OnInit {
     return this.customerGroups;
 
   }
+
+  /*add(order?: Order): void {
+    this.api.post('/lei/orders', order)
+      .subscribe((result: Order) => {
+        this.orders = [...this.orders, result];
+      });
+  }*/
+
 }
 
 

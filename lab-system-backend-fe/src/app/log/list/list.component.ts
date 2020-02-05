@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ApiService} from '../../core/api.service';
 import {ModalComponent} from '../modal/modal.component';
 
@@ -23,15 +23,31 @@ interface Order {
 export class ListComponent implements OnInit {
   displayedColumns: string[] = ['no', 'protocolId', 'customer', 'test', 'sampleType', 'orderAmount', /*'date'*/ 'actions'];
   orders: Order[] = [];
+  dataSource: MatTableDataSource<Order>;
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
 
   constructor(
     private api: ApiService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
   ) {
   }
 
   ngOnInit() {
-    this.api.get('/lei/orders').subscribe((data: Order[]) => this.orders = data);
+    this.api.get('/lei/orders').subscribe((data: Order[]) => this.dataSource.data = data);
+    this.dataSource = new MatTableDataSource();
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   delete(id: number) {

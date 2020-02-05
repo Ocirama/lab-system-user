@@ -16,8 +16,8 @@ import static java.util.stream.Collectors.toList;
 
 @Component
 public class OrderConverter {
-    public List<Order> convert(List<OrderEntity> universities) {
-        return universities.stream()
+    public List<Order> convert(List<OrderEntity> orders) {
+        return orders.stream()
                 .map(this::convert)
                 .collect(toList());
     }

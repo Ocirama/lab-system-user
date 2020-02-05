@@ -1,25 +1,26 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ListComponent} from './list/list.component';
-import {ModalComponent} from './modal/modal.component';
+
+import {SampleListComponent} from './sample-list/sample-list.component';
 import {
   MatButtonModule,
   MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatMenuModule, MatPaginatorModule, MatSortModule,
+  MatMenuModule,
+  MatPaginatorModule,
   MatTableModule
 } from '@angular/material';
 import {FormsModule} from '@angular/forms';
-import {LogRoutingModule} from './log-routing.module';
+import {SampleRoutingModule} from './sample-routing.module';
+import { SampleModalComponent } from './sample-modal/sample-modal.component';
 
 
 @NgModule({
-  declarations: [ListComponent, ModalComponent],
+  declarations: [SampleListComponent, SampleModalComponent],
   imports: [
     CommonModule,
-    LogRoutingModule,
     MatTableModule,
     MatIconModule,
     MatMenuModule,
@@ -29,11 +30,8 @@ import {LogRoutingModule} from './log-routing.module';
     MatInputModule,
     FormsModule,
     MatPaginatorModule,
-    MatSortModule
-  ],
-  entryComponents: [
-    ModalComponent
+    SampleRoutingModule,
   ]
 })
-export class LogModule {
+export class SampleModule {
 }

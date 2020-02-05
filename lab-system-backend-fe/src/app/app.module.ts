@@ -7,7 +7,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
   MatButtonModule,
-  MatCheckboxModule, MatDialogModule,
+  MatCheckboxModule,
+  MatDialogModule,
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
@@ -18,8 +19,6 @@ import {
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {LoginComponent} from './auth/login/login.component';
-
-
 
 
 @NgModule({
