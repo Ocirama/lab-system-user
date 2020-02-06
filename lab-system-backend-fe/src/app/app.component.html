@@ -43,6 +43,14 @@
 
   </mat-menu>
 
+  <button mat-button [matMenuTriggerFor]="journals">Pirminių duomenų žurnalai</button>
+  <mat-menu #journals="matMenu">
+    <button mat-menu-item routerLink="total-moisture-journal">Visuminė drėgmė</button>
+    <button mat-menu-item routerLink="general-moisture-journal">Bendroji drėgmė</button>
+    <button mat-menu-item routerLink="ash-journal">Peleningumas</button>
+
+  </mat-menu>
+
 
 </mat-toolbar>
 <router-outlet></router-outlet>

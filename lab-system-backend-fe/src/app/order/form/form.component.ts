@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -54,6 +54,7 @@ export class FormComponent implements OnInit {
   ) {
   }
 
+  submitted = false;
 
   ngOnInit() {
 
@@ -76,6 +77,11 @@ export class FormComponent implements OnInit {
     return this.customerGroups;
 
   }
+
+  onSubmit() {
+    this.submitted = true;
+  }
+
 
   /*add(order?: Order): void {
     this.api.post('/lei/orders', order)

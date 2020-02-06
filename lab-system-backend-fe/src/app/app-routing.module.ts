@@ -22,7 +22,22 @@ const routes: Routes = [
     path: 'log',
     loadChildren: () =>
       import('./log/log.module').then(m => m.LogModule)
-  }
+  },
+  {
+    path: 'total-moisture-journal',
+    loadChildren: () =>
+      import('./journal/total-moisture-journal/total-moisture-journal.module').then(m => m.TotalMoistureJournalModule)
+  },
+  {
+    path: 'general-moisture-journal',
+    loadChildren: () =>
+      import('./journal/general-moisture-journal/general-moisture-journal.module').then(m => m.GeneralMoistureJournalModule)
+  },
+  {
+    path: 'ash-journal',
+    loadChildren: () =>
+      import('./journal/ash-journal/ash-journal.module').then(m => m.AshJournalModule)
+  },
 ];
 
 @NgModule({
