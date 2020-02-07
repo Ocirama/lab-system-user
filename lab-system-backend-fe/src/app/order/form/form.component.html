@@ -47,18 +47,15 @@
                  formControlName="customerGroup" required>
       </div>
       <div class="form-group">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Kiekis" cdkFocusInitial>
-        </mat-form-field>
+        <label for="sampleAmount"> Kiekis  </label>
+        <input type="number" class="form-control" id="sampleAmount"
+               formControlName="customerGroup" required>
       </div>
       <div class="form-group">
-        <mat-form-field class="example-full-width">
-          <label>
-            <textarea matInput placeholder="Mėginių Id"></textarea>
-          </label>
-        </mat-form-field>
+        <label for="sampleId"> Mėginių Id  </label>
+            <textarea type="text" class="form-control" id="sampleId" formControlName="customerGroup" required matInput placeholder="Mėginių Id"></textarea>
       </div>
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button type="submit" class="btn btn-success">Registruoti</button>
 
     </form>
   </div>

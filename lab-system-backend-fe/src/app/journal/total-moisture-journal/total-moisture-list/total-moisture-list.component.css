@@ -28,9 +28,10 @@ table th:last-child {
   color: white;
   text-align: center;
 }
-mat-form-field {
-  margin: auto;
-  max-width: 1500px;
-  width: 100%;
 
+mat-form-field {
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
+

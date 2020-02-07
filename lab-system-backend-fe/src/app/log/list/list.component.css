@@ -29,8 +29,7 @@ table th:last-child {
   text-align: center;
 }
 mat-form-field {
-  margin: auto;
-  max-width: 1500px;
-  width: 100%;
-
+  display: flex;
+  justify-content: center;
+  position: relative;
 }
