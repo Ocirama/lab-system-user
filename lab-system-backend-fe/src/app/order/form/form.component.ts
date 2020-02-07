@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -36,8 +36,8 @@ export class FormComponent implements OnInit {
   customerForm: FormGroup = this._formBuilder.group({
     customerGroup: '',
   });
-  orders: Order[] = [];
 
+  model: Order[];
   customerGroups: CustomerGroup[] = [{
     letter: 'A',
     names: ['AnyksciuSiluma']

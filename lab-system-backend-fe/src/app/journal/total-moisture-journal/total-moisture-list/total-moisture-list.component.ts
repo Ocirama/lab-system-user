@@ -3,6 +3,7 @@ import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/mat
 import {ApiService} from '../../../core/api.service';
 import {ModalComponent} from '../../../log/modal/modal.component';
 import {filter} from 'rxjs/operators';
+import {TotalMoistureModalComponent} from '../total-moisture-modal/total-moisture-modal.component';
 
 interface TotalMoistureJournal {
   id: number;
@@ -56,7 +57,7 @@ export class TotalMoistureListComponent implements OnInit {
     );
   }
   openDialog(totalMoistureJournal?: TotalMoistureJournal) {
-    const dialogRef = this.dialog.open(ModalComponent, {
+    const dialogRef = this.dialog.open(TotalMoistureModalComponent, {
       width: '250px',
       data: {
         id: totalMoistureJournal ? totalMoistureJournal.id : null,
