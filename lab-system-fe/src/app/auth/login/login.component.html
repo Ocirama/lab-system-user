@@ -1,0 +1,16 @@
+<div class="content">
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Email" autocomplete="off" [(ngModel)]="email">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Password" type="Password" [(ngModel)]="password">
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-button (click)="reset()">Reset</button>
+    <button mat-raised-button color="primary" (click)="login()">Login</button>
+  </div>
+</div>
