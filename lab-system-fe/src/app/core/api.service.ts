@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ApiService {
 
-  private urlPrefix = 'http://127.0.0.1:8080';
+  private urlPrefix = '';
 
   constructor(private http: HttpClient) {
   }
