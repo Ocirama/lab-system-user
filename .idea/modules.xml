@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/lab-system-backend-spring.iml" filepath="$PROJECT_DIR$/.idea/lab-system-backend-spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/lab-system-be.iml" filepath="$PROJECT_DIR$/.idea/lab-system-be.iml" />
     </modules>
   </component>
 </project>

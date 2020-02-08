@@ -6,16 +6,16 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="lab-system-backend-spring" />
+        <module name="lab-system-be" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="lab-system-backend-spring" target="1.8" />
+      <module name="lab-system-be" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="lab-system-backend-spring" options="-parameters" />
+      <module name="lab-system-be" options="-parameters" />
     </option>
   </component>
 </project>
