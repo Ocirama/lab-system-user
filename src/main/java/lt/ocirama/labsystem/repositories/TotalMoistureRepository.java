@@ -1,7 +1,6 @@
 package lt.ocirama.labsystem.repositories;
 
-import lt.ocirama.labsystem.model.SampleEntity;
-import lt.ocirama.labsystem.model.TotalMoistureEntity;
+import lt.ocirama.labsystem.model.entities.TotalMoistureEntity;
 import org.springframework.data.repository.Repository;
 
 import java.util.List;

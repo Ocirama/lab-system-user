@@ -31,6 +31,9 @@ import { SampleModalComponent } from './sample-modal/sample-modal.component';
     FormsModule,
     MatPaginatorModule,
     SampleRoutingModule,
+  ],
+  entryComponents: [
+    SampleModalComponent
   ]
 })
 export class SampleModule {

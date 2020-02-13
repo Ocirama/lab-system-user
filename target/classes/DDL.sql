@@ -1,4 +1,20 @@
 
+create table user
+(
+    id int unsigned auto_increment primary key,
+    email varchar(250) not null unique,
+    password varchar(60) not null,
+    name varchar(50) not null,
+        date date
+);
+
+insert into user(email, password, name)
+values('info.lei@gmail.com','$2a$10$fVUXkCPkUPD9nIXeKzZXgeMf2B4PE.5njFNoOAWHIG5wKUGnkdbSO','justas');
+
+insert into user(email, password, name)
+values('a','$2a$10$fwZoqLCDOoo24U6dKKF/J.RwNRmst/jsQv6HVBDR6QwRJFIg3vG1G','a');
+
+
 CREATE TABLE  order_log (
 id int PRIMARY KEY AUTO_INCREMENT,
 protocol_Id varchar(50) not null,

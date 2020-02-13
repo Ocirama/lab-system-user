@@ -1,8 +1,6 @@
 package lt.ocirama.labsystem.converters;
 
-import lt.ocirama.labsystem.model.OrderEntity;
-import lt.ocirama.labsystem.model.SampleEntity;
-import lt.ocirama.labsystem.model.dto.OrderSave;
+import lt.ocirama.labsystem.model.entities.SampleEntity;
 import lt.ocirama.labsystem.model.dto.SampleSave;
 import lt.ocirama.labsystem.repositories.SampleRepository;
 import org.springframework.stereotype.Component;
