@@ -10,9 +10,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TotalMoistureSave {
+
     private Integer id;
     private Double trayWeight;
-    private Double  trayAndSampleWeightBefore;
-    private Double  trayAndSampleWeightAfter;
-    private Double  trayAndSampleWeightAfterPlus;
+    private Double trayAndSampleWeightBefore;
+    private Double trayAndSampleWeightAfter;
+    private Double trayAndSampleWeightAfterPlus;
 }

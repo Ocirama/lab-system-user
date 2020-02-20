@@ -1,62 +1,149 @@
-<div class="container">
+<div class="container-fluid">
   <div [hidden]="submitted">
     <h1>Užsakymo forma</h1>
-    <form (ngSubmit)="onSubmit()" #form="ngForm">
+
+    <form (ngSubmit)="onSubmit()" #orderForm="ngForm" novalidate id="orderForm">
+     FORM {{orderForm.value | json}}
+      <br>
+     ORDER {{orders | json}}
+      <br>
+     SAMPLELIST {{sampleList | json}}
+      <br>
+      List elements {{sampleList.length}}
 
       <div class="form-group">
         <label for="protocolId">Protokolas</label>
-        <input type="text" class="form-control" id="protocolId"
-               required>
+        <input
+          (ngModelChange)="protocolChange($event)"
+          required
+          maxlength="4"
+          [(ngModel)]="orders.protocolId"
+          name="protocolId"
+          #protocol="ngModel"
+          id="protocolId"
+          type="text"
+          class="form-control"
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="protocol.touched && !protocol.valid">
+          <small
+            *ngIf="protocol.errors.required">
+            Įveskite užsakymo numerį
+          </small>
+          <div
+            *ngIf="protocol.errors.maxlength">
+            Max {{protocol.errors.maxlength.requiredLength}} chars allowed
+          </div>
+        </div>
       </div>
+
 
       <div class="form-group">
 
-            <label for="customer"> Užsakovas  </label>
-              <input type="text" class="form-control" id="customer"
-                     formControlName="customerGroup" required
-                     [matAutocomplete]="autoGroup">
+        <label for="customer"> Užsakovas </label>
+        <input [(ngModel)]="orders.customer" name="customer" type="text" class="form-control" id="customer"  #customer="ngModel"
+               required
+               [matAutocomplete]="autoGroup">
 
-            <mat-autocomplete #autoGroup="matAutocomplete">
-              <mat-optgroup *ngFor="let group of customerGroupOptions | async" [label]="group.letter">
-                <mat-option *ngFor="let name of group.names" [value]="name">
-                  {{name}}
-                </mat-option>
-              </mat-optgroup>
-            </mat-autocomplete>
-
-      </div>
-      <div class="form-group">
-        <label > Tyrimai  </label>
-        <section class="example-section">
-          <mat-checkbox class="example-margin">D</mat-checkbox>
-          <mat-checkbox class="example-margin">P</mat-checkbox>
-          <mat-checkbox class="example-margin">Š</mat-checkbox>
-          <mat-checkbox class="example-margin">C</mat-checkbox>
-          <mat-checkbox class="example-margin">H</mat-checkbox>
-          <mat-checkbox class="example-margin">N</mat-checkbox>
-          <mat-checkbox class="example-margin">S</mat-checkbox>
-          <mat-checkbox class="example-margin">Cl</mat-checkbox>
-          <mat-checkbox class="example-margin">Elementai</mat-checkbox>
-          <mat-checkbox class="example-margin">Tankis</mat-checkbox>
-        </section>
+        <mat-autocomplete #autoGroup="matAutocomplete">
+          <mat-optgroup *ngFor="let group of customerGroupOptions | async" [label]="group.letter">
+            <mat-option *ngFor="let name of group.names" [value]="name">
+              {{name}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-autocomplete>
+        <div
+          class="alert alert-danger"
+          *ngIf="customer.touched && !customer.valid">
+          <small
+            *ngIf="customer.errors.required">
+            Įveskite užsakovą
+          </small>
+        </div>
       </div>
 
       <div class="form-group">
-          <label for="sampleType"> Kuro rūšis  </label>
-          <input type="text" class="form-control" id="sampleType"
-                 formControlName="customerGroup" required>
+        <label for="tests">Tyrimai</label>
+        <input
+          required
+          [(ngModel)]="orders.test"
+          name="tests"
+          #tests="ngModel"
+          id="tests"
+          type="text"
+          class="form-control"
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="tests.touched && !tests.valid">
+          <small
+            *ngIf="tests.errors.required">
+            Įveskite daromus tyrimus
+          </small>
+        </div>
       </div>
+
       <div class="form-group">
-        <label for="sampleAmount"> Kiekis  </label>
-        <input type="number" class="form-control" id="sampleAmount"
-               formControlName="customerGroup" required>
+        <label> Kuro rūšis </label>
+        <br>
+        <select (blur)="validateType(sampleType.value)" (change)="validateType(sampleType.value)" #sampleType="ngModel"
+                [(ngModel)]="orders.sampleType" name="sampleType" class="custom-select">
+          <option value="default"> Kuro rūšis</option>
+          <option *ngFor="let sampleType of sampleTypes">{{sampleType}}</option>
+        </select>
+        <small class="text-danger" [class.is-invalid]="sampleType.untouched">Please choose a type</small>
       </div>
+
       <div class="form-group">
-        <label for="sampleId"> Mėginių Id  </label>
-            <textarea type="text" class="form-control" id="sampleId" formControlName="customerGroup" required matInput placeholder="Mėginių Id"></textarea>
+        <label for="sampleAmount"> Kiekis </label>
+        <input max="10" (ngModelChange)="childFunction(orders)"  required [(ngModel)]="orders.orderAmount" name="orderAmount" #sampleAmount="ngModel" type="number" class="form-control" id="sampleAmount"
+        >
+        <div
+          class="alert alert-danger"
+          *ngIf="sampleAmount.touched && !sampleAmount.valid">
+          <small
+            *ngIf="sampleAmount.errors.required">
+            Įveskite mėginių kiekį
+          </small>
+        </div>
       </div>
-      <button type="submit" class="btn btn-success">Registruoti</button>
+
+      <button [disabled]="orderForm.form.invalid || typeHasError" type="submit" class="btn btn-primary">Registruoti</button>
+
+      <button type="button" class=" btn btn-secondary" (click)="clear()">Valyti</button>
+
+      <!-- <form #formRef="ngForm">
+        <div *ngFor="let word2 of words2; let in=index" class="col-sm-3">
+          <div class="form-group">
+            <input type="text" [(ngModel)]="words2[in].value" name="name{{in}}" class="form-control" #name="ngModel" required/>
+            <p [hidden]="words2[in].value">Field is required</p>
+            {{formRef.form.name1}}
+          </div>
+          <br/>
+        </div>
+        <button type="button" [disabled]="!formRef.form.valid" (click)="add()">Add input</button>
+      </form>
+      <br/>
+      <br/>
+      {{words2 | json}}-->
+
+      <ol class="form-group">
+        <label> Mėginių sąrašas </label>
+
+        <li *ngFor="let sample of sampleList; let i= index">
+          <td>
+          <input  type="text" name="sampleId-{{i}}" [(ngModel)]="sampleList[i].sampleId" #ft01="ngModel"  class="form-control" #samplesS="ngModel" required
+          ></td>
+          <div
+            class="alert alert-danger"
+            *ngIf="samplesS.touched && !samplesS.valid">
+            <small
+              *ngIf="samplesS.errors.required">
+              Įveskite mėginio ID
+            </small>
+          </div>
+      </ol>
 
     </form>
   </div>
-</div>

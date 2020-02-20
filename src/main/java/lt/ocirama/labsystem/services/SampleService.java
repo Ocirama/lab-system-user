@@ -2,6 +2,7 @@ package lt.ocirama.labsystem.services;
 
 import lt.ocirama.labsystem.converters.SampleConverter;
 import lt.ocirama.labsystem.converters.SampleEntityConverter;
+import lt.ocirama.labsystem.model.entities.OrderEntity;
 import lt.ocirama.labsystem.model.entities.SampleEntity;
 import lt.ocirama.labsystem.model.dto.Sample;
 import lt.ocirama.labsystem.model.dto.SampleSave;
@@ -44,5 +45,10 @@ public class SampleService {
 
     public void delete(Integer id) {
         sampleRepository.deleteById(id);
+    }
+    public List<Sample> getAllByProtocol(String protocolId){
+        List<SampleEntity> sample = sampleRepository.findAllByProtocol(protocolId);
+
+        return sampleConverter.convert(sample);
     }
 }

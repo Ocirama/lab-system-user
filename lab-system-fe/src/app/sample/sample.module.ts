@@ -15,6 +15,7 @@ import {
 import {FormsModule} from '@angular/forms';
 import {SampleRoutingModule} from './sample-routing.module';
 import { SampleModalComponent } from './sample-modal/sample-modal.component';
+import { SampleWeightComponent } from './sample-weight/sample-weight.component';
 
 
 @NgModule({

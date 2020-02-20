@@ -30,3 +30,4 @@ public class AuthController {
         return new Token(securityService.generateToken(user.getEmail()));
     }
 }
+

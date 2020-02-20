@@ -40,6 +40,11 @@ const routes: Routes = [
       import('./journal/general-moisture-journal/general-moisture-journal.module').then(m => m.GeneralMoistureJournalModule)
   },
   {
+    path: 'sample-weight',
+    loadChildren: () =>
+      import('./sample/sample-weight/sample-weight.module').then(m => m.SampleWeightModule)
+  },
+  {
     path: 'ash-journal',
     loadChildren: () =>
       import('./journal/ash-journal/ash-journal.module').then(m => m.AshJournalModule)

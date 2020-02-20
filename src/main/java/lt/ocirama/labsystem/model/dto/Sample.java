@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Sample {
+
     private Integer id;
     private String protocolId;
     private String sampleId;

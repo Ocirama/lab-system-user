@@ -29,4 +29,10 @@ div{
 .example-margin{
 margin-right: 50px;
 }
+.form-control.ng-touched.ng-invalid{
+  border:2px solid red;
+}
+.container-fluid{
+  width: 600px;
+}
 
