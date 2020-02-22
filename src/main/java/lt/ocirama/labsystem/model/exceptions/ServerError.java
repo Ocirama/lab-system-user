@@ -15,7 +15,7 @@ public class ServerError {
 
     public ServerError(String message) {
         this.message = message;
-    }
+}
 
     public ServerError(String message, List<String> items) {
         this.message = message;

@@ -42,8 +42,6 @@ export const _filter = (opt: string[], value: string): string[] => {
 })
 export class FormComponent implements OnInit {
 
-  words2 = [{value: 'word1'}, {value: 'word2'}, {value: 'word3'}, {value: ''}];
-
   sampleTypes = ['Skiedros', 'Granulės', 'Atliekos', 'Ligninas', 'Briketai'];
   orders: Order = {} as Order;
   samples: Sample = {} as Sample;

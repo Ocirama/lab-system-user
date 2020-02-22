@@ -7,7 +7,7 @@ create table user
     name varchar(50) not null,
         date date
 );
-
+select * from user;
 insert into user(email, password, name)
 values('info.lei@gmail.com','$2a$10$fVUXkCPkUPD9nIXeKzZXgeMf2B4PE.5njFNoOAWHIG5wKUGnkdbSO','justas');
 

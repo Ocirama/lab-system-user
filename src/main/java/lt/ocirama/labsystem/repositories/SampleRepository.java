@@ -16,6 +16,7 @@ public interface SampleRepository extends Repository<SampleEntity, Integer> {
 
     void deleteById(Integer id);
 
-    @Query("select oe from OrderEntity oe where oe.protocolId=:protocol")
+    @Query(value = "select oe.samples  from OrderEntity oe where oe.protocolId=:protocol")
     List<SampleEntity> findAllByProtocol(String protocol);
+
 }

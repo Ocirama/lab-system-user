@@ -12,6 +12,6 @@ public class Sample {
     private Integer id;
     private String protocolId;
     private String sampleId;
-    private Double weight;
+    private Double sampleWeight;
     //private LocalDate date;
 }
