@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 @Transactional
 class SampleControllerTest {
 
+
+
     @Autowired
     private SampleController sampleController;
 

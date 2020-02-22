@@ -26,11 +26,6 @@ class OrderConverterTest {
         System.out.println(new BCryptPasswordEncoder().encode("a"));
     }
 
-    /*@Test
-    void convert_passingNull() {
-        List<Order> result = orderConverter.convert(null);
-    }*/
-
     @Test
     void convert_passingOrderAsNull() {
         List<OrderEntity> orders = new ArrayList<>();

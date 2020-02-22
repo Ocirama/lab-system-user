@@ -25,7 +25,7 @@ export class ApiService {
   private getRequestOptions() {
     const headers = {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer' + sessionStorage.getItem('token')
+      Authorization: 'Bearer ' + sessionStorage.getItem('token')
     };
     return {
       headers

@@ -48,7 +48,7 @@
     <orderEntry type="library" name="Maven: org.webjars:jquery:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:popper.js:1.14.3" level="project" />
     <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.17" level="project" />
-    <orderEntry type="library" name="Maven: com.fazecast:jSerialComm:2.5.3" level="project" />
+    <orderEntry type="library" name="Maven: com.fazecast:jSerialComm:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: org.apache.poi:poi:4.1.0" level="project" />
     <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.13" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.3" level="project" />
@@ -142,5 +142,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:5.2.2.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.6.3" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.h2database:h2:1.4.194" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:2.1" level="project" />
   </component>
 </module>
