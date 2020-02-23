@@ -12,14 +12,16 @@ import lt.ocirama.labsystem.repositories.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class SecurityService implements UserDetailsService {
-
+    private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
 
-    public SecurityService(UserRepository userRepository) {
+    public SecurityService(PasswordEncoder passwordEncoder, UserRepository userRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
     }
 
@@ -34,11 +36,11 @@ public class SecurityService implements UserDetailsService {
         return user;
     }
 
-    public String generateToken(String email) {
+    public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return Jwts.builder()
             .setClaims(claims)
-            .setSubject(email)
+            .setSubject(userDetails.getUsername())
             .setIssuedAt(new Date(System.currentTimeMillis()))
             .setExpiration(new Date(System.currentTimeMillis() + JwtAuthFilter.VALIDITY))
             .signWith(SignatureAlgorithm.HS512, JwtAuthFilter.SECRET)

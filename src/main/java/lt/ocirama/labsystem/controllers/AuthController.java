@@ -6,6 +6,7 @@ import lt.ocirama.labsystem.model.dto.User;
 import lt.ocirama.labsystem.services.SecurityService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,8 +27,9 @@ public class AuthController {
     @PostMapping("/login")
     public Token authenticate(@RequestBody User user) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
+        UserDetails userDetails = securityService.loadUserByUsername(user.getEmail());
 
-        return new Token(securityService.generateToken(user.getEmail()));
+        return new Token(securityService.generateToken(userDetails));
     }
 }
 

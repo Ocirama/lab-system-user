@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtAuthFilter extends BasicAuthenticationFilter {
 
+
     public static final String HEADER = "Authorization";
     public static final String PREFIX = "Bearer ";
     public static final String SECRET = "fJa34_rJP-O67es";

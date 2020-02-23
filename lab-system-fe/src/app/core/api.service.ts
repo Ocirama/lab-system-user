@@ -23,9 +23,10 @@ export class ApiService {
     return this.http.delete(`${this.urlPrefix}${url}`);
   }
   private getRequestOptions() {
+    const token = sessionStorage.getItem('token');
     const headers = {
       'Content-Type': 'application/json',
-      Authorization: 'Bearer ' + sessionStorage.getItem('token')
+      Authorization: token ? `Bearer ${token}` : ''
     };
     return {
       headers

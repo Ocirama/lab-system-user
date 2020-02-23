@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthEntryPoint implements AuthenticationEntryPoint {
 
+
     private final ObjectMapper objectMapper;
 
     public AuthEntryPoint(ObjectMapper objectMapper) {

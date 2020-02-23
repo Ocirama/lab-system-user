@@ -3,13 +3,13 @@
     <h1>Užsakymo forma</h1>
 
     <form (ngSubmit)="onSubmit()" #orderForm="ngForm" novalidate id="orderForm">
-     FORM {{orderForm.value | json}}
+     <!--FORM {{orderForm.value | json}}
       <br>
      ORDER {{orders | json}}
       <br>
      SAMPLELIST {{sampleList | json}}
       <br>
-      List elements {{sampleList.length}}
+      List elements {{sampleList.length}}-->
 
       <div class="form-group">
         <label for="protocolId">Protokolas</label>
@@ -23,6 +23,7 @@
           id="protocolId"
           type="text"
           class="form-control"
+          tabIndex="1"
         >
         <div
           class="alert alert-danger"
@@ -87,17 +88,16 @@
       <div class="form-group">
         <label> Kuro rūšis </label>
         <br>
-        <select (blur)="validateType(sampleType.value)" (change)="validateType(sampleType.value)" #sampleType="ngModel"
-                [(ngModel)]="orders.sampleType" name="sampleType" class="custom-select">
-          <option value="default"> Kuro rūšis</option>
+        <select  (blur)="validateType(sampleTypeS.value)" (change)="validateType(sampleTypeS.value)" #sampleTypeS="ngModel"
+                [(ngModel)]="orders.sampleType" name="sampleType" class="custom-select" required>
           <option *ngFor="let sampleType of sampleTypes">{{sampleType}}</option>
         </select>
-        <small class="text-danger" [class.is-invalid]="sampleType.untouched">Please choose a type</small>
+        <small class="text-danger" *ngIf="sampleTypeS.touched &&!sampleTypeS.valid">Please choose a type</small>
       </div>
 
       <div class="form-group">
         <label for="sampleAmount"> Kiekis </label>
-        <input max="10" (ngModelChange)="childFunction(orders)"  required [(ngModel)]="orders.orderAmount" name="orderAmount" #sampleAmount="ngModel" type="number" class="form-control" id="sampleAmount"
+        <input (focusout)="toggleChild()" max="10" (ngModelChange)="childFunction(orders)"  required [(ngModel)]="orders.orderAmount" name="orderAmount" #sampleAmount="ngModel" type="number" class="form-control" id="sampleAmount"
         >
         <div
           class="alert alert-danger"
@@ -129,7 +129,7 @@
       {{words2 | json}}-->
 
       <ol class="form-group">
-        <label> Mėginių sąrašas </label>
+        <label *ngIf="showVar"> Mėginių sąrašas </label>
 
         <li *ngFor="let sample of sampleList; let i= index">
           <td>

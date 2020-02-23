@@ -12,7 +12,6 @@ h1 {
 
 .example-full-width {
   width: 100%;
-  padding-bottom: 50px;
 }
 
 td {
@@ -22,7 +21,6 @@ h3 {
   text-align: center;
 }
 div{
-
 }
 .example-margin{
   margin-right: 50px;
@@ -36,3 +34,11 @@ div{
 .id{
 border-bottom: 10px;
 }
+label {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.id{
+font-size: 30px;
+}
+

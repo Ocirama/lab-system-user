@@ -49,7 +49,8 @@ export class FormComponent implements OnInit {
 
   SampleArray: Sample[] = [];
   sampleList:Array<Sample> = [];
-
+  showVar: boolean = false;
+  selectedOption: String;
   @Input() public value: number;
 
 
@@ -77,6 +78,7 @@ export class FormComponent implements OnInit {
   submitted = false;
 
   ngOnInit() {
+    this.selectedOption = "Kuro rūšis";
     this.samples.sampleWeight = 0;
     // tslint:disable-next-line:no-non-null-assertion
     this.customerGroupOptions = this.customerForm.get('customerGroup')!.valueChanges
@@ -85,7 +87,7 @@ export class FormComponent implements OnInit {
       map(value => this._filterGroup(value))
     );
   }
-
+  
   public childFunction(value) {
     if (value.orderAmount  < 15) {
       for (var i = 0; i <= value.orderAmount - 1; i++) {
@@ -101,14 +103,14 @@ export class FormComponent implements OnInit {
     }else{
       console.error("Too many samples ! Try less than 15.")
     }
-
   }
-
+  toggleChild(){
+    this.showVar = !this.showVar;
+  }
   public protocolChange(value) {
     this.samples.protocolId = value;
 
   }
-
 
   validateType(value) {
     if (value === 'default') {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../core/api.service';
+import { TabService } from './tab.service';
 
+declare var angular: any;
 interface Sample {
   id: number;
   protocolId: string;
@@ -12,6 +14,7 @@ interface Sample {
 @Component({
   selector: 'app-sample-weight',
   templateUrl: './sample-weight.component.html',
+  providers: [TabService],
   styleUrls: ['./sample-weight.component.css']
 })
 
@@ -21,11 +24,17 @@ export class SampleWeightComponent implements OnInit {
   sampleList: Array<Sample> = [];
   public sampleArray: Sample[];
 
+  showVar: boolean = false;
+
   constructor(private api: ApiService) {
 
   }
 
   ngOnInit() {
+  }
+
+  toggleChild(){
+    this.showVar = !this.showVar;
   }
 
   public newProtocolWeight(value): void {
@@ -47,6 +56,8 @@ export class SampleWeightComponent implements OnInit {
     }
 
   }
+
+
 
   submitWeight(sampleList: Array<Sample>) {
     for (let sample of this.sampleList) {

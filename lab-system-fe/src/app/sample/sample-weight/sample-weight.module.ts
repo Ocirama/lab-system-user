@@ -5,11 +5,12 @@ import { SampleWeightComponent } from './sample-weight.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { TabDirective } from './tab.directive';
 
 
 
 @NgModule({
-  declarations: [SampleWeightComponent],
+  declarations: [SampleWeightComponent,TabDirective ],
   imports: [
     CommonModule,
     SampleWeightRoutingModule,

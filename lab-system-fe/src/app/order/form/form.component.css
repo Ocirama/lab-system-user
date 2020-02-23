@@ -35,4 +35,7 @@ margin-right: 50px;
 .container-fluid{
   width: 600px;
 }
+ol{
+  font-size: 25px;
+}
 
