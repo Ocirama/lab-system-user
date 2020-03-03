@@ -2,10 +2,7 @@ package lt.ocirama.labsystem.services;
 
 import lt.ocirama.labsystem.converters.TotalMoistureConverter;
 import lt.ocirama.labsystem.converters.TotalMoistureEntityConverter;
-import lt.ocirama.labsystem.model.SampleEntity;
-import lt.ocirama.labsystem.model.TotalMoistureEntity;
-import lt.ocirama.labsystem.model.dto.Sample;
-import lt.ocirama.labsystem.model.dto.SampleSave;
+import lt.ocirama.labsystem.model.entities.TotalMoistureEntity;
 import lt.ocirama.labsystem.model.dto.TotalMoisture;
 import lt.ocirama.labsystem.model.dto.TotalMoistureSave;
 import lt.ocirama.labsystem.repositories.TotalMoistureRepository;

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -28,6 +28,7 @@ export class ListComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
+  
 
   constructor(
     private api: ApiService,

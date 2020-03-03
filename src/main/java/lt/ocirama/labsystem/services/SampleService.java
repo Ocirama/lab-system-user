@@ -1,17 +1,17 @@
 package lt.ocirama.labsystem.services;
 
+import java.util.List;
 import lt.ocirama.labsystem.converters.SampleConverter;
 import lt.ocirama.labsystem.converters.SampleEntityConverter;
-import lt.ocirama.labsystem.model.SampleEntity;
 import lt.ocirama.labsystem.model.dto.Sample;
 import lt.ocirama.labsystem.model.dto.SampleSave;
+import lt.ocirama.labsystem.model.entities.SampleEntity;
 import lt.ocirama.labsystem.repositories.SampleRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class SampleService {
+
     private final SampleConverter sampleConverter;
     private final SampleEntityConverter sampleEntityConverter;
     private final SampleRepository sampleRepository;
@@ -44,5 +44,11 @@ public class SampleService {
 
     public void delete(Integer id) {
         sampleRepository.deleteById(id);
+    }
+
+    public List<Sample> getAllByProtocol(String protocolId) {
+        List<SampleEntity> sample = sampleRepository.findAllByProtocol(protocolId);
+
+        return sampleConverter.convert(sample);
     }
 }

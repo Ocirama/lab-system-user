@@ -3,7 +3,7 @@ package lt.ocirama.labsystem.services;
 import java.util.List;
 import lt.ocirama.labsystem.converters.OrderConverter;
 import lt.ocirama.labsystem.converters.OrderEntityConverter;
-import lt.ocirama.labsystem.model.OrderEntity;
+import lt.ocirama.labsystem.model.entities.OrderEntity;
 import lt.ocirama.labsystem.model.dto.Order;
 import lt.ocirama.labsystem.model.dto.OrderSave;
 import lt.ocirama.labsystem.repositories.OrderRepository;
@@ -36,8 +36,8 @@ public class OrderService {
     }
 
     public Order save(OrderSave university) {
-        OrderEntity universityEntity = orderEntityConverter.convert(university);
-        OrderEntity result = orderRepository.save(universityEntity);
+        OrderEntity orderEntity = orderEntityConverter.convert(university);
+        OrderEntity result = orderRepository.save(orderEntity);
 
         return orderConverter.convert(result);
     }

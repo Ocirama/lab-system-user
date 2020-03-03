@@ -10,7 +10,9 @@
 
     <button mat-menu-item routerLink="log">Užsakymų žurnalas</button>
 
-    <button mat-menu-item routerLink="sample">Mėginiai</button>
+    <button mat-menu-item routerLink="sample">Mėginių sąrašas</button>
+
+    <button mat-menu-item routerLink="sample-weight">Mėginių svoris</button>
   </mat-menu>
 
 
@@ -24,7 +26,7 @@
   </mat-menu>
 
   <mat-menu #total="matMenu">
-    <button mat-menu-item>Pirmas</button>
+    <button mat-menu-item routerLink="total-moisture-test">Pirmas</button>
     <button mat-menu-item>Antras</button>
   </mat-menu>
 
@@ -50,6 +52,8 @@
     <button mat-menu-item routerLink="ash-journal">Peleningumas</button>
 
   </mat-menu>
+
+  <button mat-button routerLink="tray">Padėklų kalibracija</button>
 
 
 </mat-toolbar>

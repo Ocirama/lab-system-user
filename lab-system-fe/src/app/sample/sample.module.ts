@@ -15,6 +15,7 @@ import {
 import {FormsModule} from '@angular/forms';
 import {SampleRoutingModule} from './sample-routing.module';
 import { SampleModalComponent } from './sample-modal/sample-modal.component';
+import { SampleWeightComponent } from './sample-weight/sample-weight.component';
 
 
 @NgModule({
@@ -31,6 +32,9 @@ import { SampleModalComponent } from './sample-modal/sample-modal.component';
     FormsModule,
     MatPaginatorModule,
     SampleRoutingModule,
+  ],
+  entryComponents: [
+    SampleModalComponent
   ]
 })
 export class SampleModule {

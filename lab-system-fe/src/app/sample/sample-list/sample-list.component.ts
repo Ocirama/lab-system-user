@@ -7,7 +7,7 @@ interface Sample {
   id: number;
   protocolId: string;
   sampleId: string;
-  weight: number;
+  sampleWeight: number;
   // date: Date;
 }
 
@@ -57,7 +57,7 @@ export class SampleListComponent implements OnInit {
         id: sample ? sample.id : null,
         protocolId: sample ? sample.protocolId : null,
         sampleId: sample ? sample.sampleId : null,
-        weight: sample ? sample.weight : null,
+        sampleWeight: sample ? sample.sampleWeight : null,
         // date: order ? order.date : null
       }
     });
@@ -69,7 +69,7 @@ export class SampleListComponent implements OnInit {
             if (row) {
               row.protocolId = result.protocolId;
               row.sampleId = result.sampleId;
-              row.weight = result.weight;
+              row.sampleWeight = result.sampleWeight;
               // row.date = result.date;
             } else {
               this.samples = [...this.samples, result];

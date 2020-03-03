@@ -4,6 +4,7 @@ import {ApiService} from '../../../core/api.service';
 import {ModalComponent} from '../../../log/modal/modal.component';
 import {filter} from 'rxjs/operators';
 import {TotalMoistureModalComponent} from '../total-moisture-modal/total-moisture-modal.component';
+import { AuthService } from '../../../auth/auth.service';
 
 interface TotalMoistureJournal {
   id: number;
@@ -32,7 +33,8 @@ export class TotalMoistureListComponent implements OnInit {
   constructor(
     private api: ApiService,
     public dialog: MatDialog,
-  ) { }
+
+  ) {}
 
   ngOnInit() {
     this.api.get('/lei/journals').subscribe((data: TotalMoistureJournal[]) => this.dataSource.data = data);

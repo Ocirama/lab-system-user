@@ -1,0 +1,43 @@
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+h1 {
+  text-align: center;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+h3 {
+  text-align: center;
+}
+div{
+}
+.example-margin{
+  margin-right: 50px;
+}
+.form-control.ng-touched.ng-invalid{
+  border:2px solid red;
+}
+.container-fluid{
+  width: 600px;
+}
+.id{
+  border-bottom: 10px;
+}
+label {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.id{
+  font-size: 30px;
+}

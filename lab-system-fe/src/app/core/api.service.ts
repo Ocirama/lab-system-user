@@ -6,27 +6,30 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ApiService {
 
-  private urlPrefix = '';
+  private urlPrefix = 'http://127.0.0.1:8080';
 
   constructor(private http: HttpClient) {
   }
 
   get(url: string) {
-    return this.http.get(this.urlPrefix + url);
+    return this.http.get(this.urlPrefix + url, this.getRequestOptions());
   }
 
   post(url: string, data: object) {
-    const headers = {
-      'Content-Type': 'application/json'
-    };
-    const requestOptions = {
-      headers
-    };
-    return this.http.post(this.urlPrefix + url, data, requestOptions);
+    return this.http.post(this.urlPrefix + url, data, this.getRequestOptions());
   }
 
   delete(url: string) {
     return this.http.delete(`${this.urlPrefix}${url}`);
   }
-
+  private getRequestOptions() {
+    const token = sessionStorage.getItem('token');
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: token ? `Bearer ${token}` : ''
+    };
+    return {
+      headers
+    };
+  }
 }

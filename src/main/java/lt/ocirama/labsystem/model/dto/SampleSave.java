@@ -10,9 +10,11 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SampleSave {
-        private Integer id;
-        private String sampleId;
-        private Double weight;
-        //private LocalDate date;
-    }
+
+    private Integer id;
+    private String protocolId;
+    private String sampleId;
+    private Double sampleWeight;
+    //private LocalDate date;
+}
 

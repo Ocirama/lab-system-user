@@ -1,8 +1,9 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {ApiService} from '../../core/api.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { ApiService } from '../../core/api.service';
+
 
 export interface CustomerGroup {
   letter: string;
@@ -19,6 +20,13 @@ interface Order {
   // date: Date;
 }
 
+export interface Sample {
+  id: number;
+  protocolId: string;
+  sampleId: string;
+  sampleWeight: number;
+
+}
 
 // tslint:disable-next-line:variable-name
 export const _filter = (opt: string[], value: string): string[] => {
@@ -33,6 +41,19 @@ export const _filter = (opt: string[], value: string): string[] => {
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+
+  sampleTypes = ['Skiedros', 'Granulės', 'Atliekos', 'Ligninas', 'Briketai'];
+  orders: Order = {} as Order;
+  samples: Sample = {} as Sample;
+  typeHasError = true;
+
+  SampleArray: Sample[] = [];
+  sampleList:Array<Sample> = [];
+  showVar: boolean = false;
+  selectedOption: String;
+  @Input() public value: number;
+
+
   customerForm: FormGroup = this._formBuilder.group({
     customerGroup: '',
   });
@@ -57,39 +78,89 @@ export class FormComponent implements OnInit {
   submitted = false;
 
   ngOnInit() {
-
+    this.selectedOption = "Kuro rūšis";
+    this.samples.sampleWeight = 0;
     // tslint:disable-next-line:no-non-null-assertion
     this.customerGroupOptions = this.customerForm.get('customerGroup')!.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filterGroup(value))
-      );
+    .pipe(
+      startWith(''),
+      map(value => this._filterGroup(value))
+    );
+  }
+  
+  public childFunction(value) {
+    if (value.orderAmount  < 15) {
+      for (var i = 0; i <= value.orderAmount - 1; i++) {
+        this.sampleList[i] = new class implements Sample {
+          id: number;
+          protocolId: string;
+          sampleId: string;
+          sampleWeight: number;
+        }
+        this.sampleList[i].protocolId = value.protocolId;
+        this.sampleList[i].sampleWeight = 0;
+      }
+    }else{
+      console.error("Too many samples ! Try less than 15.")
+    }
+  }
+  toggleChild(){
+    this.showVar = !this.showVar;
+  }
+  public protocolChange(value) {
+    this.samples.protocolId = value;
+
+  }
+
+  validateType(value) {
+    if (value === 'default') {
+      this.typeHasError = true;
+    } else {
+      this.typeHasError = false;
+    }
   }
 
   private _filterGroup(value: string): CustomerGroup[] {
     if (value) {
       return this.customerGroups
-        .map(group => ({
-          letter: group.letter, names: _filter(group.names, value)
-        }))
-        .filter(group => group.names.length > 0);
+      .map(group => ({
+        letter: group.letter, names: _filter(group.names, value)
+      }))
+      .filter(group => group.names.length > 0);
     }
     return this.customerGroups;
 
   }
 
   onSubmit() {
-    this.submitted = true;
+    this.api.post("/lei/orders", this.orders).subscribe(data => console.log('Success!', data), error => console.log('Error', error))
+    for (let sample of this.sampleList) {
+      this.api.post('/lei/samples', sample).subscribe(
+        (result: Sample) => {
+          const row = this.sampleList.find(item => item.id === result.id);
+          if (row) {
+            row.protocolId = result.protocolId;
+            row.sampleId = result.sampleId;
+            row.sampleWeight = result.sampleWeight;
+            // row.date = result.date;
+          } else {
+            this.sampleList = [...this.sampleList, result];
+          }
+        }
+      );
+
+      this.SampleArray = [];
+    }
   }
 
-
-  /*add(order?: Order): void {
-    this.api.post('/lei/orders', order)
-      .subscribe((result: Order) => {
-        this.orders = [...this.orders, result];
-      });
-  }*/
-
+  public clear() {
+    this.orders.sampleType = "";
+    this.orders.protocolId = "";
+    this.orders.test = "";
+    this.orders.customer = "";
+    this.orders.orderAmount = null;
+    this.sampleList = [];
+  }
 }
 
 
