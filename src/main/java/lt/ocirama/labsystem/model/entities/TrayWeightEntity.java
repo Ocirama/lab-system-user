@@ -1,10 +1,11 @@
-/*package lt.ocirama.labsystem.model;
+package lt.ocirama.labsystem.model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
+import lt.ocirama.labsystem.model.entities.AbstractEntity;
 
 @Setter
 @Getter
@@ -18,4 +19,4 @@ public class TrayWeightEntity extends AbstractEntity {
     @Column(name = "tray_weight", nullable = false)
     private double trayWeight;
 
-}*/
+}

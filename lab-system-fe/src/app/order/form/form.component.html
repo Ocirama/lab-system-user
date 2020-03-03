@@ -97,7 +97,16 @@
 
       <div class="form-group">
         <label for="sampleAmount"> Kiekis </label>
-        <input (focusout)="toggleChild()" max="10" (ngModelChange)="childFunction(orders)"  required [(ngModel)]="orders.orderAmount" name="orderAmount" #sampleAmount="ngModel" type="number" class="form-control" id="sampleAmount"
+        <input
+          (focusout)="toggleChild()" max="10"
+          (ngModelChange)="childFunction(orders)"
+          required
+          [(ngModel)]="orders.orderAmount"
+          name="orderAmount"
+          #sampleAmount="ngModel"
+          type="number"
+          class="form-control"
+          id="sampleAmount"
         >
         <div
           class="alert alert-danger"
@@ -109,9 +118,9 @@
         </div>
       </div>
 
-      <button [disabled]="orderForm.form.invalid || typeHasError" type="submit" class="btn btn-primary">Registruoti</button>
+      <button mat-button [disabled]="orderForm.form.invalid || typeHasError" type="submit" class="btn btn-primary">Registruoti</button>
 
-      <button type="button" class=" btn btn-secondary" (click)="clear()">Valyti</button>
+      <button mat-button type="button" class=" btn btn-secondary" (click)="clear()">Valyti</button>
 
       <!-- <form #formRef="ngForm">
         <div *ngFor="let word2 of words2; let in=index" class="col-sm-3">

@@ -49,6 +49,16 @@ const routes: Routes = [
     loadChildren: () =>
       import('./journal/ash-journal/ash-journal.module').then(m => m.AshJournalModule)
   },
+  {
+    path: 'total-moisture-test',
+    loadChildren: () =>
+      import('./tests/total-moisture-test/total-moisture-test.module').then(m => m.TotalMoistureTestModule)
+  },
+  {
+    path: 'tray',
+    loadChildren: () =>
+      import('./tray/tray.module').then(m => m.TrayModule)
+  },
 ];
 
 @NgModule({

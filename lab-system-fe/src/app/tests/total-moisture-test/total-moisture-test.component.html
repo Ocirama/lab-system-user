@@ -1,0 +1,36 @@
+<form class="example-form">
+  <div class="example-full-width">
+    <label>Įveskite užsakymo numerį</label>
+    <input  (ngModelChange)="childFunction(this.sampleList)" #protocol matInput="protocol" name="protocol" [(ngModel)]="samples.protocolId" class="form-control" >
+  </div>
+  <br>
+  <button class="btn btn-primary"  (click)="newProtocolWeight(protocol.value)" (click)="toggleChild()" (click)="toggleSamples(this.sampleList)" >Pateikti</button>
+  <br>
+  <div class="form-group">
+
+    <label *ngIf="showVar"> Mėginių sąrašas </label>
+    <li *ngFor="let sample of sampleList; let i= index">
+      <td class="id">{{sample.sampleId}}</td>
+      <td>
+        <input  placeholder="kg"
+                type="text"
+                id="f_{{i}}"
+                name="sampleId-{{i}}"
+                [(ngModel)]="sampleList[i].sampleWeight"
+                class="form-control"
+                #samplesS="ngModel"
+                required
+                tabIndex="{{i}}"
+        ></td>
+      <div
+        class="alert alert-danger"
+        *ngIf="samplesS.touched && !samplesS.valid">
+        <small
+          *ngIf="samplesS.errors.required">
+          Pasverkite mėginį
+        </small>
+      </div>
+  </div>
+  <div *ngIf="showVar">
+    <button type="button" class=" btn btn-secondary" (click)="submitWeight(this.sampleList)"> Sverti </button>
+  </div>
