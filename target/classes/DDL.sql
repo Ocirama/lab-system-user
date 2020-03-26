@@ -7,6 +7,24 @@ create table user
     name varchar(50) not null,
         date date
 );
+drop table customers;
+create table customers
+    (
+        id int unsigned auto_increment primary key,
+        title varchar(100),
+            date date
+);
+select * from customers;
+insert into customers (title)
+values('Anykščių šiluma, UAB'), ('Axioma servisas, UAB'), ('Arctodus, UAB'), ('Agrolitpa, UAB'), ('Aukštaitijos vandenys, UAB'),
+       ('Bio Wood, UAB'), ('Bionergo, MB'),('Eco Baltica, UAB'),('Fortum Klaipeda, UAB'),('Grainmore Pro, UAB'),
+       ('Gretvita, UAB'),('Ignitis Gamyba, AB'),('Idex Taika, UAB'),('Joniškio butų ūkis, UAB'),('Jurbarko komunalininkas, UAB'),
+       ('Kaišiadorių šiluma, UAB'),('Komunalinių paslaugų centras, UAB'),('Lazdijų šiluma, UAB'),('LEI'),('Mūsų Amatai, VĮ'),
+       ('Mažeikių šilumos tinklai, UAB'),('Neo Group, UAB'),('Prienų šilumos tinklai, AB'),('Petrašiūnų katilinė, UAB'),('Pusbroliai, UAB'),
+       ('Plungės Bioenergija, UAB'),('RW Produktai, UAB'),('Roalsa, UAB'),('Robmona, UAB'),('Raguvilė, UAB'),('Sinsila, UAB'),
+       ('Šilutės šilumos tinklai, UAB'),('Širvintų šiluma, UAB'),('Tauragės šilumos tinklai, UAB'),('Telšių atliekų tvarkymo centras, UAB'),
+       ('Ukmergės šilumos tinklai, UAB'),('Vakarų Baltijos technologijos, UAB');
+
 select * from user;
 insert into user(email, password, name)
 values('info.lei@gmail.com','$2a$10$fVUXkCPkUPD9nIXeKzZXgeMf2B4PE.5njFNoOAWHIG5wKUGnkdbSO','justas');
@@ -50,7 +68,7 @@ FOREIGN KEY (sample_id) REFERENCES sample_log (id)
  reference_tray_weight_after double not null,
  date date
  );
- 
+
 
  CREATE TABLE  total_moisture_log (
  id int PRIMARY KEY AUTO_INCREMENT,
@@ -62,7 +80,7 @@ FOREIGN KEY (sample_id) REFERENCES sample_log (id)
  date date,
 FOREIGN KEY (tray_id) REFERENCES tray_log (id)
  );
- 
+
  CREATE TABLE  general_moisture_log (
  id int PRIMARY KEY AUTO_INCREMENT,
   tray_id int not null,
@@ -74,8 +92,8 @@ FOREIGN KEY (tray_id) REFERENCES tray_log (id)
  date date,
  FOREIGN KEY (tray_id) REFERENCES tray_log (id)
  );
- 
- 
+
+
  CREATE TABLE ash_log (
  id int PRIMARY KEY AUTO_INCREMENT,
  tray_id int not null,

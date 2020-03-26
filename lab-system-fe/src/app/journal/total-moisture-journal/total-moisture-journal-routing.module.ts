@@ -6,7 +6,6 @@ import { AuthGuard } from '../../auth/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    canActivate: [AuthGuard],
     component: TotalMoistureListComponent
   }
 ];

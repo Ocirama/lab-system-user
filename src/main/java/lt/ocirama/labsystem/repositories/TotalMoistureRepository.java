@@ -17,5 +17,8 @@ public interface TotalMoistureRepository extends Repository<TotalMoistureEntity,
 
     void deleteById(Integer id);
 
+    @Query(value = "select oe.samples  from OrderEntity oe where oe.protocolId=:protocol")
+    List<SampleEntity> findAllByProtocol(String protocol);
+
 
 }

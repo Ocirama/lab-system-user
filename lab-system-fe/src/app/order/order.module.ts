@@ -16,10 +16,13 @@ import {
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {FormComponent} from './form/form.component';
+import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+import {ModalComponent} from './modal/modal.component';
+
 
 
 @NgModule({
-  declarations: [FormComponent],
+  declarations: [FormComponent, ModalComponent],
   imports: [
     OrderRoutingModule,
     MatCheckboxModule,
@@ -35,7 +38,11 @@ import {FormComponent} from './form/form.component';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgMultiSelectDropDownModule
+  ],
+  entryComponents: [
+    ModalComponent
   ]
 })
 export class OrderModule {

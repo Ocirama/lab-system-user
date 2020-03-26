@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../../core/api.service';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ApiService} from '../../core/api.service';
 
 interface Sample {
   id: number;
@@ -9,7 +9,7 @@ interface Sample {
   sampleWeight: number;
 }
 
-interface TotalMoistureSample {
+export interface TotalMoistureSample {
   id: number;
   protocolId: string;
   sampleId: string;
@@ -21,6 +21,12 @@ interface TotalMoistureSample {
   // date: Date;
 }
 
+export interface Tray {
+  id: number;
+  trayId: string;
+  trayWeight: number;
+}
+
 @Component({
   selector: 'app-total-moisture-test',
   templateUrl: './total-moisture-test.component.html',
@@ -28,87 +34,104 @@ interface TotalMoistureSample {
 })
 
 export class TotalMoistureTestComponent implements OnInit {
-  samples: Sample = {} as Sample;
-  tmsamples: TotalMoistureSample = {} as TotalMoistureSample;
-  sampleList: Array<Sample> = [];
-  public sampleArray: Sample[];
-  tmsampleList:Array<TotalMoistureSample> = [];
-  showVar: boolean = false;
+  isLinear = false;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
+  weight: number;
+  tmes: TotalMoistureSample = {} as TotalMoistureSample;
+  samples: Sample[];
+  tray: Tray = {} as Tray;
+  tmArray: Array<{
+    id: number,
+    protocolId: string,
+    sampleId: string,
+    trayId: string,
+    trayWeight: number,
+    trayAndSampleWeightBefore: number,
+    trayAndSampleWeightAfter: number,
+    trayAndSampleWeightAfterPlus: number
+  }> = [];
+  formGroup: FormGroup;
+  form: FormArray;
+  newArray = [];
 
-  constructor(private api: ApiService) {
-
+  // tslint:disable-next-line:variable-name
+  constructor(private _formBuilder: FormBuilder,
+              private api: ApiService) {
   }
 
   ngOnInit() {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      primaryCtrl: ['', Validators.required],
+      secondaryCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
+    });
+
+    this.formGroup = this._formBuilder.group({
+      form: this._formBuilder.array([this.init()])
+    });
+    this.addItem();
   }
 
-  toggleChild(){
-    this.showVar = !this.showVar;
-  }
-  public toggleSamples(value) {
-    if (value.length < 15) {
-      for (var i = 0; i <= value.length - 1; i++) {
-        this.toggleList(this.sampleList[i]);
-      }
-    } else {
-      console.error("Too many samples ! Try less than 15.")
-    }
-
-  }
-  toggleList(value){
-    for(var i = 0; i <= 2 - i; i++){
-       this.tmsampleList[i] = new class implements TotalMoistureSample {
-         id: number;
-         protocolId: string;
-         sampleId: string;
-         trayId: string;
-         trayWeight: number;
-         trayAndSampleWeightBefore: number;
-         trayAndSampleWeightAfter: number;
-         trayAndSampleWeightAfterPlus: number;
-       }
-     console.log(this.tmsampleList);
-    }
+  init() {
+    return this._formBuilder.group({
+      cont: new FormControl('', [Validators.required]),
+    });
   }
 
-  public newProtocolWeight(value): void {
-
-    this.api.get(`/lei/samples/list/${value}`)
-    .subscribe((data) => {
-      this.sampleList = <any>data
-    })
-
-  }
-
-  public childFunction(value) {
-    if (value.length < 15) {
-      for (var i = 0; i <= value.length - 1; i++) {
-        this.sampleList[i];
-      }
-    } else {
-      console.error("Too many samples ! Try less than 15.")
-    }
-
+  addItem() {
+    this.form = this.formGroup.get('form') as FormArray;
+    this.form.push(this.init());
   }
 
 
+  sverti(sample: TotalMoistureSample) {
+    this.api.get('/lei/scales')
+      .subscribe((weight: any) => {
+        this.weight = weight;
+        sample.trayAndSampleWeightBefore = this.weight;
+        console.log(this.weight);
+      });
+  }
 
-  submitWeight(sampleList: Array<Sample>) {
-    for (let sample of this.sampleList) {
-      this.api.post('/lei/samples', sample).subscribe(
-        (result: Sample) => {
-          const row = this.sampleList.find(item => item.id === result.id);
-          if (row) {
-            row.protocolId = result.protocolId;
-            row.sampleId = result.sampleId;
-            row.sampleWeight = result.sampleWeight;
-            // row.date = result.date;
-          } else {
-            this.sampleList = [...this.sampleList, result];
-          }
+  getSamplesByProtocol(protocol: any) {
+    this.api.get(`/lei/samples/list/${protocol}`).subscribe((samples: any) => {
+      this.samples = samples;
+      console.log(this.samples);
+      for (const sample of this.samples) {
+        for (let i = 1; i <= 2; i++) {
+          this.tmes = new class implements TotalMoistureSample {
+            id: number;
+            protocolId: string;
+            sampleId: string;
+            trayAndSampleWeightAfter: number;
+            trayAndSampleWeightAfterPlus: number;
+            trayAndSampleWeightBefore: number;
+            trayId: string;
+            trayWeight: number;
+          };
+          this.tmes.sampleId = sample.sampleId;
+          this.tmes.protocolId = sample.protocolId;
+          this.tmArray.push(this.tmes);
         }
-      );
-    }
+      }
+    });
+    console.log(this.tmes);
+    console.log(this.tmArray);
   }
 
+  action(sample: TotalMoistureSample) {
+    this.api.get(`/lei/trays/${sample.trayId}`).subscribe((tray: any) => {
+      this.tray = tray;
+
+      sample.trayWeight = this.tray.trayWeight;
+    });
+  }
 }

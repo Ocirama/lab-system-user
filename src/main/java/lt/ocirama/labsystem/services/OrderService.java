@@ -35,8 +35,8 @@ public class OrderService {
         return orderConverter.convert(order);
     }
 
-    public Order save(OrderSave university) {
-        OrderEntity orderEntity = orderEntityConverter.convert(university);
+    public Order save(OrderSave order) {
+        OrderEntity orderEntity = orderEntityConverter.convert(order);
         OrderEntity result = orderRepository.save(orderEntity);
 
         return orderConverter.convert(result);

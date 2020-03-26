@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 
 
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {ApiService} from '../../core/api.service';
 import {ModalComponent} from '../modal/modal.component';
+import Swal from 'sweetalert2';
 
 interface Order {
   id: number;
@@ -12,7 +13,7 @@ interface Order {
   test: string;
   sampleType: string;
   orderAmount: number;
-  // date: Date;
+  date: Date;
 }
 
 @Component({
@@ -21,14 +22,13 @@ interface Order {
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ['no', 'protocolId', 'customer', 'test', 'sampleType', 'orderAmount', /*'date'*/ 'actions'];
+  displayedColumns: string[] = ['no', 'protocolId', 'customer', 'test', 'sampleType', 'orderAmount', 'date', 'actions'];
   orders: Order[] = [];
   dataSource: MatTableDataSource<Order>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-  
 
   constructor(
     private api: ApiService,
@@ -66,8 +66,8 @@ export class ListComponent implements OnInit {
         customer: order ? order.customer : null,
         test: order ? order.test : null,
         sampleType: order ? order.sampleType : null,
-        orderAmount: order ? order.orderAmount : null
-        // date: order ? order.date : null
+        orderAmount: order ? order.orderAmount : null,
+        date: order ? order.date : null
       }
     });
     dialogRef.afterClosed().subscribe(data => {
@@ -81,7 +81,7 @@ export class ListComponent implements OnInit {
               row.test = result.test;
               row.sampleType = result.sampleType;
               row.orderAmount = result.orderAmount;
-              // row.date = result.date;
+              row.date = result.date;
             } else {
               this.orders = [...this.orders, result];
             }
@@ -89,6 +89,23 @@ export class ListComponent implements OnInit {
         );
       }
     });
+    this.swalOrderUpdate();
+  }
+
+  swalOrderUpdate() {
+    Swal.fire(
+      'Užsakymas papildytas.',
+      '',
+      'success'
+    );
+  }
+
+  swalOrderDelete() {
+    Swal.fire(
+      'Užsakymas ištrintas.',
+      '',
+      'success'
+    );
   }
 }
 

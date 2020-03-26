@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -18,5 +17,5 @@ public class Order {
     private String test;
     private String sampleType;
     private int orderAmount;
-    //private LocalDate date;
+    private Date date;
 }

@@ -1,1 +1,4 @@
 lt\ocirama\labsystem\LabsystemApplicationTests.class
+lt\ocirama\labsystem\converters\OrderConverterTest.class
+lt\ocirama\labsystem\controllers\SampleControllerTest.class
+lt\ocirama\labsystem\repositories\SampleRepositoryTest.class

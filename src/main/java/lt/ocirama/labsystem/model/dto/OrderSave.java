@@ -21,6 +21,5 @@ public class OrderSave {
     private String test;
     private String sampleType;
     private int orderAmount;
-    //private LocalDate date;
 }
 

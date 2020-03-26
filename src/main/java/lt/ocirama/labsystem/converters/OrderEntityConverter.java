@@ -28,7 +28,6 @@ public class OrderEntityConverter {
             result.setTest(order.getTest());
             result.setSampleType(order.getSampleType());
             result.setOrderAmount(order.getOrderAmount());
-            //result.setDate(java.sql.Date.valueOf(order.getDate()));
         } else {
             result = orderRepository.findOneById(order.getId());
             result.setProtocolId(order.getProtocolId());
@@ -36,7 +35,6 @@ public class OrderEntityConverter {
             result.setTest(order.getTest());
             result.setSampleType(order.getSampleType());
             result.setOrderAmount(order.getOrderAmount());
-            //result.setDate(java.sql.Date.valueOf(order.getDate()));
         }
 
         return result;

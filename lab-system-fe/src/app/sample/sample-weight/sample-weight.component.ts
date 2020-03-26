@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../core/api.service';
-import { TabService } from './tab.service';
+import {Component, OnInit} from '@angular/core';
+import {ApiService} from '../../core/api.service';
+import {TabService} from '../../tab.service';
 
 
 interface Sample {
@@ -33,16 +33,16 @@ export class SampleWeightComponent implements OnInit {
   ngOnInit() {
   }
 
-  toggleChild(){
+  toggleChild() {
     this.showVar = !this.showVar;
   }
 
   public newProtocolWeight(value): void {
 
     this.api.get(`/lei/samples/list/${value}`)
-    .subscribe((data) => {
-      this.sampleList = <any>data
-    })
+      .subscribe((data) => {
+        this.sampleList = <any> data;
+      });
 
   }
 
@@ -52,11 +52,10 @@ export class SampleWeightComponent implements OnInit {
         this.sampleList[i];
       }
     } else {
-      console.error("Too many samples ! Try less than 15.")
+      console.error('Too many samples ! Try less than 15.');
     }
 
   }
-
 
 
   submitWeight(sampleList: Array<Sample>) {

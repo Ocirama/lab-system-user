@@ -41,3 +41,11 @@ label {
 .id{
   font-size: 30px;
 }
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
