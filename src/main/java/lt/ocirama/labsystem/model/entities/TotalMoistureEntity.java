@@ -1,10 +1,7 @@
 package lt.ocirama.labsystem.model.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,7 +20,7 @@ public class TotalMoistureEntity extends AbstractEntity {
     @Column(name = "total_tray_weight_after_plus", nullable = false)
     private double trayAndSampleWeightAfterPlus;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "tray_id")
     private TrayEntity tray;
 

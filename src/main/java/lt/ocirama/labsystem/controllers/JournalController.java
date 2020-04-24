@@ -16,6 +16,7 @@ import java.util.List;
 @RequestMapping("/lei/journals")
 public class JournalController {
 
+
     private final TotalMoistureService totalMoistureService;
 
     public JournalController(TotalMoistureService totalMoistureService) {
@@ -36,6 +37,10 @@ public class JournalController {
     @PostMapping
     public TotalMoisture save(@RequestBody TotalMoistureSave totalMoistureSave) {
         return totalMoistureService.save(totalMoistureSave);
+    }
+    @PostMapping("/second")
+    public TotalMoisture save2(@RequestBody TotalMoistureSave totalMoistureSave) {
+        return totalMoistureService.save2(totalMoistureSave);
     }
 
     @DeleteMapping("/{id}")

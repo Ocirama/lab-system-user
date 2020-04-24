@@ -1,94 +1,47 @@
-<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
-  {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}
-</button>
 
-{{this.tmArray|json}}
-<mat-vertical-stepper [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup">
-    <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Įveskite protokolo numerį</ng-template>
-      <mat-form-field>
-        <mat-label>Protokolo Nr.</mat-label>
-        <input matInput    [(ngModel)]="this.tmes.protocolId"  placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperNext (click)="getSamplesByProtocol(this.tmes.protocolId)">Sekantis</button>
-      </div>
-    </form>
-  </mat-step>
+<mat-card class="lastWeight"> <span class="a"> Paskutinio svėrimo svoris </span>  {{this.weight}}</mat-card>
+<div class="parent">
+  <form [formGroup]="formGroup">
+    <mat-vertical-stepper (selectionChange)="onChange($event)" #stepper formArrayName="form">
 
-  <mat-step *ngFor="let sample of tmArray; let i= index" [stepControl]="secondFormGroup">
-    <form [formGroup]="secondFormGroup">
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel><span>Įveskite protokolo numerį </span></ng-template>
+          <mat-form-field>
+            <mat-label>Protokolo Nr.</mat-label>
+            <input matInput id="input0" [(ngModel)]="protocol" formControlName="firstCtrl" required>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext (click)="getSamplesByProtocol(protocol)">Sekantis</button>
+          </div>
+        </form>
+      </mat-step>
 
-      <ng-template matStepLabel>Sverkite {{sample.protocolId}} protokolo {{sample.sampleId}} mėginį</ng-template>
-      <mat-form-field>
-        <mat-label>padėklas </mat-label>
-        <input matInput formControlName="primaryCtrl"  [(ngModel)]="sample.trayId" (focusout)="sverti(sample);action(sample)"
-               required>
-      </mat-form-field>
-  <mat-form-field>
-    <mat-label>svoris</mat-label>
-    <input matInput formControlName="secondaryCtrl"  [(ngModel)]="sample.trayWeight"
-           required>
-  </mat-form-field>
+      <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
+        <ng-template matStepLabel><span> Sverkitę {{this.tmArray[i]?.protocolId}}
+          protokolo {{this.tmArray[i]?.sampleId}} - {{(i % 2) + 1}} mėginį  </span></ng-template>
+        <mat-form-field>
+          <input id="input{{i+1}}" matInput placeholder="Padėklo numeris" [(ngModel)]=" tmArray[i] && tmArray[i].trayId"
+              (keydown.enter)="sverti(tmArray[i])"   (focusout)="action(tmArray[i])" formControlName="cont1" required>
+        </mat-form-field>
 
+        <mat-card class="padekloSvoris"> <span class="a">Tuscio padėklo svoris </span>  {{tmArray[i] && tmArray[i].trayWeight}}</mat-card>
+        <mat-card class="meginioSvoris"> <span class="a">Padėklo ir ėminio svoris </span>  {{tmArray[i] && tmArray[i].trayAndSampleWeightBefore}}</mat-card>
+        <div>
+          <button mat-button matStepperPrevious>Atgal</button>
+          <button mat-button matStepperNext>Sekantis </button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel><span>{{protocol}} protokolo mėginiai pasverti</span></ng-template>
+        <p>Pasirinkitę ką norite daryti.</p>
+        <div>
+          <button mat-button matStepperPrevious>Atgal</button>
+          <button mat-button (click)="stepper.reset()">Pildyti iš naujo</button>
+          <button mat-button (click)="stepper.reset();onSubmit(tmArray);swalSamplesRegister()">Išsaugoti</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </form>
+</div>
 
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext >Next</button>
-      </div>
-
-    </form>
-  </mat-step>
-
-
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
-      <mat-form-field>
-        <mat-label>Address</mat-label>
-        <input matInput formControlName="thirdCtrl" placeholder="Ex. 1 Main St, New York, NY"
-               required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
-    </div>
-  </mat-step>
-</mat-vertical-stepper>
-
-<button mat-raised-button (click)="addItem()">
-  add item
-</button>
-
-
-
-<form [formGroup]="formGroup">
-  <mat-vertical-stepper  formArrayName="form">
-    <mat-step [formGroupName]="i" *ngFor="let customerGroup of formGroup.controls.form.controls; let i = index">
-      <ng-template matStepLabel>Step {{i + 1}}</ng-template>
-      <mat-form-field>
-        <input matInput [(ngModel)]="this.tmes.protocolId" placeholder="Address" formControlName="cont" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </mat-step>
-  </mat-vertical-stepper>
-</form>
-
-<!-- <input matInput    [(ngModel)]="this.tmes.protocolId"  placeholder="Last name, First name"  required>
-<div>
-  <button mat-button  (click)="getSamplesByProtocol(this.tmes.protocolId)">Sekantis</button>
-  {{this.samples|json}}
-</div> -->

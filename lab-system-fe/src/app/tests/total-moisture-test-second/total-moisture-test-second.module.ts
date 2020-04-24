@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TotalMoistureTestRoutingModule } from './total-moisture-test-routing.module';
-import { TotalMoistureTestComponent } from './total-moisture-test.component';
+import { TotalMoistureTestSecondRoutingModule } from './total-moisture-test-second-routing.module';
+import { TotalMoistureTestSecondComponent } from './total-moisture-test-second.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,10 +12,10 @@ import {MatCardModule} from '@angular/material';
 
 
 @NgModule({
-  declarations: [TotalMoistureTestComponent],
+  declarations: [TotalMoistureTestSecondComponent],
   imports: [
     CommonModule,
-    TotalMoistureTestRoutingModule,
+    TotalMoistureTestSecondRoutingModule,
     MatStepperModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -25,4 +25,4 @@ import {MatCardModule} from '@angular/material';
     MatCardModule
   ]
 })
-export class TotalMoistureTestModule { }
+export class TotalMoistureTestSecondModule { }

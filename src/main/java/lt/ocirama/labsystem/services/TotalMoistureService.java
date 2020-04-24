@@ -41,6 +41,13 @@ public class TotalMoistureService {
 
         return totalMoistureConverter.convert(result);
     }
+    public TotalMoisture save2(TotalMoistureSave totalMoistureSave) {
+        TotalMoistureEntity totalMoistureEntity = totalMoistureEntityConverter.convert2(totalMoistureSave);
+        TotalMoistureEntity result = totalMoistureRepository.save(totalMoistureEntity);
+
+        return totalMoistureConverter.convert(result);
+    }
+
 
     public void delete(Integer id) {
         totalMoistureRepository.deleteById(id);

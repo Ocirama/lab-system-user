@@ -1,57 +1,42 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../../core/api.service';
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 
-interface Sample {
-  id: number;
-  protocolId: string;
-  sampleId: string;
-  sampleWeight: number;
-}
 
-export interface TotalMoistureSample {
-  id: number;
-  protocolId: string;
-  sampleId: string;
+export interface ReferenceTray {
+
   trayId: string;
   trayWeight: number;
-  trayAndSampleWeightBefore: number;
-  trayAndSampleWeightAfter: number;
-  trayAndSampleWeightAfterPlus: number;
+  trayWeightBefore: number;
+  trayWeightAfter: number;
+  date: string;
   // date: Date;
-}
-
-export interface Tray {
-  id: number;
-  trayId: string;
-  trayWeight: number;
 }
 
 @Component({
   selector: 'app-total-moisture-test',
-  templateUrl: './total-moisture-test.component.html',
-  styleUrls: ['./total-moisture-test.component.css']
+  templateUrl: './reference-tray.component.html',
+  styleUrls: ['./reference-tray.component.css']
 })
 
-export class TotalMoistureTestComponent implements OnInit {
-  isLinear = false;
+export class ReferenceTrayComponent implements OnInit {
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
-  fourthFormGroup: FormGroup;
+
   forms: FormGroup[];
   weight: number;
-  samples: Sample[];
-  tray: Tray = {} as Tray;
-  // tmArray: Array<TotalMoistureSample> = [];
-  tmArray: TotalMoistureSample[] = [];
-  fixedArray: TotalMoistureSample[] = [];
+
+  reftray: ReferenceTray = {} as ReferenceTray;
+  refArray: ReferenceTray[] = [];
+
   formGroup: FormGroup;
   form: FormArray;
-  newArray = [];
+
   public targetInput = 'input0';
-  protocol: string;
+  date: string;
 
 
   // tslint:disable-next-line:variable-name
@@ -72,7 +57,7 @@ export class TotalMoistureTestComponent implements OnInit {
     });
 
     this.formGroup = this._formBuilder.group({
-      form: this._formBuilder.array([this.init()])
+      form: this._formBuilder.array([])
     });
   }
 
@@ -86,63 +71,41 @@ export class TotalMoistureTestComponent implements OnInit {
   addItem() {
     this.form = this.formGroup.get('form') as FormArray;
     this.form.push(this.init());
+    this.tmArray.push(
+      new class implements TotalMoistureSample {
+        date: string;
+        id: number;
+        protocolId: string;
+        sampleId: string;
+        trayAndSampleWeightAfter: number;
+        trayAndSampleWeightAfterPlus: number;
+        trayAndSampleWeightBefore: number;
+        trayId: string;
+        trayWeight: number;
+      });
   }
-
 
   sverti(sample: TotalMoistureSample) {
     this.api.get('/lei/scales')
       .subscribe((weight: any) => {
         this.weight = weight;
-        sample.trayAndSampleWeightBefore = this.weight;
+        sample.trayAndSampleWeightAfter = this.weight;
+        sample.date = this.date;
         console.log(this.weight);
       });
   }
 
-  getSamplesByProtocol(protocol: any) {
-    this.api.get(`/lei/samples/list/${protocol}`).subscribe((samples: any) => {
-      this.samples = samples;
-      console.log(this.samples);
-      const array = [];
-      for (const sample of this.samples) {
-        for (let i = 1; i <= 2; i++) {
-
-
-          const tt: TotalMoistureSample = {
-            id: null,
-            protocolId: '',
-            sampleId: '',
-            trayAndSampleWeightAfter: null,
-            trayAndSampleWeightAfterPlus: null,
-            trayAndSampleWeightBefore: null,
-            trayId: '',
-            trayWeight: null
-          };
-          tt.protocolId = sample.protocolId;
-          tt.sampleId = sample.sampleId;
-          array.push(tt);
-        }
-      }
-      this.tmArray = array;
-      console.log(this.tmArray);
-      for (let i = 1; i <= this.tmArray.length - 1; i++) {
-        this.addItem();
-      }
-    });
-  }
-
-
   action(sample: TotalMoistureSample) {
     this.api.get(`/lei/trays/${sample.trayId}`).subscribe((tray: any) => {
       this.tray = tray;
-
       sample.trayWeight = this.tray.trayWeight;
     });
   }
 
-  onSubmit(tmarray: TotalMoistureSample[]) {
+  onSubmit(tm: TotalMoistureSample[]) {
     for (const sample of this.tmArray) {
       console.log(sample);
-      this.api.post('/lei/journals', sample).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
+      this.api.post('/lei/journals/second', sample).subscribe(data => console.log('Success!', data), error => console.log('Error', error));
     }
   }
 
@@ -166,11 +129,25 @@ export class TotalMoistureTestComponent implements OnInit {
     this.targetInput = 'input' + index;
     this.setFocus();
   }
+
   swalSamplesRegister() {
-    Swal.fire(
-      ' užregistruotas!',
-      '',
-      'success'
-    );
+    if (this.tmArray !== []) {
+      Swal.fire(
+        ' užregistruotas!',
+        '',
+        'success'
+      );
+    } else {
+      Swal.fire(
+        ' Klaida',
+        '',
+        'error'
+      );
+    }
+
+  }
+
+  reset() {
+    this.tmArray = [];
   }
 }

@@ -1,6 +1,8 @@
 package lt.ocirama.labsystem.repositories;
 
 import java.util.List;
+
+import lt.ocirama.labsystem.model.entities.SampleEntity;
 import lt.ocirama.labsystem.model.entities.TrayEntity;
 import lt.ocirama.labsystem.model.entities.TrayWeightEntity;
 import org.springframework.data.jpa.repository.Query;

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TotalMoistureTestRoutingModule } from './total-moisture-test-routing.module';
-import { TotalMoistureTestComponent } from './total-moisture-test.component';
+import { ReferenceTrayRoutingModule } from './reference-tray-routing.module';
+import { ReferenceTrayComponent } from './reference-tray.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,10 +12,10 @@ import {MatCardModule} from '@angular/material';
 
 
 @NgModule({
-  declarations: [TotalMoistureTestComponent],
+  declarations: [ReferenceTrayComponent],
   imports: [
     CommonModule,
-    TotalMoistureTestRoutingModule,
+    ReferenceTrayRoutingModule,
     MatStepperModule,
     ReactiveFormsModule,
     MatFormFieldModule,
@@ -25,4 +25,4 @@ import {MatCardModule} from '@angular/material';
     MatCardModule
   ]
 })
-export class TotalMoistureTestModule { }
+export class ReferenceTrayModule { }
