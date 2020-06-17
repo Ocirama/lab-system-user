@@ -1,0 +1,20 @@
+<h3 mat-dialog-title>Užsakovas: {{ data.oldName }}</h3>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Užsakovas" [(ngModel)]="data.name" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Prisjungimo ID" [(ngModel)]="data.username" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Atšaukti</button>
+  <button mat-button [mat-dialog-close]="data" (click)=" this.swalOrderUpdate();">Išsaugoti</button>
+</div>
+

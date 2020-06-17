@@ -1,10 +1,12 @@
 package lt.ocirama.labsystem.converters;
 
+import org.springframework.stereotype.Component;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Random;
 import java.util.TimeZone;
-
+@Component
 public class DateConverter {
 
     public static java.util.Date dateInput(String date) {

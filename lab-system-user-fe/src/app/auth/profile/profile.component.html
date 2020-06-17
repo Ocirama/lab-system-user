@@ -1,0 +1,25 @@
+<div *ngIf="user"   class="profile-panel">
+  <h2>Profile Info</h2>
+  <button mat-icon-button (click)="showEditProfileDialog()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <div>
+    <p><b>Name</b></p>
+    <p>{{user.name}}</p>
+  </div>
+  <div>
+    <p><b>Username</b></p>
+    <p>{{user.username}}</p>
+  </div>
+  <div>
+    <p><b>Role</b></p>
+    <p>{{user.role}}</p>
+  </div>
+</div>
+
+<h1>Results</h1>
+
+<button mat-fab (click)="showCreateDialog()" color="primary"
+        style="position: fixed; right:20px; bottom: 20px">
+  <mat-icon>add</mat-icon>
+</button>

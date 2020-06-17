@@ -1,0 +1,30 @@
+<form class="flex-column" [formGroup]="userForm" (ngSubmit)="submit()" style="margin: 50px">
+  <mat-form-field appearance="standard">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name">
+    <mat-error *ngIf="userForm.controls.name.invalid">{{getError('name')}}</mat-error>
+    <mat-hint>Required</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <input matInput formControlName="username">
+    <mat-label>Username</mat-label>
+    <mat-error *ngIf="userForm.controls.username.invalid">{{getError('username')}}</mat-error>
+    <mat-hint>Required</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password">
+    <mat-error *ngIf="userForm.controls.password.invalid">{{getError('password')}}</mat-error>
+    <mat-hint>Required</mat-hint>
+  </mat-form-field>
+
+  <button mat-stroked-button color="primary" type="submit">
+    <span style="display: flex;align-items: center;justify-content: center">
+      <span style="margin-right: 5px">SUBMIT</span>
+      <mat-spinner *ngIf="loading" diameter="20"></mat-spinner>
+    </span>
+  </button>
+</form>
+<p class="mat-error" *ngIf="error">{{error}}</p>

@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="kuro_bandymu_sistema@localhost" uuid="77134a5f-c206-4731-8789-b17eff8b165b">
+    <data-source source="LOCAL" name="serverTimezone" uuid="77134a5f-c206-4731-8789-b17eff8b165b">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/kuro_bandymu_sistema</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="@kuro-sistema-uzsakovai.cbqdjoab76sx.us-east-2.rds.amazonaws.com" uuid="8b16b17b-8c6b-485c-9619-bf1984b1b641">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://kuro-sistema-uzsakovai.cbqdjoab76sx.us-east-2.rds.amazonaws.com:3306</jdbc-url>
     </data-source>
   </component>
 </project>

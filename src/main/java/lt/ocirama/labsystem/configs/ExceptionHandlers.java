@@ -1,61 +1,105 @@
 package lt.ocirama.labsystem.configs;
 
-import lt.ocirama.labsystem.model.exceptions.ServerError;
-import lt.ocirama.labsystem.model.exceptions.ValidationException;
-import org.springframework.context.MessageSource;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.mapping;
+import static java.util.stream.Collectors.toList;
+import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST;
+import static javax.servlet.http.HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+
+import com.fasterxml.jackson.databind.JsonMappingException;
+import javax.servlet.http.HttpServletResponse;
+
+import lt.ocirama.labsystem.model.exception.InvalidValuesException;
+import lt.ocirama.labsystem.model.exception.ValidationResult;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-
-import javax.servlet.http.HttpServletResponse;
-
-
+import org.springframework.web.client.HttpClientErrorException;
 
 @ControllerAdvice
 public class ExceptionHandlers {
 
-    private final MessageSource messageSource;
-
-    public ExceptionHandlers(MessageSource messageSource) {
-        this.messageSource = messageSource;
+    @ExceptionHandler(value = InvalidValuesException.class)
+    @ResponseBody
+    private ValidationResult handleInvalidValues(
+            HttpServletResponse response,
+            InvalidValuesException exception
+    ) {
+        response.setStatus(SC_BAD_REQUEST);
+        return new ValidationResult(exception.getErrors());
     }
 
-    @ExceptionHandler(value = ValidationException.class)
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
     @ResponseBody
-    public ServerError handleValidationException(HttpServletResponse response, ValidationException ex) {
-        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+    private ValidationResult handlemethodargumentNotValid(
+            HttpServletResponse response,
+            MethodArgumentNotValidException exception
+    ) {
+        response.setStatus(SC_BAD_REQUEST);
+        return new ValidationResult(
+                exception.getBindingResult().getFieldErrors().stream().collect(
+                        groupingBy(
+                                FieldError::getField,
+                                mapping(FieldError::getDefaultMessage, toList())
+                        )
+                )
+        );
+    }
 
-        String header = messageSource.getMessage(Objects.requireNonNull(ex.getErrors().getGlobalError()), Locale.getDefault());
-        List<String> items = new ArrayList<>();
-        for (FieldError fieldError : ex.getErrors().getFieldErrors()) {
-            items.add(messageSource.getMessage(fieldError, Locale.getDefault()));
+    @ExceptionHandler(value = BindException.class)
+    @ResponseBody
+    private ValidationResult handleBinding(
+            HttpServletResponse response,
+            BindException exception
+    ) {
+        response.setStatus(SC_BAD_REQUEST);
+        return new ValidationResult(
+                exception.getBindingResult().getFieldErrors().stream().collect(
+                        groupingBy(
+                                FieldError::getField,
+                                mapping((error) -> {
+                                    if (!error.isBindingFailure()) {
+                                        return error.getDefaultMessage();
+                                    }
+                                    return "invalid value " + error.getRejectedValue();
+                                }, toList())
+                        )
+                )
+        );
+    }
+
+    @ExceptionHandler(value = HttpMessageNotReadableException.class)
+    @ResponseBody
+    private String handleNotReadable(
+            HttpServletResponse response,
+            HttpMessageNotReadableException exception
+    ) {
+        response.setStatus(SC_BAD_REQUEST);
+        if (exception.getCause().getClass().equals(JsonMappingException.class)) {
+            JsonMappingException jsonException = (JsonMappingException) exception.getCause();
+            return String.format("Invalid JSON at %s:%s", jsonException.getLocation().getLineNr(),
+                    jsonException.getLocation().getColumnNr());
         }
-
-        return new ServerError(header, items);
+        return exception.getCause().getMessage();
     }
 
-    @ExceptionHandler(value = IllegalArgumentException.class)
+    @ExceptionHandler(value = HttpClientErrorException.class)
     @ResponseBody
-    public ServerError handleIllegalArgumentException(HttpServletResponse response, IllegalArgumentException ex) {
-        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        String header = ex.getMessage();
-        return new ServerError(header, new ArrayList<>());
+    private String handleClientException(HttpServletResponse response,
+                                         HttpClientErrorException exception) {
+        response.setStatus(exception.getRawStatusCode());
+        return exception.getMessage();
     }
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public ServerError handleGeneralException(HttpServletResponse response, Exception ex) {
-        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-        String header = "Server error";
-        ex.printStackTrace();
-
-        return new ServerError(header, Collections.singletonList(ex.getMessage()));
+    private String handleException(HttpServletResponse response, Exception exception) {
+        response.setStatus(SC_INTERNAL_SERVER_ERROR);
+        exception.printStackTrace();
+        return exception.getMessage();
     }
 }
