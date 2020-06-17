@@ -3621,8 +3621,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth.service */ "./src/app/core/auth.service.ts");
-/* harmony import */ var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../environments/environment.prod */ "./src/app/environments/environment.prod.ts");
-
 
 
 
@@ -3633,7 +3631,7 @@ let ApiService = class ApiService {
         this.http = http;
         this.router = router;
         this.authService = authService;
-        this.urlPrefix = _environments_environment_prod__WEBPACK_IMPORTED_MODULE_5__["environment"];
+        this.urlPrefix = '';
     }
     addAuthorizationHeader(headers) {
         const token = this.authService.getToken();
@@ -3698,25 +3696,6 @@ ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     })
 ], ApiService);
 
-
-
-/***/ }),
-
-/***/ "./src/app/environments/environment.prod.ts":
-/*!**************************************************!*\
-  !*** ./src/app/environments/environment.prod.ts ***!
-  \**************************************************/
-/*! exports provided: environment */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-
-const environment = {
-    production: true
-};
 
 
 /***/ }),

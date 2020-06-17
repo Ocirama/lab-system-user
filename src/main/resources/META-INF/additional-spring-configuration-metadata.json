@@ -4,5 +4,10 @@
       "name": "app.authentication.signature.secret",
       "type": "java.lang.String",
       "description": "Description for app.authentication.signature.secret."
-  }
-] }
+    },
+    {
+      "name": "process.env.PORT",
+      "type": "java.lang.String",
+      "description": "Description for process.env.PORT."
+    }
+  ] }
