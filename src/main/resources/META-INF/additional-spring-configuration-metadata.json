@@ -6,8 +6,8 @@
       "description": "Description for app.authentication.signature.secret."
     },
     {
-      "name": "process.env.PORT",
+      "name": "app.authentication.validity.period",
       "type": "java.lang.String",
-      "description": "Description for process.env.PORT."
+      "description": "Description for app.authentication.validity.period."
     }
   ] }
