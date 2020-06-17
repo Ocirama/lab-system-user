@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "app.authentication.signature.secret",
+      "type": "java.lang.String",
+      "description": "Description for app.authentication.signature.secret."
+  }
+] }
