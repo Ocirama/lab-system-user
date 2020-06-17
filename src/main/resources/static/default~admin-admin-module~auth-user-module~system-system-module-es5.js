@@ -3940,9 +3940,9 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
     /* harmony import */
 
 
-    var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
-    /*! ../../environments/environment */
-    "./src/environments/environment.ts");
+    var _environments_environment_prod__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! ../environments/environment.prod */
+    "./src/app/environments/environment.prod.ts");
 
     var ApiService =
     /*#__PURE__*/
@@ -3953,7 +3953,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
         this.http = http;
         this.router = router;
         this.authService = authService;
-        this.urlPrefix = _environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].hostUrl;
+        this.urlPrefix = _environments_environment_prod__WEBPACK_IMPORTED_MODULE_5__["environment"];
       }
 
       _createClass2(ApiService, [{
@@ -4061,6 +4061,38 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
     ApiService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
       providedIn: 'root'
     })], ApiService);
+    /***/
+  },
+
+  /***/
+  "./src/app/environments/environment.prod.ts":
+  /*!**************************************************!*\
+    !*** ./src/app/environments/environment.prod.ts ***!
+    \**************************************************/
+
+  /*! exports provided: environment */
+
+  /***/
+  function srcAppEnvironmentsEnvironmentProdTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "environment", function () {
+      return environment;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+
+    var environment = {
+      production: true
+    };
     /***/
   },
 
