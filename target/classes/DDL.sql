@@ -29,7 +29,7 @@ INSERT INTO `user`(name, username, role, password,date)
 VALUES ('TauragesSiluma',
         'TauSil',
         'user',
-        '$2a$10$5V1pqxL8VOPyHHLaUTen8evWn.0UxXgc08SWQdjSsjwX7cv8riaJq',
+        '$2a$10$qXeEgtffUOaFneHFwx4So.ClQIpCQgCX9EDbfpaVBKTM1GRHqcoVK',
         current_date);
 INSERT INTO `user`(name, username, role, password,date)
 VALUES ('DBT',
@@ -47,7 +47,7 @@ VALUES ('admin',
 
 insert into results (customer_id, protocol_id, sample_id, ash_value, total_moisture_value, calorific_value, user_id,
                      date)
-values ('AniSil', '9999', 'KJ1256', 5.89, 25.14, 205641, (select id from user where username = 'AniSil'), current_date);
+values ('TauSil', '9999', 'KJ1256', 5.89, 25.14, 205641, (select id from user where username = 'TauSil'), current_date);
 
 insert into results (customer_id, protocol_id, sample_id, ash_value, total_moisture_value, calorific_value, user_id,
                      date)
