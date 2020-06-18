@@ -28,32 +28,34 @@ import {ListComponent} from './log/list/list.component';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import {MatTableExporterModule} from 'mat-table-exporter';
 import {DateModalComponent} from './log/date-modal/date-modal.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 
 @NgModule({
   declarations: [DateModalComponent, ModalComponent, CreateComponent, FormComponent, ListComponent],
-  imports: [
-    CommonModule,
-    SystemRoutingModule,
-    MatCardModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    MatInputModule,
-    MatButtonModule,
-    MatSelectModule,
-    MatDialogModule,
-    MatMenuModule,
-    MatIconModule,
-    FormsModule,
-    MatStepperModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatAutocompleteModule,
-    NgMultiSelectDropDownModule,
-    MatTableExporterModule,
-    MatToolbarModule
-  ],
+    imports: [
+        CommonModule,
+        SystemRoutingModule,
+        MatCardModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatDialogModule,
+        MatMenuModule,
+        MatIconModule,
+        FormsModule,
+        MatStepperModule,
+        MatTableModule,
+        MatPaginatorModule,
+        MatAutocompleteModule,
+        NgMultiSelectDropDownModule,
+        MatTableExporterModule,
+        MatToolbarModule,
+        FileUploadModule
+    ],
   exports: [
     ListComponent
   ],

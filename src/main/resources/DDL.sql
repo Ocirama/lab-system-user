@@ -55,3 +55,4 @@ values ('DBT', '1111', 'DD1234', 6.29, 20.24, 185641, (select id from user where
 
 
 select * from user;
+select * from results;

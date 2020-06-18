@@ -52,12 +52,15 @@ public class ResultService {
     }
 
     public List<Result> importSave (MultipartFile excelFile) throws IOException {
+        System.out.println("Success2");
         List<Result> list = new ArrayList<>();
         List<ResultEntity> resultEntityList = excelConverter.importExcel(excelFile);
         for (ResultEntity res : resultEntityList) {
             ResultEntity result = resultRepository.save(res);
             list.add(resultConverter.convert(result));
         }
+        System.out.println(list);
         return list;
+
     }
 }

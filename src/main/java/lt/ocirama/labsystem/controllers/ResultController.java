@@ -5,6 +5,7 @@ import lt.ocirama.labsystem.model.dto.Result;
 import lt.ocirama.labsystem.model.dto.ResultSave;
 import lt.ocirama.labsystem.services.ResultService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,7 +48,7 @@ public class ResultController {
     }
 
     @PostMapping("/import")
-    public List<Result> importExcel(@RequestParam("file") MultipartFile excelFile) throws IOException {
-        return resultService.importSave(excelFile);
+    public List<Result> importExcel(@RequestPart(value = "file") MultipartFile excelFile) throws IOException {
+        return null;
     }
 }

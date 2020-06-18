@@ -605,6 +605,2121 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
   },
 
   /***/
+  "./node_modules/ng2-file-upload/fesm2015/ng2-file-upload.js":
+  /*!******************************************************************!*\
+    !*** ./node_modules/ng2-file-upload/fesm2015/ng2-file-upload.js ***!
+    \******************************************************************/
+
+  /*! exports provided: FileDropDirective, FileItem, FileLikeObject, FileSelectDirective, FileUploadModule, FileUploader */
+
+  /***/
+  function node_modulesNg2FileUploadFesm2015Ng2FileUploadJs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FileDropDirective", function () {
+      return FileDropDirective;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FileItem", function () {
+      return FileItem;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FileLikeObject", function () {
+      return FileLikeObject;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FileSelectDirective", function () {
+      return FileSelectDirective;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FileUploadModule", function () {
+      return FileUploadModule;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "FileUploader", function () {
+      return FileUploader;
+    });
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/common */
+    "./node_modules/@angular/common/fesm2015/common.js");
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @param {?} node
+     * @return {?}
+     */
+
+
+    function isElement(node) {
+      return !!(node && (node.nodeName || node.prop && node.attr && node.find));
+    }
+
+    var FileLikeObject =
+    /*#__PURE__*/
+    function () {
+      /**
+       * @param {?} fileOrInput
+       */
+      function FileLikeObject(fileOrInput) {
+        _classCallCheck2(this, FileLikeObject);
+
+        this.rawFile = fileOrInput;
+        /** @type {?} */
+
+        var isInput = isElement(fileOrInput);
+        /** @type {?} */
+
+        var fakePathOrObject = isInput ? fileOrInput.value : fileOrInput;
+        /** @type {?} */
+
+        var postfix = typeof fakePathOrObject === 'string' ? 'FakePath' : 'Object';
+        /** @type {?} */
+
+        var method = '_createFrom' + postfix;
+
+        /** @type {?} */
+        this[method](fakePathOrObject);
+      }
+      /**
+       * @param {?} path
+       * @return {?}
+       */
+
+
+      _createClass2(FileLikeObject, [{
+        key: "_createFromFakePath",
+        value: function _createFromFakePath(path) {
+          this.lastModifiedDate = void 0;
+          this.size = void 0;
+          this.type = 'like/' + path.slice(path.lastIndexOf('.') + 1).toLowerCase();
+          this.name = path.slice(path.lastIndexOf('/') + path.lastIndexOf('\\') + 2);
+        }
+        /**
+         * @param {?} object
+         * @return {?}
+         */
+
+      }, {
+        key: "_createFromObject",
+        value: function _createFromObject(object) {
+          this.size = object.size;
+          this.type = object.type;
+          this.name = object.name;
+        }
+      }]);
+
+      return FileLikeObject;
+    }();
+
+    if (false) {}
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+
+    var FileItem =
+    /*#__PURE__*/
+    function () {
+      /**
+       * @param {?} uploader
+       * @param {?} some
+       * @param {?} options
+       */
+      function FileItem(uploader, some, options) {
+        _classCallCheck2(this, FileItem);
+
+        this.url = '/';
+        this.headers = [];
+        this.withCredentials = true;
+        this.formData = [];
+        this.isReady = false;
+        this.isUploading = false;
+        this.isUploaded = false;
+        this.isSuccess = false;
+        this.isCancel = false;
+        this.isError = false;
+        this.progress = 0;
+        this.index = void 0;
+        this.uploader = uploader;
+        this.some = some;
+        this.options = options;
+        this.file = new FileLikeObject(some);
+        this._file = some;
+
+        if (uploader.options) {
+          this.method = uploader.options.method || 'POST';
+          this.alias = uploader.options.itemAlias || 'file';
+        }
+
+        this.url = uploader.options.url;
+      }
+      /**
+       * @return {?}
+       */
+
+
+      _createClass2(FileItem, [{
+        key: "upload",
+        value: function upload() {
+          try {
+            this.uploader.uploadItem(this);
+          } catch (e) {
+            this.uploader._onCompleteItem(this, '', 0, {});
+
+            this.uploader._onErrorItem(this, '', 0, {});
+          }
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "cancel",
+        value: function cancel() {
+          this.uploader.cancelItem(this);
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "remove",
+        value: function remove() {
+          this.uploader.removeFromQueue(this);
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "onBeforeUpload",
+        value: function onBeforeUpload() {
+          return void 0;
+        }
+        /**
+         * @param {?} form
+         * @return {?}
+         */
+
+      }, {
+        key: "onBuildForm",
+        value: function onBuildForm(form) {
+          return {
+            form: form
+          };
+        }
+        /**
+         * @param {?} progress
+         * @return {?}
+         */
+
+      }, {
+        key: "onProgress",
+        value: function onProgress(progress) {
+          return {
+            progress: progress
+          };
+        }
+        /**
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "onSuccess",
+        value: function onSuccess(response, status, headers) {
+          return {
+            response: response,
+            status: status,
+            headers: headers
+          };
+        }
+        /**
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "onError",
+        value: function onError(response, status, headers) {
+          return {
+            response: response,
+            status: status,
+            headers: headers
+          };
+        }
+        /**
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "onCancel",
+        value: function onCancel(response, status, headers) {
+          return {
+            response: response,
+            status: status,
+            headers: headers
+          };
+        }
+        /**
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "onComplete",
+        value: function onComplete(response, status, headers) {
+          return {
+            response: response,
+            status: status,
+            headers: headers
+          };
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "_onBeforeUpload",
+        value: function _onBeforeUpload() {
+          this.isReady = true;
+          this.isUploading = true;
+          this.isUploaded = false;
+          this.isSuccess = false;
+          this.isCancel = false;
+          this.isError = false;
+          this.progress = 0;
+          this.onBeforeUpload();
+        }
+        /**
+         * @param {?} form
+         * @return {?}
+         */
+
+      }, {
+        key: "_onBuildForm",
+        value: function _onBuildForm(form) {
+          this.onBuildForm(form);
+        }
+        /**
+         * @param {?} progress
+         * @return {?}
+         */
+
+      }, {
+        key: "_onProgress",
+        value: function _onProgress(progress) {
+          this.progress = progress;
+          this.onProgress(progress);
+        }
+        /**
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_onSuccess",
+        value: function _onSuccess(response, status, headers) {
+          this.isReady = false;
+          this.isUploading = false;
+          this.isUploaded = true;
+          this.isSuccess = true;
+          this.isCancel = false;
+          this.isError = false;
+          this.progress = 100;
+          this.index = void 0;
+          this.onSuccess(response, status, headers);
+        }
+        /**
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_onError",
+        value: function _onError(response, status, headers) {
+          this.isReady = false;
+          this.isUploading = false;
+          this.isUploaded = true;
+          this.isSuccess = false;
+          this.isCancel = false;
+          this.isError = true;
+          this.progress = 0;
+          this.index = void 0;
+          this.onError(response, status, headers);
+        }
+        /**
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_onCancel",
+        value: function _onCancel(response, status, headers) {
+          this.isReady = false;
+          this.isUploading = false;
+          this.isUploaded = false;
+          this.isSuccess = false;
+          this.isCancel = true;
+          this.isError = false;
+          this.progress = 0;
+          this.index = void 0;
+          this.onCancel(response, status, headers);
+        }
+        /**
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_onComplete",
+        value: function _onComplete(response, status, headers) {
+          this.onComplete(response, status, headers);
+
+          if (this.uploader.options.removeAfterUpload) {
+            this.remove();
+          }
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "_prepareToUploading",
+        value: function _prepareToUploading() {
+          this.index = this.index || ++this.uploader._nextIndex;
+          this.isReady = true;
+        }
+      }]);
+
+      return FileItem;
+    }();
+
+    if (false) {}
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+
+    var FileType =
+    /*#__PURE__*/
+    function () {
+      function FileType() {
+        _classCallCheck2(this, FileType);
+      }
+
+      _createClass2(FileType, null, [{
+        key: "getMimeClass",
+
+        /**
+         * @param {?} file
+         * @return {?}
+         */
+        value: function getMimeClass(file) {
+          /** @type {?} */
+          var mimeClass = 'application';
+
+          if (this.mime_psd.indexOf(file.type) !== -1) {
+            mimeClass = 'image';
+          } else if (file.type.match('image.*')) {
+            mimeClass = 'image';
+          } else if (file.type.match('video.*')) {
+            mimeClass = 'video';
+          } else if (file.type.match('audio.*')) {
+            mimeClass = 'audio';
+          } else if (file.type === 'application/pdf') {
+            mimeClass = 'pdf';
+          } else if (this.mime_compress.indexOf(file.type) !== -1) {
+            mimeClass = 'compress';
+          } else if (this.mime_doc.indexOf(file.type) !== -1) {
+            mimeClass = 'doc';
+          } else if (this.mime_xsl.indexOf(file.type) !== -1) {
+            mimeClass = 'xls';
+          } else if (this.mime_ppt.indexOf(file.type) !== -1) {
+            mimeClass = 'ppt';
+          }
+
+          if (mimeClass === 'application') {
+            mimeClass = this.fileTypeDetection(file.name);
+          }
+
+          return mimeClass;
+        }
+        /**
+         * @param {?} inputFilename
+         * @return {?}
+         */
+
+      }, {
+        key: "fileTypeDetection",
+        value: function fileTypeDetection(inputFilename) {
+          /** @type {?} */
+          var types = {
+            'jpg': 'image',
+            'jpeg': 'image',
+            'tif': 'image',
+            'psd': 'image',
+            'bmp': 'image',
+            'png': 'image',
+            'nef': 'image',
+            'tiff': 'image',
+            'cr2': 'image',
+            'dwg': 'image',
+            'cdr': 'image',
+            'ai': 'image',
+            'indd': 'image',
+            'pin': 'image',
+            'cdp': 'image',
+            'skp': 'image',
+            'stp': 'image',
+            '3dm': 'image',
+            'mp3': 'audio',
+            'wav': 'audio',
+            'wma': 'audio',
+            'mod': 'audio',
+            'm4a': 'audio',
+            'compress': 'compress',
+            'zip': 'compress',
+            'rar': 'compress',
+            '7z': 'compress',
+            'lz': 'compress',
+            'z01': 'compress',
+            'bz2': 'compress',
+            'gz': 'compress',
+            'pdf': 'pdf',
+            'xls': 'xls',
+            'xlsx': 'xls',
+            'ods': 'xls',
+            'mp4': 'video',
+            'avi': 'video',
+            'wmv': 'video',
+            'mpg': 'video',
+            'mts': 'video',
+            'flv': 'video',
+            '3gp': 'video',
+            'vob': 'video',
+            'm4v': 'video',
+            'mpeg': 'video',
+            'm2ts': 'video',
+            'mov': 'video',
+            'doc': 'doc',
+            'docx': 'doc',
+            'eps': 'doc',
+            'txt': 'doc',
+            'odt': 'doc',
+            'rtf': 'doc',
+            'ppt': 'ppt',
+            'pptx': 'ppt',
+            'pps': 'ppt',
+            'ppsx': 'ppt',
+            'odp': 'ppt'
+          };
+          /** @type {?} */
+
+          var chunks = inputFilename.split('.');
+
+          if (chunks.length < 2) {
+            return 'application';
+          }
+          /** @type {?} */
+
+
+          var extension = chunks[chunks.length - 1].toLowerCase();
+
+          if (types[extension] === undefined) {
+            return 'application';
+          } else {
+            return types[extension];
+          }
+        }
+      }]);
+
+      return FileType;
+    }();
+    /*  MS office  */
+
+
+    FileType.mime_doc = ['application/msword', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.wordprocessingml.template', 'application/vnd.ms-word.document.macroEnabled.12', 'application/vnd.ms-word.template.macroEnabled.12'];
+    FileType.mime_xsl = ['application/vnd.ms-excel', 'application/vnd.ms-excel', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.openxmlformats-officedocument.spreadsheetml.template', 'application/vnd.ms-excel.sheet.macroEnabled.12', 'application/vnd.ms-excel.template.macroEnabled.12', 'application/vnd.ms-excel.addin.macroEnabled.12', 'application/vnd.ms-excel.sheet.binary.macroEnabled.12'];
+    FileType.mime_ppt = ['application/vnd.ms-powerpoint', 'application/vnd.ms-powerpoint', 'application/vnd.ms-powerpoint', 'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation', 'application/vnd.openxmlformats-officedocument.presentationml.template', 'application/vnd.openxmlformats-officedocument.presentationml.slideshow', 'application/vnd.ms-powerpoint.addin.macroEnabled.12', 'application/vnd.ms-powerpoint.presentation.macroEnabled.12', 'application/vnd.ms-powerpoint.presentation.macroEnabled.12', 'application/vnd.ms-powerpoint.slideshow.macroEnabled.12'];
+    /* PSD */
+
+    FileType.mime_psd = ['image/photoshop', 'image/x-photoshop', 'image/psd', 'application/photoshop', 'application/psd', 'zz-application/zz-winassoc-psd'];
+    /* Compressed files */
+
+    FileType.mime_compress = ['application/x-gtar', 'application/x-gcompress', 'application/compress', 'application/x-tar', 'application/x-rar-compressed', 'application/octet-stream', 'application/x-zip-compressed', 'application/zip-compressed', 'application/x-7z-compressed', 'application/gzip', 'application/x-bzip2'];
+
+    if (false) {}
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+
+
+    function _isFile(value) {
+      return File && value instanceof File;
+    }
+    /**
+     * @record
+     */
+
+
+    function Headers() {}
+
+    if (false) {}
+    /**
+     * @record
+     */
+
+
+    function FileUploaderOptions() {}
+
+    if (false) {}
+
+    var FileUploader =
+    /*#__PURE__*/
+    function () {
+      /**
+       * @param {?} options
+       */
+      function FileUploader(options) {
+        _classCallCheck2(this, FileUploader);
+
+        this.isUploading = false;
+        this.queue = [];
+        this.progress = 0;
+        this._nextIndex = 0;
+        this.options = {
+          autoUpload: false,
+          isHTML5: true,
+          filters: [],
+          removeAfterUpload: false,
+          disableMultipart: false,
+          formatDataFunction:
+          /**
+          * @param {?} item
+          * @return {?}
+          */
+          function formatDataFunction(item) {
+            return item._file;
+          },
+          formatDataFunctionIsAsync: false
+        };
+        this.setOptions(options);
+        this.response = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+      }
+      /**
+       * @param {?} options
+       * @return {?}
+       */
+
+
+      _createClass2(FileUploader, [{
+        key: "setOptions",
+        value: function setOptions(options) {
+          this.options = Object.assign(this.options, options);
+          this.authToken = this.options.authToken;
+          this.authTokenHeader = this.options.authTokenHeader || 'Authorization';
+          this.autoUpload = this.options.autoUpload;
+          this.options.filters.unshift({
+            name: 'queueLimit',
+            fn: this._queueLimitFilter
+          });
+
+          if (this.options.maxFileSize) {
+            this.options.filters.unshift({
+              name: 'fileSize',
+              fn: this._fileSizeFilter
+            });
+          }
+
+          if (this.options.allowedFileType) {
+            this.options.filters.unshift({
+              name: 'fileType',
+              fn: this._fileTypeFilter
+            });
+          }
+
+          if (this.options.allowedMimeType) {
+            this.options.filters.unshift({
+              name: 'mimeType',
+              fn: this._mimeTypeFilter
+            });
+          }
+
+          for (var i = 0; i < this.queue.length; i++) {
+            this.queue[i].url = this.options.url;
+          }
+        }
+        /**
+         * @param {?} files
+         * @param {?=} options
+         * @param {?=} filters
+         * @return {?}
+         */
+
+      }, {
+        key: "addToQueue",
+        value: function addToQueue(files, options, filters) {
+          var _this7 = this;
+
+          /** @type {?} */
+          var list = [];
+          var _iteratorNormalCompletion = true;
+          var _didIteratorError = false;
+          var _iteratorError = undefined;
+
+          try {
+            for (var _iterator = files[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              var file = _step.value;
+              list.push(file);
+            }
+            /** @type {?} */
+
+          } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+          } finally {
+            try {
+              if (!_iteratorNormalCompletion && _iterator.return != null) {
+                _iterator.return();
+              }
+            } finally {
+              if (_didIteratorError) {
+                throw _iteratorError;
+              }
+            }
+          }
+
+          var arrayOfFilters = this._getFilters(filters);
+          /** @type {?} */
+
+
+          var count = this.queue.length;
+          /** @type {?} */
+
+          var addedFileItems = [];
+          list.map(
+          /**
+          * @param {?} some
+          * @return {?}
+          */
+          function (some) {
+            if (!options) {
+              options = _this7.options;
+            }
+            /** @type {?} */
+
+
+            var temp = new FileLikeObject(some);
+
+            if (_this7._isValidFile(temp, arrayOfFilters, options)) {
+              /** @type {?} */
+              var fileItem = new FileItem(_this7, some, options);
+              addedFileItems.push(fileItem);
+
+              _this7.queue.push(fileItem);
+
+              _this7._onAfterAddingFile(fileItem);
+            } else {
+              /** @type {?} */
+              var filter = arrayOfFilters[_this7._failFilterIndex];
+
+              _this7._onWhenAddingFileFailed(temp, filter, options);
+            }
+          });
+
+          if (this.queue.length !== count) {
+            this._onAfterAddingAll(addedFileItems);
+
+            this.progress = this._getTotalProgress();
+          }
+
+          this._render();
+
+          if (this.options.autoUpload) {
+            this.uploadAll();
+          }
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+
+      }, {
+        key: "removeFromQueue",
+        value: function removeFromQueue(value) {
+          /** @type {?} */
+          var index = this.getIndexOfItem(value);
+          /** @type {?} */
+
+          var item = this.queue[index];
+
+          if (item.isUploading) {
+            item.cancel();
+          }
+
+          this.queue.splice(index, 1);
+          this.progress = this._getTotalProgress();
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "clearQueue",
+        value: function clearQueue() {
+          while (this.queue.length) {
+            this.queue[0].remove();
+          }
+
+          this.progress = 0;
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+
+      }, {
+        key: "uploadItem",
+        value: function uploadItem(value) {
+          /** @type {?} */
+          var index = this.getIndexOfItem(value);
+          /** @type {?} */
+
+          var item = this.queue[index];
+          /** @type {?} */
+
+          var transport = this.options.isHTML5 ? '_xhrTransport' : '_iframeTransport';
+
+          item._prepareToUploading();
+
+          if (this.isUploading) {
+            return;
+          }
+
+          this.isUploading = true;
+
+          /** @type {?} */
+          this[transport](item);
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+
+      }, {
+        key: "cancelItem",
+        value: function cancelItem(value) {
+          /** @type {?} */
+          var index = this.getIndexOfItem(value);
+          /** @type {?} */
+
+          var item = this.queue[index];
+          /** @type {?} */
+
+          var prop = this.options.isHTML5 ? item._xhr : item._form;
+
+          if (item && item.isUploading) {
+            prop.abort();
+          }
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "uploadAll",
+        value: function uploadAll() {
+          /** @type {?} */
+          var items = this.getNotUploadedItems().filter(
+          /**
+          * @param {?} item
+          * @return {?}
+          */
+          function (item) {
+            return !item.isUploading;
+          });
+
+          if (!items.length) {
+            return;
+          }
+
+          items.map(
+          /**
+          * @param {?} item
+          * @return {?}
+          */
+          function (item) {
+            return item._prepareToUploading();
+          });
+          items[0].upload();
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "cancelAll",
+        value: function cancelAll() {
+          /** @type {?} */
+          var items = this.getNotUploadedItems();
+          items.map(
+          /**
+          * @param {?} item
+          * @return {?}
+          */
+          function (item) {
+            return item.cancel();
+          });
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+
+      }, {
+        key: "isFile",
+        value: function isFile(value) {
+          return _isFile(value);
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+
+      }, {
+        key: "isFileLikeObject",
+        value: function isFileLikeObject(value) {
+          return value instanceof FileLikeObject;
+        }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
+
+      }, {
+        key: "getIndexOfItem",
+        value: function getIndexOfItem(value) {
+          return typeof value === 'number' ? value : this.queue.indexOf(value);
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "getNotUploadedItems",
+        value: function getNotUploadedItems() {
+          return this.queue.filter(
+          /**
+          * @param {?} item
+          * @return {?}
+          */
+          function (item) {
+            return !item.isUploaded;
+          });
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "getReadyItems",
+        value: function getReadyItems() {
+          return this.queue.filter(
+          /**
+          * @param {?} item
+          * @return {?}
+          */
+          function (item) {
+            return item.isReady && !item.isUploading;
+          }).sort(
+          /**
+          * @param {?} item1
+          * @param {?} item2
+          * @return {?}
+          */
+          function (item1, item2) {
+            return item1.index - item2.index;
+          });
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "destroy",
+        value: function destroy() {
+          return void 0;
+        }
+        /**
+         * @param {?} fileItems
+         * @return {?}
+         */
+
+      }, {
+        key: "onAfterAddingAll",
+        value: function onAfterAddingAll(fileItems) {
+          return {
+            fileItems: fileItems
+          };
+        }
+        /**
+         * @param {?} fileItem
+         * @param {?} form
+         * @return {?}
+         */
+
+      }, {
+        key: "onBuildItemForm",
+        value: function onBuildItemForm(fileItem, form) {
+          return {
+            fileItem: fileItem,
+            form: form
+          };
+        }
+        /**
+         * @param {?} fileItem
+         * @return {?}
+         */
+
+      }, {
+        key: "onAfterAddingFile",
+        value: function onAfterAddingFile(fileItem) {
+          return {
+            fileItem: fileItem
+          };
+        }
+        /**
+         * @param {?} item
+         * @param {?} filter
+         * @param {?} options
+         * @return {?}
+         */
+
+      }, {
+        key: "onWhenAddingFileFailed",
+        value: function onWhenAddingFileFailed(item, filter, options) {
+          return {
+            item: item,
+            filter: filter,
+            options: options
+          };
+        }
+        /**
+         * @param {?} fileItem
+         * @return {?}
+         */
+
+      }, {
+        key: "onBeforeUploadItem",
+        value: function onBeforeUploadItem(fileItem) {
+          return {
+            fileItem: fileItem
+          };
+        }
+        /**
+         * @param {?} fileItem
+         * @param {?} progress
+         * @return {?}
+         */
+
+      }, {
+        key: "onProgressItem",
+        value: function onProgressItem(fileItem, progress) {
+          return {
+            fileItem: fileItem,
+            progress: progress
+          };
+        }
+        /**
+         * @param {?} progress
+         * @return {?}
+         */
+
+      }, {
+        key: "onProgressAll",
+        value: function onProgressAll(progress) {
+          return {
+            progress: progress
+          };
+        }
+        /**
+         * @param {?} item
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "onSuccessItem",
+        value: function onSuccessItem(item, response, status, headers) {
+          return {
+            item: item,
+            response: response,
+            status: status,
+            headers: headers
+          };
+        }
+        /**
+         * @param {?} item
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "onErrorItem",
+        value: function onErrorItem(item, response, status, headers) {
+          return {
+            item: item,
+            response: response,
+            status: status,
+            headers: headers
+          };
+        }
+        /**
+         * @param {?} item
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "onCancelItem",
+        value: function onCancelItem(item, response, status, headers) {
+          return {
+            item: item,
+            response: response,
+            status: status,
+            headers: headers
+          };
+        }
+        /**
+         * @param {?} item
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "onCompleteItem",
+        value: function onCompleteItem(item, response, status, headers) {
+          return {
+            item: item,
+            response: response,
+            status: status,
+            headers: headers
+          };
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "onCompleteAll",
+        value: function onCompleteAll() {
+          return void 0;
+        }
+        /**
+         * @param {?} item
+         * @return {?}
+         */
+
+      }, {
+        key: "_mimeTypeFilter",
+        value: function _mimeTypeFilter(item) {
+          return !(this.options.allowedMimeType && this.options.allowedMimeType.indexOf(item.type) === -1);
+        }
+        /**
+         * @param {?} item
+         * @return {?}
+         */
+
+      }, {
+        key: "_fileSizeFilter",
+        value: function _fileSizeFilter(item) {
+          return !(this.options.maxFileSize && item.size > this.options.maxFileSize);
+        }
+        /**
+         * @param {?} item
+         * @return {?}
+         */
+
+      }, {
+        key: "_fileTypeFilter",
+        value: function _fileTypeFilter(item) {
+          return !(this.options.allowedFileType && this.options.allowedFileType.indexOf(FileType.getMimeClass(item)) === -1);
+        }
+        /**
+         * @param {?} item
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_onErrorItem",
+        value: function _onErrorItem(item, response, status, headers) {
+          item._onError(response, status, headers);
+
+          this.onErrorItem(item, response, status, headers);
+        }
+        /**
+         * @param {?} item
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_onCompleteItem",
+        value: function _onCompleteItem(item, response, status, headers) {
+          item._onComplete(response, status, headers);
+
+          this.onCompleteItem(item, response, status, headers);
+          /** @type {?} */
+
+          var nextItem = this.getReadyItems()[0];
+          this.isUploading = false;
+
+          if (nextItem) {
+            nextItem.upload();
+            return;
+          }
+
+          this.onCompleteAll();
+          this.progress = this._getTotalProgress();
+
+          this._render();
+        }
+        /**
+         * @protected
+         * @param {?} parsedHeaders
+         * @return {?}
+         */
+
+      }, {
+        key: "_headersGetter",
+        value: function _headersGetter(parsedHeaders) {
+          return (
+            /**
+            * @param {?} name
+            * @return {?}
+            */
+            function (name) {
+              if (name) {
+                return parsedHeaders[name.toLowerCase()] || void 0;
+              }
+
+              return parsedHeaders;
+            }
+          );
+        }
+        /**
+         * @protected
+         * @param {?} item
+         * @return {?}
+         */
+
+      }, {
+        key: "_xhrTransport",
+        value: function _xhrTransport(item) {
+          var _this8 = this;
+
+          /** @type {?} */
+          var that = this;
+          /** @type {?} */
+
+          var xhr = item._xhr = new XMLHttpRequest();
+          /** @type {?} */
+
+          var sendable;
+
+          this._onBeforeUploadItem(item);
+
+          if (typeof item._file.size !== 'number') {
+            throw new TypeError('The file specified is no longer valid');
+          }
+
+          if (!this.options.disableMultipart) {
+            sendable = new FormData();
+
+            this._onBuildItemForm(item, sendable);
+            /** @type {?} */
+
+
+            var appendFile =
+            /**
+            * @return {?}
+            */
+            function appendFile() {
+              return sendable.append(item.alias, item._file, item.file.name);
+            };
+
+            if (!this.options.parametersBeforeFiles) {
+              appendFile();
+            } // For AWS, Additional Parameters must come BEFORE Files
+
+
+            if (this.options.additionalParameter !== undefined) {
+              Object.keys(this.options.additionalParameter).forEach(
+              /**
+              * @param {?} key
+              * @return {?}
+              */
+              function (key) {
+                /** @type {?} */
+                var paramVal = _this8.options.additionalParameter[key]; // Allow an additional parameter to include the filename
+
+                if (typeof paramVal === 'string' && paramVal.indexOf('{{file_name}}') >= 0) {
+                  paramVal = paramVal.replace('{{file_name}}', item.file.name);
+                }
+
+                sendable.append(key, paramVal);
+              });
+            }
+
+            if (this.options.parametersBeforeFiles) {
+              appendFile();
+            }
+          } else {
+            sendable = this.options.formatDataFunction(item);
+          }
+
+          xhr.upload.onprogress =
+          /**
+          * @param {?} event
+          * @return {?}
+          */
+          function (event) {
+            /** @type {?} */
+            var progress = Math.round(event.lengthComputable ? event.loaded * 100 / event.total : 0);
+
+            _this8._onProgressItem(item, progress);
+          };
+
+          xhr.onload =
+          /**
+          * @return {?}
+          */
+          function () {
+            /** @type {?} */
+            var headers = _this8._parseHeaders(xhr.getAllResponseHeaders());
+            /** @type {?} */
+
+
+            var response = _this8._transformResponse(xhr.response, headers);
+            /** @type {?} */
+
+
+            var gist = _this8._isSuccessCode(xhr.status) ? 'Success' : 'Error';
+            /** @type {?} */
+
+            var method = '_on' + gist + 'Item';
+
+            /** @type {?} */
+            _this8[method](item, response, xhr.status, headers);
+
+            _this8._onCompleteItem(item, response, xhr.status, headers);
+          };
+
+          xhr.onerror =
+          /**
+          * @return {?}
+          */
+          function () {
+            /** @type {?} */
+            var headers = _this8._parseHeaders(xhr.getAllResponseHeaders());
+            /** @type {?} */
+
+
+            var response = _this8._transformResponse(xhr.response, headers);
+
+            _this8._onErrorItem(item, response, xhr.status, headers);
+
+            _this8._onCompleteItem(item, response, xhr.status, headers);
+          };
+
+          xhr.onabort =
+          /**
+          * @return {?}
+          */
+          function () {
+            /** @type {?} */
+            var headers = _this8._parseHeaders(xhr.getAllResponseHeaders());
+            /** @type {?} */
+
+
+            var response = _this8._transformResponse(xhr.response, headers);
+
+            _this8._onCancelItem(item, response, xhr.status, headers);
+
+            _this8._onCompleteItem(item, response, xhr.status, headers);
+          };
+
+          xhr.open(item.method, item.url, true);
+          xhr.withCredentials = item.withCredentials;
+
+          if (this.options.headers) {
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+              for (var _iterator2 = this.options.headers[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var header = _step2.value;
+                xhr.setRequestHeader(header.name, header.value);
+              }
+            } catch (err) {
+              _didIteratorError2 = true;
+              _iteratorError2 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+                  _iterator2.return();
+                }
+              } finally {
+                if (_didIteratorError2) {
+                  throw _iteratorError2;
+                }
+              }
+            }
+          }
+
+          if (item.headers.length) {
+            var _iteratorNormalCompletion3 = true;
+            var _didIteratorError3 = false;
+            var _iteratorError3 = undefined;
+
+            try {
+              for (var _iterator3 = item.headers[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+                var _header = _step3.value;
+                xhr.setRequestHeader(_header.name, _header.value);
+              }
+            } catch (err) {
+              _didIteratorError3 = true;
+              _iteratorError3 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+                  _iterator3.return();
+                }
+              } finally {
+                if (_didIteratorError3) {
+                  throw _iteratorError3;
+                }
+              }
+            }
+          }
+
+          if (this.authToken) {
+            xhr.setRequestHeader(this.authTokenHeader, this.authToken);
+          }
+
+          xhr.onreadystatechange =
+          /**
+          * @return {?}
+          */
+          function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+              that.response.emit(xhr.responseText);
+            }
+          };
+
+          if (this.options.formatDataFunctionIsAsync) {
+            sendable.then(
+            /**
+            * @param {?} result
+            * @return {?}
+            */
+            function (result) {
+              return xhr.send(JSON.stringify(result));
+            });
+          } else {
+            xhr.send(sendable);
+          }
+
+          this._render();
+        }
+        /**
+         * @protected
+         * @param {?=} value
+         * @return {?}
+         */
+
+      }, {
+        key: "_getTotalProgress",
+        value: function _getTotalProgress() {
+          var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+          if (this.options.removeAfterUpload) {
+            return value;
+          }
+          /** @type {?} */
+
+
+          var notUploaded = this.getNotUploadedItems().length;
+          /** @type {?} */
+
+          var uploaded = notUploaded ? this.queue.length - notUploaded : this.queue.length;
+          /** @type {?} */
+
+          var ratio = 100 / this.queue.length;
+          /** @type {?} */
+
+          var current = value * ratio / 100;
+          return Math.round(uploaded * ratio + current);
+        }
+        /**
+         * @protected
+         * @param {?} filters
+         * @return {?}
+         */
+
+      }, {
+        key: "_getFilters",
+        value: function _getFilters(filters) {
+          if (!filters) {
+            return this.options.filters;
+          }
+
+          if (Array.isArray(filters)) {
+            return filters;
+          }
+
+          if (typeof filters === 'string') {
+            /** @type {?} */
+            var names = filters.match(/[^\s,]+/g);
+            return this.options.filters.filter(
+            /**
+            * @param {?} filter
+            * @return {?}
+            */
+            function (filter) {
+              return names.indexOf(filter.name) !== -1;
+            });
+          }
+
+          return this.options.filters;
+        }
+        /**
+         * @protected
+         * @return {?}
+         */
+
+      }, {
+        key: "_render",
+        value: function _render() {
+          return void 0;
+        }
+        /**
+         * @protected
+         * @return {?}
+         */
+
+      }, {
+        key: "_queueLimitFilter",
+        value: function _queueLimitFilter() {
+          return this.options.queueLimit === undefined || this.queue.length < this.options.queueLimit;
+        }
+        /**
+         * @protected
+         * @param {?} file
+         * @param {?} filters
+         * @param {?} options
+         * @return {?}
+         */
+
+      }, {
+        key: "_isValidFile",
+        value: function _isValidFile(file, filters, options) {
+          var _this9 = this;
+
+          this._failFilterIndex = -1;
+          return !filters.length ? true : filters.every(
+          /**
+          * @param {?} filter
+          * @return {?}
+          */
+          function (filter) {
+            _this9._failFilterIndex++;
+            return filter.fn.call(_this9, file, options);
+          });
+        }
+        /**
+         * @protected
+         * @param {?} status
+         * @return {?}
+         */
+
+      }, {
+        key: "_isSuccessCode",
+        value: function _isSuccessCode(status) {
+          return status >= 200 && status < 300 || status === 304;
+        }
+        /**
+         * @protected
+         * @param {?} response
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_transformResponse",
+        value: function _transformResponse(response, headers) {
+          return response;
+        }
+        /**
+         * @protected
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_parseHeaders",
+        value: function _parseHeaders(headers) {
+          /** @type {?} */
+          var parsed = {};
+          /** @type {?} */
+
+          var key;
+          /** @type {?} */
+
+          var val;
+          /** @type {?} */
+
+          var i;
+
+          if (!headers) {
+            return parsed;
+          }
+
+          headers.split('\n').map(
+          /**
+          * @param {?} line
+          * @return {?}
+          */
+          function (line) {
+            i = line.indexOf(':');
+            key = line.slice(0, i).trim().toLowerCase();
+            val = line.slice(i + 1).trim();
+
+            if (key) {
+              parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+            }
+          });
+          return parsed;
+        }
+        /**
+         * @protected
+         * @param {?} item
+         * @param {?} filter
+         * @param {?} options
+         * @return {?}
+         */
+
+      }, {
+        key: "_onWhenAddingFileFailed",
+        value: function _onWhenAddingFileFailed(item, filter, options) {
+          this.onWhenAddingFileFailed(item, filter, options);
+        }
+        /**
+         * @protected
+         * @param {?} item
+         * @return {?}
+         */
+
+      }, {
+        key: "_onAfterAddingFile",
+        value: function _onAfterAddingFile(item) {
+          this.onAfterAddingFile(item);
+        }
+        /**
+         * @protected
+         * @param {?} items
+         * @return {?}
+         */
+
+      }, {
+        key: "_onAfterAddingAll",
+        value: function _onAfterAddingAll(items) {
+          this.onAfterAddingAll(items);
+        }
+        /**
+         * @protected
+         * @param {?} item
+         * @return {?}
+         */
+
+      }, {
+        key: "_onBeforeUploadItem",
+        value: function _onBeforeUploadItem(item) {
+          item._onBeforeUpload();
+
+          this.onBeforeUploadItem(item);
+        }
+        /**
+         * @protected
+         * @param {?} item
+         * @param {?} form
+         * @return {?}
+         */
+
+      }, {
+        key: "_onBuildItemForm",
+        value: function _onBuildItemForm(item, form) {
+          item._onBuildForm(form);
+
+          this.onBuildItemForm(item, form);
+        }
+        /**
+         * @protected
+         * @param {?} item
+         * @param {?} progress
+         * @return {?}
+         */
+
+      }, {
+        key: "_onProgressItem",
+        value: function _onProgressItem(item, progress) {
+          /** @type {?} */
+          var total = this._getTotalProgress(progress);
+
+          this.progress = total;
+
+          item._onProgress(progress);
+
+          this.onProgressItem(item, progress);
+          this.onProgressAll(total);
+
+          this._render();
+        }
+        /**
+         * @protected
+         * @param {?} item
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_onSuccessItem",
+        value: function _onSuccessItem(item, response, status, headers) {
+          item._onSuccess(response, status, headers);
+
+          this.onSuccessItem(item, response, status, headers);
+        }
+        /**
+         * @protected
+         * @param {?} item
+         * @param {?} response
+         * @param {?} status
+         * @param {?} headers
+         * @return {?}
+         */
+
+      }, {
+        key: "_onCancelItem",
+        value: function _onCancelItem(item, response, status, headers) {
+          item._onCancel(response, status, headers);
+
+          this.onCancelItem(item, response, status, headers);
+        }
+      }]);
+
+      return FileUploader;
+    }();
+
+    if (false) {}
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+
+    var FileSelectDirective =
+    /*#__PURE__*/
+    function () {
+      /**
+       * @param {?} element
+       */
+      function FileSelectDirective(element) {
+        _classCallCheck2(this, FileSelectDirective);
+
+        this.onFileSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.element = element;
+      }
+      /**
+       * @return {?}
+       */
+
+
+      _createClass2(FileSelectDirective, [{
+        key: "getOptions",
+        value: function getOptions() {
+          return this.uploader.options;
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "getFilters",
+        value: function getFilters() {
+          return {};
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "isEmptyAfterSelection",
+        value: function isEmptyAfterSelection() {
+          return !!this.element.nativeElement.attributes.multiple;
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "onChange",
+        value: function onChange() {
+          /** @type {?} */
+          var files = this.element.nativeElement.files;
+          /** @type {?} */
+
+          var options = this.getOptions();
+          /** @type {?} */
+
+          var filters = this.getFilters();
+          this.uploader.addToQueue(files, options, filters);
+          this.onFileSelected.emit(files);
+
+          if (this.isEmptyAfterSelection()) {
+            this.element.nativeElement.value = '';
+          }
+        }
+      }]);
+
+      return FileSelectDirective;
+    }();
+
+    FileSelectDirective.decorators = [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
+      args: [{
+        selector: '[ng2FileSelect]'
+      }]
+    }];
+    /** @nocollapse */
+
+    FileSelectDirective.ctorParameters = function () {
+      return [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]
+      }];
+    };
+
+    FileSelectDirective.propDecorators = {
+      uploader: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+      }],
+      onFileSelected: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
+      }],
+      onChange: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+        args: ['change']
+      }]
+    };
+
+    if (false) {}
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+
+    var FileDropDirective =
+    /*#__PURE__*/
+    function () {
+      /**
+       * @param {?} element
+       */
+      function FileDropDirective(element) {
+        _classCallCheck2(this, FileDropDirective);
+
+        this.fileOver = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.onFileDrop = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.element = element;
+      }
+      /**
+       * @return {?}
+       */
+
+
+      _createClass2(FileDropDirective, [{
+        key: "getOptions",
+        value: function getOptions() {
+          return this.uploader.options;
+        }
+        /**
+         * @return {?}
+         */
+
+      }, {
+        key: "getFilters",
+        value: function getFilters() {
+          return {};
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+
+      }, {
+        key: "onDrop",
+        value: function onDrop(event) {
+          /** @type {?} */
+          var transfer = this._getTransfer(event);
+
+          if (!transfer) {
+            return;
+          }
+          /** @type {?} */
+
+
+          var options = this.getOptions();
+          /** @type {?} */
+
+          var filters = this.getFilters();
+
+          this._preventAndStop(event);
+
+          this.uploader.addToQueue(transfer.files, options, filters);
+          this.fileOver.emit(false);
+          this.onFileDrop.emit(transfer.files);
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+
+      }, {
+        key: "onDragOver",
+        value: function onDragOver(event) {
+          /** @type {?} */
+          var transfer = this._getTransfer(event);
+
+          if (!this._haveFiles(transfer.types)) {
+            return;
+          }
+
+          transfer.dropEffect = 'copy';
+
+          this._preventAndStop(event);
+
+          this.fileOver.emit(true);
+        }
+        /**
+         * @param {?} event
+         * @return {?}
+         */
+
+      }, {
+        key: "onDragLeave",
+        value: function onDragLeave(event) {
+          if (
+          /** @type {?} */
+          this.element) {
+            if (event.currentTarget ===
+            /** @type {?} */
+            this.element[0]) {
+              return;
+            }
+          }
+
+          this._preventAndStop(event);
+
+          this.fileOver.emit(false);
+        }
+        /**
+         * @protected
+         * @param {?} event
+         * @return {?}
+         */
+
+      }, {
+        key: "_getTransfer",
+        value: function _getTransfer(event) {
+          return event.dataTransfer ? event.dataTransfer : event.originalEvent.dataTransfer; // jQuery fix;
+        }
+        /**
+         * @protected
+         * @param {?} event
+         * @return {?}
+         */
+
+      }, {
+        key: "_preventAndStop",
+        value: function _preventAndStop(event) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        /**
+         * @protected
+         * @param {?} types
+         * @return {?}
+         */
+
+      }, {
+        key: "_haveFiles",
+        value: function _haveFiles(types) {
+          if (!types) {
+            return false;
+          }
+
+          if (types.indexOf) {
+            return types.indexOf('Files') !== -1;
+          } else if (types.contains) {
+            return types.contains('Files');
+          } else {
+            return false;
+          }
+        }
+      }]);
+
+      return FileDropDirective;
+    }();
+
+    FileDropDirective.decorators = [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Directive"],
+      args: [{
+        selector: '[ng2FileDrop]'
+      }]
+    }];
+    /** @nocollapse */
+
+    FileDropDirective.ctorParameters = function () {
+      return [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"]
+      }];
+    };
+
+    FileDropDirective.propDecorators = {
+      uploader: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
+      }],
+      fileOver: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
+      }],
+      onFileDrop: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"]
+      }],
+      onDrop: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+        args: ['drop', ['$event']]
+      }],
+      onDragOver: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+        args: ['dragover', ['$event']]
+      }],
+      onDragLeave: [{
+        type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["HostListener"],
+        args: ['dragleave', ['$event']]
+      }]
+    };
+
+    if (false) {}
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+
+    var FileUploadModule = function FileUploadModule() {
+      _classCallCheck2(this, FileUploadModule);
+    };
+
+    FileUploadModule.decorators = [{
+      type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"],
+      args: [{
+        imports: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"]],
+        declarations: [FileDropDirective, FileSelectDirective],
+        exports: [FileDropDirective, FileSelectDirective]
+      }]
+    }];
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    //# sourceMappingURL=ng2-file-upload.js.map
+
+    /***/
+  },
+
+  /***/
   "./node_modules/raw-loader/dist/cjs.js!./src/app/system/create/create.component.html":
   /*!*******************************************************************************************!*\
     !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/system/create/create.component.html ***!
@@ -660,7 +2775,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h3 xmlns:th=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.w3.org/1999/xhtml\"\r\n    xmlns:th=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.w3.org/1999/xhtml\"\r\n    xmlns:th=\"http://www.w3.org/1999/xhtml\">Rezultatai</h3>\r\n<div>\r\n<mat-form-field>\r\n  <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtruoti\">\r\n</mat-form-field>\r\n<table mat-table matTableExporter [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" #exporter=\"matTableExporter\">\r\n  <ng-container matColumnDef=\"no\">\r\n    <th mat-header-cell *matHeaderCellDef> Nr.</th>\r\n    <td mat-cell *matCellDef=\"let index = index\"> {{index + 1}} </td>\r\n  </ng-container>\r\n\r\n  <ng-container matColumnDef=\"protocolId\" >\r\n    <th mat-header-cell *matHeaderCellDef> Protokolas</th>\r\n    <td mat-cell *matCellDef=\"let element\"> {{element.protocolId}} {{'/'+ element.date.toString().charAt(2) + element.date.toString().charAt(3) +'-8B'}} </td>\r\n  </ng-container>\r\n\r\n   <ng-container matColumnDef=\"sampleId\">\r\n     <th mat-header-cell *matHeaderCellDef> Mėginys</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.sampleId}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"ashValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Peleningumas</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.ashValue}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"totalMoistureValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Drėgmė</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.totalMoistureValue}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"calorificValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Šilumingumas</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.calorificValue}} </td>\r\n   </ng-container> -->\r\n\r\n   <ng-container matColumnDef=\"date\">\r\n    <th mat-header-cell *matHeaderCellDef> Data</th>\r\n    <td mat-cell *matCellDef=\"let element\"> {{element.date.toString().substring(0,10)}} </td>\r\n  </ng-container>\r\n\r\n\r\n  <ng-container matColumnDef=\"actions\">\r\n    <th mat-header-cell *matHeaderCellDef>\r\n    </th>\r\n    <td mat-cell *matCellDef=\"let element\">\r\n      <button mat-icon-button [matMenuTriggerFor]=\"menu\">\r\n        <mat-icon>more_vert</mat-icon>\r\n      </button>\r\n      <mat-menu #menu=\"matMenu\">\r\n        <button mat-menu-item (click)=\"openDialog(element)\">\r\n          <mat-icon>edit</mat-icon>\r\n          <span>Redaguoti</span>\r\n        </button>\r\n        <button mat-menu-item (click)=\"swalOrderDelete()\" (click)=\"delete(element.id)\">\r\n          <mat-icon>delete</mat-icon>\r\n          <span>Ištrinti</span>\r\n        </button>\r\n      </mat-menu>\r\n    </td>\r\n  </ng-container>\r\n\r\n  <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n  <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n</table>\r\n  <div class=\"footer\">\r\n    <mat-toolbar>\r\n      <mat-toolbar-row>\r\n        <form action=\"@{lei/results/import}\" method=\"post\" (submit)=\"uploadFile()\" enctype=\"multipart/form-data\">\r\n\r\n          <input #fileInput type=\"file\" name=\"file\" id=\"file\" accept=\".xls,.xlsx\">\r\n\r\n          <input type=\"submit\"  name=\"submit\" class=\"submitButton\" />\r\n        </form>\r\n        <button mat-icon-button color=\"primary\" (click)=uploadFile() title=\"Išsaugoti XSLX formatu\"><mat-icon>save_alt</mat-icon></button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('pilnas')\" title=\"Rodyti visus užsakymus\">Pilnas</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('metai')\" title=\"Rodyti šių metų užsakymus\">Metai</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('menuo')\" title=\"Rodyti šio mėnesio užsakymus\">Mėnesis</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"openDialog2()\" title=\"Rodyti pasirinktos dienos užsakymus\">Diena</button>\r\n        <button mat-icon-button color=\"primary\" (click)=\"exporter.exportTable('xlsx', {fileName: 'Užsakymų žurnalas ' + this.excelDate, sheet: 'sheet_name'})\" title=\"Išsaugoti XSLX formatu\"><mat-icon>save_alt</mat-icon></button>\r\n        <span class=\"example-spacer\"></span>\r\n        <mat-paginator showFirstLastButtons=\"true\"  class=\"paginator\" [pageSizeOptions]=\"[10, 20, 50]\"></mat-paginator>\r\n      </mat-toolbar-row>\r\n    </mat-toolbar>\r\n  </div>\r\n</div>\r\n";
+    __webpack_exports__["default"] = "<h3 xmlns:th=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.w3.org/1999/xhtml\"\r\n    xmlns:th=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.w3.org/1999/xhtml\"\r\n    xmlns:th=\"http://www.w3.org/1999/xhtml\">Rezultatai</h3>\r\n<div>\r\n<mat-form-field>\r\n  <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtruoti\">\r\n</mat-form-field>\r\n<table mat-table matTableExporter [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" #exporter=\"matTableExporter\">\r\n  <ng-container matColumnDef=\"no\">\r\n    <th mat-header-cell *matHeaderCellDef> Nr.</th>\r\n    <td mat-cell *matCellDef=\"let index = index\"> {{index + 1}} </td>\r\n  </ng-container>\r\n\r\n  <ng-container matColumnDef=\"protocolId\" >\r\n    <th mat-header-cell *matHeaderCellDef> Protokolas</th>\r\n    <td mat-cell *matCellDef=\"let element\"> {{element.protocolId}} {{'/'+ element.date.toString().charAt(2) + element.date.toString().charAt(3) +'-8B'}} </td>\r\n  </ng-container>\r\n\r\n   <ng-container matColumnDef=\"sampleId\">\r\n     <th mat-header-cell *matHeaderCellDef> Mėginys</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.sampleId}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"ashValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Peleningumas, %</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.ashValue}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"totalMoistureValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Drėgmė, %</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.totalMoistureValue}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"calorificValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Sauso kuro apatinis šilumingumas, kJ/kg</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.calorificValue}} </td>\r\n   </ng-container> -->\r\n\r\n   <ng-container matColumnDef=\"date\">\r\n    <th mat-header-cell *matHeaderCellDef> Data</th>\r\n    <td mat-cell *matCellDef=\"let element\"> {{element.date.toString().substring(0,10)}} </td>\r\n  </ng-container>\r\n\r\n\r\n  <!-- <ng-container matColumnDef=\"actions\">\r\n    <th mat-header-cell *matHeaderCellDef>\r\n    </th>\r\n    <td mat-cell *matCellDef=\"let element\">\r\n      <button mat-icon-button [matMenuTriggerFor]=\"menu\">\r\n        <mat-icon>more_vert</mat-icon>\r\n      </button>\r\n      <mat-menu #menu=\"matMenu\">\r\n        <button mat-menu-item (click)=\"openDialog(element)\">\r\n          <mat-icon>edit</mat-icon>\r\n          <span>Redaguoti</span>\r\n        </button>\r\n        <button mat-menu-item (click)=\"swalOrderDelete()\" (click)=\"delete(element.id)\">\r\n          <mat-icon>delete</mat-icon>\r\n          <span>Ištrinti</span>\r\n        </button>\r\n      </mat-menu>\r\n    </td>\r\n  </ng-container>-->\r\n\r\n  <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n  <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n\r\n\r\n\r\n</table>\r\n\r\n\r\n\r\n\r\n<div class=\"footer\">\r\n    <mat-toolbar>\r\n      <mat-toolbar-row>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('pilnas')\" title=\"Rodyti visus užsakymus\">Pilnas</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('metai')\" title=\"Rodyti šių metų užsakymus\">Metai</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('menuo')\" title=\"Rodyti šio mėnesio užsakymus\">Mėnesis</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"openDialog2()\" title=\"Rodyti pasirinktos dienos užsakymus\">Diena</button>\r\n        <button mat-icon-button color=\"primary\" (click)=\"exporter.exportTable('xlsx', {fileName: 'Užsakymų žurnalas ' + this.excelDate, sheet: 'sheet_name'})\" title=\"Išsaugoti XSLX formatu\"><mat-icon>save_alt</mat-icon></button>\r\n        <span class=\"example-spacer\"></span>\r\n        <mat-paginator showFirstLastButtons=\"true\"  class=\"paginator\" [pageSizeOptions]=\"[10, 20, 50]\"></mat-paginator>\r\n      </mat-toolbar-row>\r\n    </mat-toolbar>\r\n  </div>\r\n\r\n";
     /***/
   },
 
@@ -3960,18 +6075,6 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
           }
         }
       }, {
-        key: "UploadExcel",
-        value: function UploadExcel(formData, url) {
-          var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]();
-          headers.append('Content-Type', 'multipart/form-data');
-          headers.append('Accept', 'application/json');
-          var httpOptions = {
-            headers: Headers
-          }; // @ts-ignore
-
-          return this.http.post(this.urlPrefix + url, formData, httpOptions);
-        }
-      }, {
         key: "get",
         value: function get(url) {
           var headers = {};
@@ -4286,7 +6389,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "h3 {\r\n  text-align: center;\r\n}\r\n\r\ntable {\r\n  margin: auto;\r\n  max-width: 1500px;\r\n  width: 100%;\r\n}\r\n\r\ntable th:first-child {\r\n  width: 50px;\r\n}\r\n\r\ntable th:last-child {\r\n  width: 10px;\r\n}\r\n\r\n.mat-row:hover {\r\n  background-color: lightgrey;\r\n}\r\n\r\n.footer {\r\n  position: fixed;\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 100%;\r\n  background-color: red;\r\n  color: white;\r\n  text-align: center;\r\n}\r\n\r\nmat-form-field {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n          justify-content: center;\r\n  position: relative;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3lzdGVtL2xvZy9saXN0L2xpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsMkJBQTJCO0FBQzdCOztBQUNBO0VBQ0UsZUFBZTtFQUNmLE9BQU87RUFDUCxTQUFTO0VBQ1QsV0FBVztFQUNYLHFCQUFxQjtFQUNyQixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCOztBQUNBO0VBQ0Usb0JBQWE7RUFBYixhQUFhO0VBQ2Isd0JBQXVCO1VBQXZCLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEIiLCJmaWxlIjoic3JjL2FwcC9zeXN0ZW0vbG9nL2xpc3QvbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaDMge1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxudGFibGUge1xyXG4gIG1hcmdpbjogYXV0bztcclxuICBtYXgtd2lkdGg6IDE1MDBweDtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxudGFibGUgdGg6Zmlyc3QtY2hpbGQge1xyXG4gIHdpZHRoOiA1MHB4O1xyXG59XHJcblxyXG50YWJsZSB0aDpsYXN0LWNoaWxkIHtcclxuICB3aWR0aDogMTBweDtcclxufVxyXG5cclxuLm1hdC1yb3c6aG92ZXIge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGxpZ2h0Z3JleTtcclxufVxyXG4uZm9vdGVyIHtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgbGVmdDogMDtcclxuICBib3R0b206IDA7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmVkO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxubWF0LWZvcm0tZmllbGQge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcbiJdfQ== */";
+    __webpack_exports__["default"] = "h3 {\r\n  text-align: center;\r\n}\r\n\r\ntable {\r\n  margin: auto;\r\n  max-width: 1500px;\r\n  width: 100%;\r\n}\r\n\r\ntable th:first-child {\r\n  width: 50px;\r\n}\r\n\r\ntable th:last-child {\r\n  width: 10px;\r\n}\r\n\r\n.mat-row:hover {\r\n  background-color: lightgrey;\r\n}\r\n\r\n.footer {\r\n  position: fixed;\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 100%;\r\n  background-color: red;\r\n  color: white;\r\n  text-align: center;\r\n}\r\n\r\nmat-form-field {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n          justify-content: center;\r\n  position: relative;\r\n}\r\n\r\n.my-drop-zone { border: dotted 3px lightgray; }\r\n\r\n.nv-file-over { border: dotted 3px red; }\r\n\r\n/* Default class applied to drop zones on over */\r\n\r\n.another-file-over-class { border: dotted 3px green; }\r\n\r\nhtml, body { height: 100%; }\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3lzdGVtL2xvZy9saXN0L2xpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsMkJBQTJCO0FBQzdCOztBQUNBO0VBQ0UsZUFBZTtFQUNmLE9BQU87RUFDUCxTQUFTO0VBQ1QsV0FBVztFQUNYLHFCQUFxQjtFQUNyQixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCOztBQUNBO0VBQ0Usb0JBQWE7RUFBYixhQUFhO0VBQ2Isd0JBQXVCO1VBQXZCLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7O0FBQ0EsZ0JBQWdCLDRCQUE0QixFQUFFOztBQUM5QyxnQkFBZ0Isc0JBQXNCLEVBQUU7O0FBQUUsZ0RBQWdEOztBQUMxRiwyQkFBMkIsd0JBQXdCLEVBQUU7O0FBRXJELGFBQWEsWUFBWSxFQUFFIiwiZmlsZSI6InNyYy9hcHAvc3lzdGVtL2xvZy9saXN0L2xpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImgzIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbnRhYmxlIHtcclxuICBtYXJnaW46IGF1dG87XHJcbiAgbWF4LXdpZHRoOiAxNTAwcHg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbnRhYmxlIHRoOmZpcnN0LWNoaWxkIHtcclxuICB3aWR0aDogNTBweDtcclxufVxyXG5cclxudGFibGUgdGg6bGFzdC1jaGlsZCB7XHJcbiAgd2lkdGg6IDEwcHg7XHJcbn1cclxuXHJcbi5tYXQtcm93OmhvdmVyIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGdyZXk7XHJcbn1cclxuLmZvb3RlciB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIGxlZnQ6IDA7XHJcbiAgYm90dG9tOiAwO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJlZDtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbm1hdC1mb3JtLWZpZWxkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG4ubXktZHJvcC16b25lIHsgYm9yZGVyOiBkb3R0ZWQgM3B4IGxpZ2h0Z3JheTsgfVxyXG4ubnYtZmlsZS1vdmVyIHsgYm9yZGVyOiBkb3R0ZWQgM3B4IHJlZDsgfSAvKiBEZWZhdWx0IGNsYXNzIGFwcGxpZWQgdG8gZHJvcCB6b25lcyBvbiBvdmVyICovXHJcbi5hbm90aGVyLWZpbGUtb3Zlci1jbGFzcyB7IGJvcmRlcjogZG90dGVkIDNweCBncmVlbjsgfVxyXG5cclxuaHRtbCwgYm9keSB7IGhlaWdodDogMTAwJTsgfVxyXG4iXX0= */";
     /***/
   },
 
@@ -4363,34 +6466,67 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
     var _shared_decoder_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ../../shared/decoder.service */
     "./src/app/system/shared/decoder.service.ts");
+    /* harmony import */
+
+
+    var ng2_file_upload__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ng2-file-upload */
+    "./node_modules/ng2-file-upload/fesm2015/ng2-file-upload.js");
+    /* harmony import */
+
+
+    var _core_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
+    /*! ../../../core/auth.service */
+    "./src/app/core/auth.service.ts");
+
+    var URL = 'http://localhost:8080/lei/results/import';
 
     var ListComponent =
     /*#__PURE__*/
     function () {
-      function ListComponent(api, dialog, decoder) {
+      // @ts-ignore
+      function ListComponent(api, dialog, decoder, authService) {
+        var _this10 = this;
+
         _classCallCheck2(this, ListComponent);
 
         this.api = api;
         this.dialog = dialog;
         this.decoder = decoder;
-        this.displayedColumns = ['no', 'protocolId', 'sampleId', 'ashValue', 'totalMoistureValue', 'calorificValue', 'date', 'actions'];
+        this.authService = authService;
+        this.displayedColumns = ['no', 'protocolId', 'sampleId', 'ashValue', 'totalMoistureValue', 'calorificValue', 'date'];
         this.results = [];
+        this.headers = {};
+        this.headers['Content-Type'] = 'application/json';
+        this.uploader = new ng2_file_upload__WEBPACK_IMPORTED_MODULE_8__["FileUploader"]({
+          url: URL
+        });
+        this.hasBaseDropZoneOver = false;
+        this.hasAnotherDropZoneOver = false;
+        this.response = '';
+        this.uploader.response.subscribe(function (res) {
+          return _this10.response = res;
+        });
       }
 
       _createClass2(ListComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this7 = this;
+          var _this11 = this;
+
+          this.uploader.onAfterAddingFile = function (file) {
+            file.withCredentials = false;
+          };
 
           if (this.decoder.getUser() !== 'admin') {
             this.api.get('/lei/results').subscribe(function (data) {
-              return _this7.dataSource.data = data.filter(function (x) {
-                return x.customerId === _this7.decoder.getUser();
+              return _this11.dataSource.data = data.filter(function (x) {
+                return x.customerId === _this11.decoder.getUser();
               });
             });
           } else {
             this.api.get('/lei/results').subscribe(function (data) {
-              return _this7.dataSource.data = data;
+              return _this11.dataSource.data = data;
             });
           }
 
@@ -4398,6 +6534,16 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
           this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]();
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
+        }
+      }, {
+        key: "fileOverBase",
+        value: function fileOverBase(e) {
+          this.hasBaseDropZoneOver = e;
+        }
+      }, {
+        key: "fileOverAnother",
+        value: function fileOverAnother(e) {
+          this.hasAnotherDropZoneOver = e;
         }
       }, {
         key: "applyFilter",
@@ -4411,10 +6557,10 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       }, {
         key: "delete",
         value: function _delete(id) {
-          var _this8 = this;
+          var _this12 = this;
 
           this.api.delete("/lei/results/".concat(id)).subscribe(function () {
-            return _this8.results = _this8.results.filter(function (item) {
+            return _this12.results = _this12.results.filter(function (item) {
               return item.id !== id;
             });
           });
@@ -4422,7 +6568,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       }, {
         key: "openDialog",
         value: function openDialog(result) {
-          var _this9 = this;
+          var _this13 = this;
 
           var dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_4__["ModalComponent"], {
             width: '250px',
@@ -4438,8 +6584,8 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
           });
           dialogRef.afterClosed().subscribe(function (data) {
             if (data) {
-              _this9.api.post('/lei/results', data).subscribe(function (resultt) {
-                var row = _this9.results.find(function (item) {
+              _this13.api.post('/lei/results', data).subscribe(function (resultt) {
+                var row = _this13.results.find(function (item) {
                   return item.id === result.id;
                 });
 
@@ -4451,7 +6597,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
                   row.calorificValue = resultt.calorificValue;
                   row.date = resultt.date;
                 } else {
-                  _this9.results = [].concat(_toConsumableArray(_this9.results), [result]);
+                  _this13.results = [].concat(_toConsumableArray(_this13.results), [result]);
                 }
               });
             }
@@ -4465,11 +6611,11 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       }, {
         key: "displayFilter",
         value: function displayFilter(value) {
-          var _this10 = this;
+          var _this14 = this;
 
           if (value === 'metai') {
             this.api.get('/lei/results').subscribe(function (data) {
-              return _this10.dataSource.data = data.filter(function (result) {
+              return _this14.dataSource.data = data.filter(function (result) {
                 return Number.parseInt(result.date.toString().substring(0, 4)) === new Date().getFullYear();
               });
             });
@@ -4478,7 +6624,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
           if (value === 'pilnas') {
             this.api.get('/lei/results');
             this.api.get('/lei/results').subscribe(function (data) {
-              return _this10.dataSource.data = data;
+              return _this14.dataSource.data = data;
             });
             var date = new Date();
             console.log(date.getFullYear() + '-' + date.getMonth() + 1);
@@ -4489,7 +6635,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
             var _date = new Date();
 
             this.api.get('/lei/results').subscribe(function (data) {
-              return _this10.dataSource.data = data.filter(function (result) {
+              return _this14.dataSource.data = data.filter(function (result) {
                 return Number.parseInt(result.date.toString().substring(0, 5)) + Number.parseInt(result.date.toString().substring(5, 7)) === _date.getFullYear() + _date.getMonth() + 1;
               });
             });
@@ -4499,7 +6645,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       }, {
         key: "openDialog2",
         value: function openDialog2(excelDate) {
-          var _this11 = this;
+          var _this15 = this;
 
           var dialogRef = this.dialog.open(_date_modal_date_modal_component__WEBPACK_IMPORTED_MODULE_6__["DateModalComponent"], {
             width: '250px',
@@ -4509,26 +6655,15 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
           });
           dialogRef.afterClosed().subscribe(function (dataa) {
             if (dataa) {
-              _this11.api.get('/lei/results') // tslint:disable-next-line:no-shadowed-variable
+              _this15.api.get('/lei/results') // tslint:disable-next-line:no-shadowed-variable
               .subscribe(function (data) {
-                return _this11.dataSource.data = data.filter(function (result) {
+                return _this15.dataSource.data = data.filter(function (result) {
                   return result.date.toString().substring(0, 10) === dataa.date;
                 });
               });
 
               console.log(dataa.date);
             }
-          });
-        }
-      }, {
-        key: "uploadFile",
-        value: function uploadFile() {
-          var _this12 = this;
-
-          var formData = new FormData();
-          formData.append('upload', this.fileInput.nativeElement.files[0]);
-          this.api.UploadExcel(formData, '/lei/results/import').subscribe(function (result) {
-            _this12.message = result.toString();
           });
         }
       }]);
@@ -4543,6 +6678,8 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
         type: _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]
       }, {
         type: _shared_decoder_service__WEBPACK_IMPORTED_MODULE_7__["DecoderService"]
+      }, {
+        type: _core_auth_service__WEBPACK_IMPORTED_MODULE_9__["AuthService"]
       }];
     };
 
@@ -4552,7 +6689,6 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatSort"], {
       static: true
     })], ListComponent.prototype, "sort", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('fileInput')], ListComponent.prototype, "fileInput", void 0);
     ListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-list',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
@@ -5231,18 +7367,18 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       _createClass2(FormComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this13 = this;
+          var _this16 = this;
 
           this.api.get('/lei/customers').subscribe(function (users) {
-            _this13.customers = users;
-            console.log(_this13.customers);
-            var _iteratorNormalCompletion = true;
-            var _didIteratorError = false;
-            var _iteratorError = undefined;
+            _this16.customers = users;
+            console.log(_this16.customers);
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
 
             try {
               var _loop = function _loop() {
-                var entry = _step.value;
+                var entry = _step4.value;
                 console.log(entry);
                 var letteri = entry.title.charAt(0);
                 var name = entry.title;
@@ -5256,20 +7392,20 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
                 console.log(result);
               };
 
-              for (var _iterator = _this13.customers[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+              for (var _iterator4 = _this16.customers[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
                 _loop();
               }
             } catch (err) {
-              _didIteratorError = true;
-              _iteratorError = err;
+              _didIteratorError4 = true;
+              _iteratorError4 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion && _iterator.return != null) {
-                  _iterator.return();
+                if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
+                  _iterator4.return();
                 }
               } finally {
-                if (_didIteratorError) {
-                  throw _iteratorError;
+                if (_didIteratorError4) {
+                  throw _iteratorError4;
                 }
               }
             }
@@ -5277,15 +7413,15 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
             console.log(_Customers__WEBPACK_IMPORTED_MODULE_6__["customerGroups"]);
           });
           this.api.get('/lei/st').subscribe(function (samples) {
-            _this13.sampleTypes = samples;
-            console.log(_this13.sampleTypes);
-            var _iteratorNormalCompletion2 = true;
-            var _didIteratorError2 = false;
-            var _iteratorError2 = undefined;
+            _this16.sampleTypes = samples;
+            console.log(_this16.sampleTypes);
+            var _iteratorNormalCompletion5 = true;
+            var _didIteratorError5 = false;
+            var _iteratorError5 = undefined;
 
             try {
               var _loop2 = function _loop2() {
-                var entry = _step2.value;
+                var entry = _step5.value;
                 console.log(entry);
                 var letteri = entry.title.charAt(0);
                 var name = entry.title;
@@ -5299,20 +7435,20 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
                 console.log(result);
               };
 
-              for (var _iterator2 = _this13.sampleTypes[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+              for (var _iterator5 = _this16.sampleTypes[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
                 _loop2();
               }
             } catch (err) {
-              _didIteratorError2 = true;
-              _iteratorError2 = err;
+              _didIteratorError5 = true;
+              _iteratorError5 = err;
             } finally {
               try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
-                  _iterator2.return();
+                if (!_iteratorNormalCompletion5 && _iterator5.return != null) {
+                  _iterator5.return();
                 }
               } finally {
-                if (_didIteratorError2) {
-                  throw _iteratorError2;
+                if (_didIteratorError5) {
+                  throw _iteratorError5;
                 }
               }
             }
@@ -5323,11 +7459,11 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
           this.samples.sampleWeight = 0; // tslint:disable-next-line:no-non-null-assertion
 
           this.customerGroupOptions = this.customerForm.get('customerGroup').valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
-            return _this13._filterGroup(value);
+            return _this16._filterGroup(value);
           })); // tslint:disable-next-line:no-non-null-assertion
 
           this.sampleTypeGroupOptions = this.sampleTypeForm.get('sampleTypeGroup').valueChanges.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) {
-            return _this13._filterGroup2(value);
+            return _this16._filterGroup2(value);
           }));
           this.dropdownList = _DropdownList__WEBPACK_IMPORTED_MODULE_5__["DropdownList"]; // tslint:disable-next-line:no-unused-expression
 
@@ -5345,27 +7481,27 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
         key: "onDropDownClose",
         value: function onDropDownClose(items) {
           var strings = [];
-          var _iteratorNormalCompletion3 = true;
-          var _didIteratorError3 = false;
-          var _iteratorError3 = undefined;
+          var _iteratorNormalCompletion6 = true;
+          var _didIteratorError6 = false;
+          var _iteratorError6 = undefined;
 
           try {
-            for (var _iterator3 = items[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-              var item = _step3.value;
+            for (var _iterator6 = items[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+              var item = _step6.value;
               strings.push(item.item_text);
               console.log(strings);
             }
           } catch (err) {
-            _didIteratorError3 = true;
-            _iteratorError3 = err;
+            _didIteratorError6 = true;
+            _iteratorError6 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
-                _iterator3.return();
+              if (!_iteratorNormalCompletion6 && _iterator6.return != null) {
+                _iterator6.return();
               }
             } finally {
-              if (_didIteratorError3) {
-                throw _iteratorError3;
+              if (_didIteratorError6) {
+                throw _iteratorError6;
               }
             }
           }
@@ -5377,14 +7513,14 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       }, {
         key: "delete",
         value: function _delete(titlee) {
-          var _this14 = this;
+          var _this17 = this;
 
           var result = this.customers.find(function (_ref3) {
             var title = _ref3.title;
             return title === titlee;
           });
           this.api.delete("/lei/customers/".concat(result.title)).subscribe(function () {
-            return _this14.customers = _this14.customers.filter(function (item) {
+            return _this17.customers = _this17.customers.filter(function (item) {
               return item.title !== result.title;
             });
           });
@@ -5394,14 +7530,14 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       }, {
         key: "delete2",
         value: function delete2(titlee) {
-          var _this15 = this;
+          var _this18 = this;
 
           var result = this.sampleTypes.find(function (_ref4) {
             var title = _ref4.title;
             return title === titlee;
           });
           this.api.delete("/lei/st/".concat(result.title)).subscribe(function () {
-            return _this15.sampleTypes = _this15.sampleTypes.filter(function (item) {
+            return _this18.sampleTypes = _this18.sampleTypes.filter(function (item) {
               return item.title !== result.title;
             });
           });
@@ -5494,19 +7630,19 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       }, {
         key: "onSubmit2",
         value: function onSubmit2() {
-          var _this16 = this;
+          var _this19 = this;
 
           console.log('to samples', this.sampleList);
-          var _iteratorNormalCompletion4 = true;
-          var _didIteratorError4 = false;
-          var _iteratorError4 = undefined;
+          var _iteratorNormalCompletion7 = true;
+          var _didIteratorError7 = false;
+          var _iteratorError7 = undefined;
 
           try {
             var _loop3 = function _loop3() {
-              var sample = _step4.value;
+              var sample = _step7.value;
               setTimeout(function () {
-                return _this16.api.post('/lei/samples', sample).subscribe(function (result) {
-                  var row = _this16.sampleList.find(function (item) {
+                return _this19.api.post('/lei/samples', sample).subscribe(function (result) {
+                  var row = _this19.sampleList.find(function (item) {
                     return item.id === result.id;
                   });
 
@@ -5515,27 +7651,27 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
                     row.sampleId = result.sampleId;
                     row.sampleWeight = result.sampleWeight;
                   } else {
-                    _this16.sampleList = [].concat(_toConsumableArray(_this16.sampleList), [result]);
+                    _this19.sampleList = [].concat(_toConsumableArray(_this19.sampleList), [result]);
                   }
                 });
               }, 1000);
-              _this16.sampleList = [];
+              _this19.sampleList = [];
             };
 
-            for (var _iterator4 = this.sampleList[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+            for (var _iterator7 = this.sampleList[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
               _loop3();
             }
           } catch (err) {
-            _didIteratorError4 = true;
-            _iteratorError4 = err;
+            _didIteratorError7 = true;
+            _iteratorError7 = err;
           } finally {
             try {
-              if (!_iteratorNormalCompletion4 && _iterator4.return != null) {
-                _iterator4.return();
+              if (!_iteratorNormalCompletion7 && _iterator7.return != null) {
+                _iterator7.return();
               }
             } finally {
-              if (_didIteratorError4) {
-                throw _iteratorError4;
+              if (_didIteratorError7) {
+                throw _iteratorError7;
               }
             }
           }
@@ -5543,7 +7679,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
       }, {
         key: "openDialog",
         value: function openDialog() {
-          var _this17 = this;
+          var _this20 = this;
 
           var dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"], {
             width: '250px',
@@ -5551,26 +7687,26 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
           });
           dialogRef.afterClosed().subscribe(function (data) {
             if (data) {
-              _this17.api.post('/lei/customers', data).subscribe(function (result) {
-                var row = _this17.customers.find(function (item) {
+              _this20.api.post('/lei/customers', data).subscribe(function (result) {
+                var row = _this20.customers.find(function (item) {
                   return item.id === result.id;
                 });
 
                 if (row) {
                   row.title = result.title;
                 } else {
-                  _this17.customers = [].concat(_toConsumableArray(_this17.customers), [result]);
+                  _this20.customers = [].concat(_toConsumableArray(_this20.customers), [result]);
                 }
               });
             }
 
-            _this17.swalCustomerAdd();
+            _this20.swalCustomerAdd();
           });
         }
       }, {
         key: "openDialog2",
         value: function openDialog2() {
-          var _this18 = this;
+          var _this21 = this;
 
           var dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_9__["ModalComponent"], {
             width: '250px',
@@ -5578,20 +7714,20 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
           });
           dialogRef.afterClosed().subscribe(function (data) {
             if (data) {
-              _this18.api.post('/lei/st', data).subscribe(function (result) {
-                var row = _this18.sampleTypes.find(function (item) {
+              _this21.api.post('/lei/st', data).subscribe(function (result) {
+                var row = _this21.sampleTypes.find(function (item) {
                   return item.id === result.id;
                 });
 
                 if (row) {
                   row.title = result.title;
                 } else {
-                  _this18.sampleTypes = [].concat(_toConsumableArray(_this18.sampleTypes), [result]);
+                  _this21.sampleTypes = [].concat(_toConsumableArray(_this21.sampleTypes), [result]);
                 }
               });
             }
 
-            _this18.swalCustomerAdd();
+            _this21.swalCustomerAdd();
           });
         }
       }, {
@@ -5913,6 +8049,12 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
     var _log_date_modal_date_modal_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
     /*! ./log/date-modal/date-modal.component */
     "./src/app/system/log/date-modal/date-modal.component.ts");
+    /* harmony import */
+
+
+    var ng2_file_upload__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(
+    /*! ng2-file-upload */
+    "./node_modules/ng2-file-upload/fesm2015/ng2-file-upload.js");
 
     var SystemModule = function SystemModule() {
       _classCallCheck2(this, SystemModule);
@@ -5920,7 +8062,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
 
     SystemModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
       declarations: [_log_date_modal_date_modal_component__WEBPACK_IMPORTED_MODULE_12__["DateModalComponent"], _order_modal_modal_component__WEBPACK_IMPORTED_MODULE_7__["ModalComponent"], _create_create_component__WEBPACK_IMPORTED_MODULE_6__["CreateComponent"], _order_form_form_component__WEBPACK_IMPORTED_MODULE_8__["FormComponent"], _log_list_list_component__WEBPACK_IMPORTED_MODULE_9__["ListComponent"]],
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _system_routing_module__WEBPACK_IMPORTED_MODULE_3__["SystemRoutingModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatProgressSpinnerModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatStepperModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatPaginatorModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatAutocompleteModule"], ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_10__["NgMultiSelectDropDownModule"], mat_table_exporter__WEBPACK_IMPORTED_MODULE_11__["MatTableExporterModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatToolbarModule"]],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _system_routing_module__WEBPACK_IMPORTED_MODULE_3__["SystemRoutingModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCardModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatFormFieldModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatProgressSpinnerModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatInputModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSelectModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatMenuModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatIconModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatStepperModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatTableModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatPaginatorModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatAutocompleteModule"], ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_10__["NgMultiSelectDropDownModule"], mat_table_exporter__WEBPACK_IMPORTED_MODULE_11__["MatTableExporterModule"], _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatToolbarModule"], ng2_file_upload__WEBPACK_IMPORTED_MODULE_13__["FileUploadModule"]],
       exports: [_log_list_list_component__WEBPACK_IMPORTED_MODULE_9__["ListComponent"]],
       entryComponents: [_log_date_modal_date_modal_component__WEBPACK_IMPORTED_MODULE_12__["DateModalComponent"]]
     })], SystemModule);

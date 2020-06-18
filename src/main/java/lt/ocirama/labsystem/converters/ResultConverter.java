@@ -20,6 +20,7 @@ public class ResultConverter {
 
 
     public Result convert(ResultEntity resultEntity) {
+
         return Result.builder()
                 .id(resultEntity.getId())
                 .customerId(resultEntity.getCustomerId())

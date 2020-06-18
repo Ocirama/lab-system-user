@@ -45,6 +45,7 @@ public class ExcelConverter {
             result.setDate(Date.valueOf(localDate));
             res.add(result);
         }
+        System.out.println(res);
         return res;
     }
 }
