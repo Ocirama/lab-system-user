@@ -59,8 +59,6 @@ public class ResultService {
             ResultEntity result = resultRepository.save(res);
             list.add(resultConverter.convert(result));
         }
-        System.out.println(list);
         return list;
-
     }
 }

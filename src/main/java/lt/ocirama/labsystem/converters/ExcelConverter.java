@@ -2,6 +2,7 @@ package lt.ocirama.labsystem.converters;
 
 import lt.ocirama.labsystem.model.entities.ResultEntity;
 import lt.ocirama.labsystem.repositories.ResultRepository;
+import lt.ocirama.labsystem.repositories.UserRepository;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -17,10 +18,12 @@ import java.util.List;
 @Component
 public class ExcelConverter {
     private ResultRepository resultRepository;
+    private UserRepository userRepository;
     List<ResultEntity> res = new ArrayList<ResultEntity>();
 
-    public ExcelConverter(ResultRepository resultRepository) {
+    public ExcelConverter(ResultRepository resultRepository, UserRepository userRepository) {
         this.resultRepository = resultRepository;
+        this.userRepository = userRepository;
     }
 
     LocalDate localDate = LocalDate.now();
@@ -36,6 +39,7 @@ public class ExcelConverter {
             result = new ResultEntity();
             XSSFRow row = worksheet.getRow(i);
             result.setId(resultRepository.findTopByOrderByIdDesc().getId() + 1);
+            result.setUser(userRepository.findByUsername(row.getCell(0).getStringCellValue()));
             result.setCustomerId(row.getCell(0).getStringCellValue());
             result.setProtocolId(row.getCell(1).getStringCellValue());
             result.setSampleId(row.getCell(2).getStringCellValue());

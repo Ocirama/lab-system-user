@@ -1932,7 +1932,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h3 mat-dialog-title>Mėginių registravimo data </h3>\r\n\r\n<div mat-dialog-content>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"YYYY-MM-DD\" [(ngModel)]=\"data.date\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">Atšaukti</button>\r\n  <button mat-button [mat-dialog-close]=\"data\">Išsaugoti</button>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h3 mat-dialog-title>Mėginių registravimo data </h3>\r\n\r\n<div mat-dialog-content>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"MM/DD/YYYY\" [(ngModel)]=\"data.date\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">Atšaukti</button>\r\n  <button mat-button [mat-dialog-close]=\"data\">Rodyti</button>\r\n</div>\r\n\r\n");
 
 /***/ }),
 
@@ -1945,7 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h3 xmlns:th=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.w3.org/1999/xhtml\"\r\n    xmlns:th=\"http://www.w3.org/1999/xhtml\" xmlns:th=\"http://www.w3.org/1999/xhtml\"\r\n    xmlns:th=\"http://www.w3.org/1999/xhtml\">Rezultatai</h3>\r\n<div>\r\n<mat-form-field>\r\n  <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtruoti\">\r\n</mat-form-field>\r\n<table mat-table matTableExporter [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" #exporter=\"matTableExporter\">\r\n  <ng-container matColumnDef=\"no\">\r\n    <th mat-header-cell *matHeaderCellDef> Nr.</th>\r\n    <td mat-cell *matCellDef=\"let index = index\"> {{index + 1}} </td>\r\n  </ng-container>\r\n\r\n  <ng-container matColumnDef=\"protocolId\" >\r\n    <th mat-header-cell *matHeaderCellDef> Protokolas</th>\r\n    <td mat-cell *matCellDef=\"let element\"> {{element.protocolId}} {{'/'+ element.date.toString().charAt(2) + element.date.toString().charAt(3) +'-8B'}} </td>\r\n  </ng-container>\r\n\r\n   <ng-container matColumnDef=\"sampleId\">\r\n     <th mat-header-cell *matHeaderCellDef> Mėginys</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.sampleId}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"ashValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Peleningumas, %</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.ashValue}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"totalMoistureValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Drėgmė, %</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.totalMoistureValue}} </td>\r\n   </ng-container>\r\n\r\n   <ng-container matColumnDef=\"calorificValue\">\r\n     <th mat-header-cell *matHeaderCellDef> Sauso kuro apatinis šilumingumas, kJ/kg</th>\r\n     <td mat-cell *matCellDef=\"let element\"> {{element.calorificValue}} </td>\r\n   </ng-container> -->\r\n\r\n   <ng-container matColumnDef=\"date\">\r\n    <th mat-header-cell *matHeaderCellDef> Data</th>\r\n    <td mat-cell *matCellDef=\"let element\"> {{element.date.toString().substring(0,10)}} </td>\r\n  </ng-container>\r\n\r\n\r\n  <!-- <ng-container matColumnDef=\"actions\">\r\n    <th mat-header-cell *matHeaderCellDef>\r\n    </th>\r\n    <td mat-cell *matCellDef=\"let element\">\r\n      <button mat-icon-button [matMenuTriggerFor]=\"menu\">\r\n        <mat-icon>more_vert</mat-icon>\r\n      </button>\r\n      <mat-menu #menu=\"matMenu\">\r\n        <button mat-menu-item (click)=\"openDialog(element)\">\r\n          <mat-icon>edit</mat-icon>\r\n          <span>Redaguoti</span>\r\n        </button>\r\n        <button mat-menu-item (click)=\"swalOrderDelete()\" (click)=\"delete(element.id)\">\r\n          <mat-icon>delete</mat-icon>\r\n          <span>Ištrinti</span>\r\n        </button>\r\n      </mat-menu>\r\n    </td>\r\n  </ng-container>-->\r\n\r\n  <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n  <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n\r\n\r\n\r\n</table>\r\n\r\n\r\n\r\n\r\n<div class=\"footer\">\r\n    <mat-toolbar>\r\n      <mat-toolbar-row>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('pilnas')\" title=\"Rodyti visus užsakymus\">Pilnas</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('metai')\" title=\"Rodyti šių metų užsakymus\">Metai</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('menuo')\" title=\"Rodyti šio mėnesio užsakymus\">Mėnesis</button>\r\n        <button mat-stroked-button color=\"primary\" (click)=\"openDialog2()\" title=\"Rodyti pasirinktos dienos užsakymus\">Diena</button>\r\n        <button mat-icon-button color=\"primary\" (click)=\"exporter.exportTable('xlsx', {fileName: 'Rezultatai ' + this.excelDate, sheet: 'Rezultatai'})\" title=\"Išsaugoti XSLX formatu\"><mat-icon>save_alt</mat-icon></button>\r\n        <span class=\"example-spacer\"></span>\r\n        <mat-paginator showFirstLastButtons=\"true\"  class=\"paginator\" [pageSizeOptions]=\"[10, 20, 50]\"></mat-paginator>\r\n      </mat-toolbar-row>\r\n    </mat-toolbar>\r\n  </div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h3\r\n>Rezultatai</h3>\r\n<div>\r\n  <mat-form-field>\r\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtruoti\">\r\n  </mat-form-field>\r\n  <table mat-table matTableExporter [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" #exporter=\"matTableExporter\">\r\n    <ng-container matColumnDef=\"no\">\r\n      <th mat-header-cell *matHeaderCellDef> Nr.</th>\r\n      <td mat-cell *matCellDef=\"let index = index\"> {{index + 1}} </td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"protocolId\">\r\n      <th mat-header-cell *matHeaderCellDef> Protokolas</th>\r\n      <td mat-cell\r\n          *matCellDef=\"let element\"> {{element.protocolId}} {{'/' + year.toString().charAt(2) + year.toString().charAt(3) + '-8B'}} </td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"sampleId\">\r\n      <th mat-header-cell *matHeaderCellDef> Mėginys</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.sampleId}} </td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"ashValue\">\r\n      <th mat-header-cell *matHeaderCellDef> Peleningumas, %</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.ashValue}} </td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"totalMoistureValue\">\r\n      <th mat-header-cell *matHeaderCellDef> Drėgmė, %</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.totalMoistureValue}} </td>\r\n    </ng-container>\r\n\r\n    <ng-container matColumnDef=\"calorificValue\">\r\n      <th mat-header-cell *matHeaderCellDef> Sauso kuro apatinis šilumingumas, kJ/kg</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.calorificValue}} </td>\r\n    </ng-container>\r\n\r\n\r\n    <ng-container matColumnDef=\"date\">\r\n      <th mat-header-cell *matHeaderCellDef> Data</th>\r\n      <td mat-cell *matCellDef=\"let element\"> {{element.date.toString().substring(0, 9).replace(\",\",\"\").replace(\"\\\\s+\",\"\")}} </td>\r\n    </ng-container>\r\n\r\n\r\n    <ng-container matColumnDef=\"actions\">\r\n      <th mat-header-cell *matHeaderCellDef>\r\n      </th>\r\n      <td mat-cell *matCellDef=\"let element\">\r\n        <button mat-icon-button [matMenuTriggerFor]=\"menu\">\r\n          <mat-icon>more_vert</mat-icon>\r\n        </button>\r\n\r\n        <mat-menu #menu=\"matMenu\">\r\n          <button mat-menu-item (click)=\"openDialog(element)\">\r\n            <mat-icon>edit</mat-icon>\r\n            <span>Redaguoti</span>\r\n          </button>\r\n          <button mat-menu-item (click)=\"swalOrderDelete()\" (click)=\"delete(element.id)\">\r\n            <mat-icon>delete</mat-icon>\r\n            <span>Ištrinti</span>\r\n          </button>\r\n        </mat-menu>\r\n\r\n      </td>\r\n    </ng-container>\r\n\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n  </table>\r\n\r\n\r\n  <div  class=\"footer\">\r\n    <mat-toolbar color=\"primary\">\r\n      <mat-toolbar-row>\r\n        <div class=\"buttons\">\r\n          <button mat-stroked-button color=\"primary\" (click)=\"displayFilter('pilnas')\" title=\"Pilna rezultatų lentelė\">Pilnas</button>\r\n          <button mat-stroked-button color=\"primary\" (click)=\"openDialog2()\" title=\"Rodyti pasirinktos dienos užsakymus\">\r\n            Rezultatai pagal dieną\r\n          </button>\r\n        </div>\r\n        <button mat-icon-button class=\"footer-icon\" color=\"primary\"\r\n                (click)=\"exporter.exportTable('xlsx', {fileName: 'Rezultatai ' + this.datePipe.transform(this.excelDate,'yyyy-MM-dd'), sheet: 'Rezultatai'})\"\r\n                title=\"Išsaugoti XSLX formatu\">\r\n          <mat-icon>save</mat-icon>\r\n        </button>\r\n\r\n        <mat-paginator showFirstLastButtons=\"true\" class=\"paginator\" [pageSizeOptions]=\"[10, 20, 50]\"></mat-paginator>\r\n\r\n        <mat-card color=\"primary\" *ngIf=\" decoder.isAdmin() === true\" class=\"example-card\">\r\n          <mat-card-content>\r\n            <div *ngIf=\"currentFile\" class=\"progress\">\r\n              <div\r\n                class=\"progress-bar progress-bar-info progress-bar-striped\"\r\n                role=\"progressbar\"\r\n                attr.aria-valuenow=\"{{ progress }}\"\r\n                aria-valuemin=\"0\"\r\n                aria-valuemax=\"100\"\r\n                [ngStyle]=\"{ width: progress + '%' }\"\r\n              >\r\n                {{ progress }}%\r\n              </div>\r\n            </div>\r\n            <div class=\"alert alert-light\" role=\"alert\">{{ message }}</div>\r\n          </mat-card-content>\r\n          <mat-card-actions>\r\n              <input type=\"file\" (change)=\"selectFile($event)\">\r\n              <button mat-button [disabled]=\"!selectedFiles\" (click)=\"upload()\"> Įkelti</button>\r\n          </mat-card-actions>\r\n        </mat-card>\r\n      </mat-toolbar-row>\r\n    </mat-toolbar>\r\n  </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -1958,7 +1958,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h3 mat-dialog-title>Protokolas: {{ data.oldProtocolId }}</h3>\r\n\r\n<div mat-dialog-content>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Protokolas\" [(ngModel)]=\"data.protocolId\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Užsakovas\" [(ngModel)]=\"data.customer\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Tyrimai\" [(ngModel)]=\"data.test\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Kuro rūšis\" [(ngModel)]=\"data.sampleType\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n  <label>\r\n    <input matInput placeholder=\"Užsakymų kiekis\" [(ngModel)]=\"data.orderAmount\" cdkFocusInitial>\r\n  </label>\r\n</mat-form-field>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Data\" [(ngModel)]=\"data.date\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">Atšaukti</button>\r\n  <button mat-button [mat-dialog-close]=\"data\" (click)=\" this.swalOrderUpdate();\">Išsaugoti</button>\r\n</div>\r\n\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h3 mat-dialog-title>Protokolas: {{ data.oldProtocolId }}</h3>\r\n\r\n<div mat-dialog-content>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Protokolas\" [(ngModel)]=\"data.protocolId\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Mėginio Id\" [(ngModel)]=\"data.sampleId\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Peleningumas\" [(ngModel)]=\"data.ashValue\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n  <label>\r\n    <input matInput placeholder=\"Šilumingumas\" [(ngModel)]=\"data.calorificValue\" cdkFocusInitial>\r\n  </label>\r\n</mat-form-field>\r\n  <mat-form-field>\r\n    <label>\r\n      <input matInput placeholder=\"Visuminė drėgmė\" [(ngModel)]=\"data.totalMoistureValue\" cdkFocusInitial>\r\n    </label>\r\n  </mat-form-field>\r\n</div>\r\n\r\n<div mat-dialog-actions>\r\n  <button mat-button (click)=\"onNoClick()\">Atšaukti</button>\r\n  <button mat-button [mat-dialog-close]=\"data\" (click)=\" this.swalOrderUpdate();\">Išsaugoti</button>\r\n</div>\r\n\r\n");
 
 /***/ }),
 
@@ -5087,7 +5087,27 @@ let ApiService = class ApiService {
         this.http = http;
         this.router = router;
         this.authService = authService;
-        this.urlPrefix = '';
+        this.urlPrefix = 'http://192.168.1.84:8080';
+    }
+    upload(file) {
+        const headers = {};
+        this.addAuthorizationHeader(headers);
+        headers['Content-Type'] = 'application/json';
+        const formData = new FormData();
+        formData.append('file', file);
+        const req = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpRequest"]('POST', `${this.urlPrefix}/lei/excel/upload`, formData, {
+            reportProgress: true,
+            responseType: 'json'
+        });
+        return this.http.request(req);
+    }
+    upload2(file) {
+        const headers = {};
+        this.addAuthorizationHeader(headers);
+        headers['Content-Type'] = 'application/json';
+        const formData = new FormData();
+        formData.append('file', file);
+        return this.authService.authorizeRequest(this.http.post(this.urlPrefix + `/lei/excel/upload`, formData, { headers }));
     }
     addAuthorizationHeader(headers) {
         const token = this.authService.getToken();
@@ -5273,7 +5293,7 @@ DateModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("h3 {\r\n  text-align: center;\r\n}\r\n\r\ntable {\r\n  margin: auto;\r\n  max-width: 1500px;\r\n  width: 100%;\r\n}\r\n\r\ntable th:first-child {\r\n  width: 50px;\r\n}\r\n\r\ntable th:last-child {\r\n  width: 10px;\r\n}\r\n\r\n.mat-row:hover {\r\n  background-color: lightgrey;\r\n}\r\n\r\n.footer {\r\n  position: fixed;\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 100%;\r\n  background-color: red;\r\n  color: white;\r\n  text-align: center;\r\n}\r\n\r\nmat-form-field {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n          justify-content: center;\r\n  position: relative;\r\n}\r\n\r\n.my-drop-zone { border: dotted 3px lightgray; }\r\n\r\n.nv-file-over { border: dotted 3px red; }\r\n\r\n/* Default class applied to drop zones on over */\r\n\r\n.another-file-over-class { border: dotted 3px green; }\r\n\r\nhtml, body { height: 100%; }\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3lzdGVtL2xvZy9saXN0L2xpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsMkJBQTJCO0FBQzdCOztBQUNBO0VBQ0UsZUFBZTtFQUNmLE9BQU87RUFDUCxTQUFTO0VBQ1QsV0FBVztFQUNYLHFCQUFxQjtFQUNyQixZQUFZO0VBQ1osa0JBQWtCO0FBQ3BCOztBQUNBO0VBQ0Usb0JBQWE7RUFBYixhQUFhO0VBQ2Isd0JBQXVCO1VBQXZCLHVCQUF1QjtFQUN2QixrQkFBa0I7QUFDcEI7O0FBQ0EsZ0JBQWdCLDRCQUE0QixFQUFFOztBQUM5QyxnQkFBZ0Isc0JBQXNCLEVBQUU7O0FBQUUsZ0RBQWdEOztBQUMxRiwyQkFBMkIsd0JBQXdCLEVBQUU7O0FBRXJELGFBQWEsWUFBWSxFQUFFIiwiZmlsZSI6InNyYy9hcHAvc3lzdGVtL2xvZy9saXN0L2xpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImgzIHtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuXHJcbnRhYmxlIHtcclxuICBtYXJnaW46IGF1dG87XHJcbiAgbWF4LXdpZHRoOiAxNTAwcHg7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbnRhYmxlIHRoOmZpcnN0LWNoaWxkIHtcclxuICB3aWR0aDogNTBweDtcclxufVxyXG5cclxudGFibGUgdGg6bGFzdC1jaGlsZCB7XHJcbiAgd2lkdGg6IDEwcHg7XHJcbn1cclxuXHJcbi5tYXQtcm93OmhvdmVyIHtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiBsaWdodGdyZXk7XHJcbn1cclxuLmZvb3RlciB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIGxlZnQ6IDA7XHJcbiAgYm90dG9tOiAwO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJlZDtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcbm1hdC1mb3JtLWZpZWxkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG4ubXktZHJvcC16b25lIHsgYm9yZGVyOiBkb3R0ZWQgM3B4IGxpZ2h0Z3JheTsgfVxyXG4ubnYtZmlsZS1vdmVyIHsgYm9yZGVyOiBkb3R0ZWQgM3B4IHJlZDsgfSAvKiBEZWZhdWx0IGNsYXNzIGFwcGxpZWQgdG8gZHJvcCB6b25lcyBvbiBvdmVyICovXHJcbi5hbm90aGVyLWZpbGUtb3Zlci1jbGFzcyB7IGJvcmRlcjogZG90dGVkIDNweCBncmVlbjsgfVxyXG5cclxuaHRtbCwgYm9keSB7IGhlaWdodDogMTAwJTsgfVxyXG4iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("h3 {\r\n  text-align: center;\r\n}\r\n\r\ntable {\r\n  margin: auto;\r\n  max-width: 1500px;\r\n  width: 100%;\r\n}\r\n\r\ntable th:first-child {\r\n  width: 50px;\r\n}\r\n\r\ntable th:last-child {\r\n  width: 10px;\r\n}\r\n\r\n.mat-row:hover {\r\n  background-color: lightgrey;\r\n}\r\n\r\n.footer {\r\n  position: fixed;\r\n  left: 0;\r\n  bottom: 0;\r\n  width: 100%;\r\n  background-color: #3f51b5;\r\n  color: white;\r\n  text-align: center;\r\n\r\n}\r\n\r\nmat-form-field {\r\n  display: -webkit-box;\r\n  display: flex;\r\n  -webkit-box-pack: center;\r\n          justify-content: center;\r\n  position: relative;\r\n}\r\n\r\n.mat-stroked-button {\r\n  background-color: white;\r\n  margin-right: 10px;\r\n}\r\n\r\n.mat-paginator {\r\n  background-color: #3f51b5;\r\n  color: white;\r\n}\r\n\r\n.footer-icon {\r\n  background-color: #3f51b5;\r\n  color: white;\r\n}\r\n\r\n.mat-card-title {\r\n  font-size: 10px;\r\n  padding: 0px;\r\n}\r\n\r\n.mat-card-content {\r\n  padding: 0px;\r\n  margin: 0px;\r\n}\r\n\r\n.mat-card-actions {\r\n  margin: 0px;\r\n}\r\n\r\nmat-card.example-card {\r\n  position: fixed;\r\n  right: 0;\r\n  bottom: 0px;\r\n  width: 20%;\r\n  background-color: #3f51b5;\r\n  color: white;\r\n  text-align: center;\r\n  height: 32px;\r\n  margin: 0px;\r\n\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3lzdGVtL2xvZy9saXN0L2xpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLFlBQVk7RUFDWixpQkFBaUI7RUFDakIsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsMkJBQTJCO0FBQzdCOztBQUVBO0VBQ0UsZUFBZTtFQUNmLE9BQU87RUFDUCxTQUFTO0VBQ1QsV0FBVztFQUNYLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osa0JBQWtCOztBQUVwQjs7QUFFQTtFQUNFLG9CQUFhO0VBQWIsYUFBYTtFQUNiLHdCQUF1QjtVQUF2Qix1QkFBdUI7RUFDdkIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtBQUNwQjs7QUFHQTtFQUNFLHlCQUF5QjtFQUN6QixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsWUFBWTtBQUNkOztBQUVBO0VBQ0UsZUFBZTtFQUNmLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFlBQVk7RUFDWixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsUUFBUTtFQUNSLFdBQVc7RUFDWCxVQUFVO0VBQ1YseUJBQXlCO0VBQ3pCLFlBQVk7RUFDWixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLFdBQVc7O0FBRWIiLCJmaWxlIjoic3JjL2FwcC9zeXN0ZW0vbG9nL2xpc3QvbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiaDMge1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxudGFibGUge1xyXG4gIG1hcmdpbjogYXV0bztcclxuICBtYXgtd2lkdGg6IDE1MDBweDtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxudGFibGUgdGg6Zmlyc3QtY2hpbGQge1xyXG4gIHdpZHRoOiA1MHB4O1xyXG59XHJcblxyXG50YWJsZSB0aDpsYXN0LWNoaWxkIHtcclxuICB3aWR0aDogMTBweDtcclxufVxyXG5cclxuLm1hdC1yb3c6aG92ZXIge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IGxpZ2h0Z3JleTtcclxufVxyXG5cclxuLmZvb3RlciB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIGxlZnQ6IDA7XHJcbiAgYm90dG9tOiAwO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICMzZjUxYjU7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxuXHJcbn1cclxuXHJcbm1hdC1mb3JtLWZpZWxkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuLm1hdC1zdHJva2VkLWJ1dHRvbiB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XHJcbiAgbWFyZ2luLXJpZ2h0OiAxMHB4O1xyXG59XHJcblxyXG5cclxuLm1hdC1wYWdpbmF0b3Ige1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICMzZjUxYjU7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG59XHJcblxyXG4uZm9vdGVyLWljb24ge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICMzZjUxYjU7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG59XHJcblxyXG4ubWF0LWNhcmQtdGl0bGUge1xyXG4gIGZvbnQtc2l6ZTogMTBweDtcclxuICBwYWRkaW5nOiAwcHg7XHJcbn1cclxuXHJcbi5tYXQtY2FyZC1jb250ZW50IHtcclxuICBwYWRkaW5nOiAwcHg7XHJcbiAgbWFyZ2luOiAwcHg7XHJcbn1cclxuXHJcbi5tYXQtY2FyZC1hY3Rpb25zIHtcclxuICBtYXJnaW46IDBweDtcclxufVxyXG5cclxubWF0LWNhcmQuZXhhbXBsZS1jYXJkIHtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgYm90dG9tOiAwcHg7XHJcbiAgd2lkdGg6IDIwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjM2Y1MWI1O1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgaGVpZ2h0OiAzMnB4O1xyXG4gIG1hcmdpbjogMHB4O1xyXG5cclxufVxyXG5cclxuXHJcblxyXG5cclxuIl19 */");
 
 /***/ }),
 
@@ -5298,6 +5318,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shared_decoder_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../shared/decoder.service */ "./src/app/system/shared/decoder.service.ts");
 /* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ng2-file-upload */ "./node_modules/ng2-file-upload/fesm2015/ng2-file-upload.js");
 /* harmony import */ var _core_auth_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../core/auth.service */ "./src/app/core/auth.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
+
 
 
 
@@ -5311,14 +5335,18 @@ __webpack_require__.r(__webpack_exports__);
 const URL = 'http://localhost:8080/lei/results/import';
 let ListComponent = class ListComponent {
     // @ts-ignore
-    constructor(api, dialog, decoder, authService) {
+    constructor(datePipe, api, dialog, decoder, authService) {
+        this.datePipe = datePipe;
         this.api = api;
         this.dialog = dialog;
         this.decoder = decoder;
         this.authService = authService;
-        this.displayedColumns = ['no', 'protocolId', 'sampleId', 'ashValue', 'totalMoistureValue', 'calorificValue', 'date',];
         this.results = [];
+        this.excelDate = new Date();
         this.headers = {};
+        this.progress = 0;
+        this.message = '';
+        this.year = new Date().getFullYear();
         this.headers['Content-Type'] = 'application/json';
         this.uploader = new ng2_file_upload__WEBPACK_IMPORTED_MODULE_8__["FileUploader"]({
             url: URL
@@ -5329,20 +5357,52 @@ let ListComponent = class ListComponent {
         this.uploader.response.subscribe(res => this.response = res);
     }
     ngOnInit() {
-        this.excelDate = Date.now();
+        if (this.decoder.isAdmin() === true) {
+            this.displayedColumns = ['no', 'protocolId', 'sampleId', 'ashValue', 'totalMoistureValue', 'calorificValue', 'date', 'actions'];
+        }
+        else {
+            this.displayedColumns = ['no', 'protocolId', 'sampleId', 'ashValue', 'totalMoistureValue', 'calorificValue', 'date'];
+        }
         this.uploader.onAfterAddingFile = (file) => {
             file.withCredentials = false;
         };
-        if (this.decoder.getUser() !== 'admin') {
-            this.api.get('/lei/results').subscribe((data) => this.dataSource.data = data.filter(x => x.customerId === this.decoder.getUser()));
-        }
-        else {
-            this.api.get('/lei/results').subscribe((data) => this.dataSource.data = data);
-        }
+        this.getResults();
         console.log(this.decoder.getUser());
         this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]();
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
+    }
+    getResults() {
+        if (this.decoder.getUser() !== 'admin') {
+            this.api.get('/lei/results').subscribe((data) => this.dataSource.data = data.filter(x => x.customerId = this.decoder.getUser()).filter(x => x.date = new Date(x.date).toLocaleString()));
+        }
+        else {
+            this.api.get('/lei/results').subscribe((data) => this.dataSource.data = data.filter(x => x.date = new Date(x.date).toLocaleString()));
+        }
+    }
+    selectFile(event) {
+        this.selectedFiles = event.target.files;
+    }
+    upload() {
+        this.progress = 0;
+        this.currentFile = this.selectedFiles.item(0);
+        this.api.upload(this.currentFile).subscribe(event => {
+            if (event.type === _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpEventType"].UploadProgress) {
+                this.progress = Math.round(100 * event.loaded / event.total);
+                this.message = 'Rezultatai įkelti.';
+            }
+            else if (event instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpResponse"]) {
+                this.message = event.body.message;
+            }
+        }, err => {
+            this.progress = 0;
+            // this.message = 'Could not upload the file!';
+            this.currentFile = undefined;
+        });
+        this.selectedFiles = undefined;
+        this.dataSource.data = [];
+        setTimeout(() => this.getResults(), 1000);
+        sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('Rezultatai įkelti.', '', 'success');
     }
     fileOverBase(e) {
         this.hasBaseDropZoneOver = e;
@@ -5358,6 +5418,8 @@ let ListComponent = class ListComponent {
     }
     delete(id) {
         this.api.delete(`/lei/results/${id}`).subscribe(() => this.results = this.results.filter(item => item.id !== id));
+        this.dataSource.data = [];
+        setTimeout(() => this.getResults(), 1000);
     }
     openDialog(result) {
         const dialogRef = this.dialog.open(_modal_modal_component__WEBPACK_IMPORTED_MODULE_4__["ModalComponent"], {
@@ -5395,29 +5457,16 @@ let ListComponent = class ListComponent {
         sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire('Rezultatas ištrintas.', '', 'success');
     }
     displayFilter(value) {
-        if (value === 'metai') {
-            this.api.get('/lei/results')
-                .subscribe((data) => this.dataSource.data = data
-                .filter(result => Number
-                .parseInt(result.date.toString()
-                .substring(0, 4)) === new Date().getFullYear()));
-        }
         if (value === 'pilnas') {
             this.api.get('/lei/results');
-            this.api.get('/lei/results').subscribe((data) => this.dataSource.data = data);
+            this.api.get('/lei/results')
+                .subscribe((data) => this.dataSource.data = data
+                .filter(x => ((x.date = new Date(x.date)
+                .toLocaleString()))));
             const date = new Date();
             console.log(date.getFullYear() + '-' + date.getMonth() + 1);
             console.log(this.dataSource.data[1].date.toString()
                 .substring(0, 10));
-        }
-        if (value === 'menuo') {
-            const date = new Date();
-            this.api.get('/lei/results')
-                .subscribe((data) => this.dataSource.data = data
-                .filter(result => ((Number.parseInt(result.date.toString()
-                .substring(0, 5)) + Number.parseInt(result.date.toString()
-                .substring(5, 7))) === (date.getFullYear() + date.getMonth() + 1))));
-            console.log();
         }
     }
     openDialog2(excelDate) {
@@ -5432,14 +5481,15 @@ let ListComponent = class ListComponent {
                 this.api.get('/lei/results')
                     // tslint:disable-next-line:no-shadowed-variable
                     .subscribe((data) => this.dataSource.data = data
-                    .filter(result => ((result.date.toString()
-                    .substring(0, 10)) === dataa.date)));
+                    .filter(x => ((x.date = new Date(x.date).toLocaleString()
+                    .substring(0, 9).replace(',', '').replace('\\s+', '')) === dataa.date)));
                 console.log(dataa.date);
             }
         });
     }
 };
 ListComponent.ctorParameters = () => [
+    { type: _angular_common__WEBPACK_IMPORTED_MODULE_10__["DatePipe"] },
     { type: _core_api_service__WEBPACK_IMPORTED_MODULE_3__["ApiService"] },
     { type: _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"] },
     { type: _shared_decoder_service__WEBPACK_IMPORTED_MODULE_7__["DecoderService"] },
@@ -5500,11 +5550,10 @@ let ModalComponent = class ModalComponent {
         this.dialogRef = dialogRef;
         this.data = data;
         data.oldProtocolId = data.protocolId;
-        data.oldCustomer = data.customer;
-        data.oldTest = data.test;
-        data.oldSampleType = data.sampleType;
-        data.oldOrderAmount = data.orderAmount;
-        data.oldDate = data.date;
+        data.oldSampleId = data.sampleId;
+        data.oldAshValue = data.ashValue;
+        data.oldTotalMoistureValue = data.totalMoistureValue;
+        data.oldCalorificValue = data.calorificValue;
     }
     ngOnInit() {
     }
@@ -5512,7 +5561,7 @@ let ModalComponent = class ModalComponent {
         this.dialogRef.close();
     }
     swalOrderUpdate() {
-        sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Užsakymas papildytas.', '', 'success');
+        sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Rezultatas papildytas.', '', 'success');
     }
 };
 ModalComponent.ctorParameters = () => [
@@ -6177,7 +6226,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 /* harmony import */ var _create_create_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./create/create.component */ "./src/app/system/create/create.component.ts");
-/* harmony import */ var _order_modal_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./order/modal/modal.component */ "./src/app/system/order/modal/modal.component.ts");
+/* harmony import */ var _log_modal_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./log/modal/modal.component */ "./src/app/system/log/modal/modal.component.ts");
 /* harmony import */ var _order_form_form_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./order/form/form.component */ "./src/app/system/order/form/form.component.ts");
 /* harmony import */ var _log_list_list_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./log/list/list.component */ "./src/app/system/log/list/list.component.ts");
 /* harmony import */ var ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ng-multiselect-dropdown */ "./node_modules/ng-multiselect-dropdown/fesm2015/ng-multiselect-dropdown.js");
@@ -6202,7 +6251,7 @@ let SystemModule = class SystemModule {
 };
 SystemModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_log_date_modal_date_modal_component__WEBPACK_IMPORTED_MODULE_12__["DateModalComponent"], _order_modal_modal_component__WEBPACK_IMPORTED_MODULE_7__["ModalComponent"], _create_create_component__WEBPACK_IMPORTED_MODULE_6__["CreateComponent"], _order_form_form_component__WEBPACK_IMPORTED_MODULE_8__["FormComponent"], _log_list_list_component__WEBPACK_IMPORTED_MODULE_9__["ListComponent"]],
+        declarations: [_log_date_modal_date_modal_component__WEBPACK_IMPORTED_MODULE_12__["DateModalComponent"], _log_modal_modal_component__WEBPACK_IMPORTED_MODULE_7__["ModalComponent"], _create_create_component__WEBPACK_IMPORTED_MODULE_6__["CreateComponent"], _order_form_form_component__WEBPACK_IMPORTED_MODULE_8__["FormComponent"], _log_list_list_component__WEBPACK_IMPORTED_MODULE_9__["ListComponent"]],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
             _system_routing_module__WEBPACK_IMPORTED_MODULE_3__["SystemRoutingModule"],
@@ -6224,13 +6273,15 @@ SystemModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             ng_multiselect_dropdown__WEBPACK_IMPORTED_MODULE_10__["NgMultiSelectDropDownModule"],
             mat_table_exporter__WEBPACK_IMPORTED_MODULE_11__["MatTableExporterModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatToolbarModule"],
-            ng2_file_upload__WEBPACK_IMPORTED_MODULE_13__["FileUploadModule"]
+            ng2_file_upload__WEBPACK_IMPORTED_MODULE_13__["FileUploadModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatExpansionModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDatepickerModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatSortModule"]
         ],
-        exports: [
-            _log_list_list_component__WEBPACK_IMPORTED_MODULE_9__["ListComponent"]
-        ],
+        providers: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["DatePipe"]],
+        exports: [_log_list_list_component__WEBPACK_IMPORTED_MODULE_9__["ListComponent"]],
         entryComponents: [
-            _log_date_modal_date_modal_component__WEBPACK_IMPORTED_MODULE_12__["DateModalComponent"]
+            _log_date_modal_date_modal_component__WEBPACK_IMPORTED_MODULE_12__["DateModalComponent"], _log_modal_modal_component__WEBPACK_IMPORTED_MODULE_7__["ModalComponent"]
         ]
     })
 ], SystemModule);

@@ -77,7 +77,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h3>Užsakovai</h3>\n<div>\n  <mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtruoti\">\n  </mat-form-field>\n  <table mat-table matTableExporter [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" #exporter=\"matTableExporter\">\n    <ng-container matColumnDef=\"no\">\n      <th mat-header-cell *matHeaderCellDef> Nr.</th>\n      <td mat-cell *matCellDef=\"let index = index\"> {{index + 1}} </td>\n    </ng-container>\n\n    <ng-container matColumnDef=\"name\">\n      <th mat-header-cell *matHeaderCellDef> Užsakovas</th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n    </ng-container>\n\n    <ng-container matColumnDef=\"username\">\n      <th mat-header-cell *matHeaderCellDef> Prisijungimo ID</th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.username}} </td>\n    </ng-container>\n\n    <ng-container matColumnDef=\"actions\">\n      <th mat-header-cell *matHeaderCellDef>\n      </th>\n      <td mat-cell *matCellDef=\"let element\">\n        <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n          <mat-icon>more_vert</mat-icon>\n        </button>\n        <mat-menu #menu=\"matMenu\">\n          <button mat-menu-item (click)=\"openDialog(element)\">\n            <mat-icon>edit</mat-icon>\n            <span>Redaguoti</span>\n          </button>\n          <button mat-menu-item (click)=\"swalOrderDelete()\" (click)=\"delete(element.id)\">\n            <mat-icon>delete</mat-icon>\n            <span>Ištrinti</span>\n          </button>\n        </mat-menu>\n      </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n  </table>\n  <div class=\"footer\">\n    <mat-toolbar>\n      <mat-toolbar-row>\n        <mat-paginator showFirstLastButtons=\"true\" class=\"paginator\" [pageSizeOptions]=\"[10, 20, 50]\"></mat-paginator>\n      </mat-toolbar-row>\n      <button mat-stroked-button color=\"primary\" style=\"width: 100%\" (click)=\"showRegisterDialog()\">\n        REGISTER\n      </button>\n    </mat-toolbar>\n  </div>\n</div>\n\n";
+    __webpack_exports__["default"] = "\n<h3>Užsakovai</h3>\n<div>\n  <mat-form-field>\n    <input matInput (keyup)=\"applyFilter($event.target.value)\" placeholder=\"Filtruoti\">\n  </mat-form-field>\n  <table mat-table matTableExporter [dataSource]=\"dataSource\" class=\"mat-elevation-z8\" #exporter=\"matTableExporter\">\n    <ng-container matColumnDef=\"no\">\n      <th mat-header-cell *matHeaderCellDef> Nr.</th>\n      <td mat-cell *matCellDef=\"let index = index\"> {{index + 1}} </td>\n    </ng-container>\n    <ng-container matColumnDef=\"name\">\n      <th mat-header-cell *matHeaderCellDef> Užsakovas</th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.name}} </td>\n    </ng-container>\n\n    <ng-container matColumnDef=\"username\">\n      <th mat-header-cell *matHeaderCellDef> Prisijungimo ID</th>\n      <td mat-cell *matCellDef=\"let element\"> {{element.username}} </td>\n    </ng-container>\n\n    <ng-container matColumnDef=\"actions\">\n      <th mat-header-cell *matHeaderCellDef>\n      </th>\n      <td mat-cell *matCellDef=\"let element\">\n        <button mat-icon-button [matMenuTriggerFor]=\"menu\">\n          <mat-icon>more_vert</mat-icon>\n        </button>\n        <mat-menu #menu=\"matMenu\">\n          <button mat-menu-item (click)=\"openDialog(element)\">\n            <mat-icon>edit</mat-icon>\n            <span>Redaguoti</span>\n          </button>\n          <button mat-menu-item (click)=\"delete(element.id)\">\n            <mat-icon>delete</mat-icon>\n            <span>Ištrinti</span>\n          </button>\n        </mat-menu>\n      </td>\n    </ng-container>\n\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\n  </table>\n  <div class=\"footer\">\n    <mat-toolbar color=\"primary\">\n      <button mat-stroked-button color=\"white\" style=\"width: 100%\" (click)=\"showRegisterDialog()\">\n        REGISTRUOTI NAUJĄ VARTOTOJĄ\n      </button>\n    </mat-toolbar>\n  </div>\n</div>\n\n";
     /***/
   },
 
@@ -710,6 +710,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(UserListComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
+          this.getUsers();
+          this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]();
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        }
+      }, {
+        key: "getUsers",
+        value: function getUsers() {
           var _this2 = this;
 
           this.api.get('/lei/users').subscribe(function (data) {
@@ -717,9 +725,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               return x.name !== 'admin';
             });
           });
-          this.dataSource = new _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatTableDataSource"]();
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
         }
       }, {
         key: "applyFilter",
@@ -740,6 +745,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               return item.id !== id;
             });
           });
+          this.dataSource.data = [];
+          setTimeout(function () {
+            return _this3.getUsers();
+          }, 1000);
+          sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Užsakovas ištrintas.', '', 'success');
         }
       }, {
         key: "openDialog",
@@ -769,17 +779,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               });
             }
+
+            _this4.dataSource.data = [];
+            setTimeout(function () {
+              return _this4.getUsers();
+            }, 1000);
           });
         }
       }, {
         key: "showRegisterDialog",
         value: function showRegisterDialog() {
           this.dialog.open(_register_register_component__WEBPACK_IMPORTED_MODULE_6__["RegisterComponent"]);
-        }
-      }, {
-        key: "swalOrderDelete",
-        value: function swalOrderDelete() {
-          sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire('Užsakovas ištrintas.', '', 'success');
         }
       }]);
 

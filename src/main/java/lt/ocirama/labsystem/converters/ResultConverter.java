@@ -44,7 +44,7 @@ public class ResultConverter {
         return ResultSave.builder()
                 .user(userMapper.apply(resultEntity.getUser()))
                 .id(resultEntity.getId())
-                .customerId(resultEntity.getProtocolId())
+                .customerId(resultEntity.getCustomerId())
                 .protocolId(resultEntity.getProtocolId())
                 .sampleId(resultEntity.getSampleId())
                 .ashValue(resultEntity.getAshValue())

@@ -3,13 +3,13 @@
 <div mat-dialog-content>
   <mat-form-field>
     <label>
-      <input matInput placeholder="YYYY-MM-DD" [(ngModel)]="data.date" cdkFocusInitial>
+      <input matInput placeholder="MM/DD/YYYY" [(ngModel)]="data.date" cdkFocusInitial>
     </label>
   </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Atšaukti</button>
-  <button mat-button [mat-dialog-close]="data">Išsaugoti</button>
+  <button mat-button [mat-dialog-close]="data">Rodyti</button>
 </div>
 

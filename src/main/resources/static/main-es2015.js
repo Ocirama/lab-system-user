@@ -32,7 +32,7 @@ webpackEmptyAsyncContext.id = "./$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\">\r\n  <img\r\n    alt=\"Lei Logo\"\r\n    src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAulBMVEX///8Aru8And8ApugAouSew+Z+uuTr5fEAoN8AneChw+O3yue9zObS2e0And3I0une3e7/+/2uxOVcrNtvsuBds+E9qt98teH88PTw5vEAo9qYv+MApOUAo+AAk9OZv+Pg2unZ4eyLuNzv8PSpu9rG0up5u+V7rNekv+L86ewAndZ7sNiqvtre1+lTq9zq3eqMsdRgo9H+8/DbzOK0yN8EmczP1eKMt+Hu2uDX4PIkqt87oNWvutEAkdMPuM+DAAADoklEQVR4nO3dbVfaMBiA4TatkhYIFJkgfaEUFEQQ2eacuv3/vzVet53a4hPbhESe+/jN2HOdHmht04BhYNIaJGegfH9oDPu+DxvNkZ8MDc89d0GDk/oGnTAbVtQwahFwLFfRyIihGybtDfrMMmGRunFNgGO5Ii2jQqGDb7ZoG7rtutEQgnY40NY5oj/eqaEDkv1+DezgLTpnLE8BZdYbdODkjKZBFjoYt/yMQ6Xr+u4oTKN7k37x/NaFlULb44mfVd93x3YGmtRyTz+30xTauivnvDajKTSLc8fOnQy0fZY7PmZp9L1XCvopSKEP7LlqFpq6HOgLQWjnAJpl7el8dJMIQnd49jRRBZ1+I/K+PBCNaEQjGtGIRjSiEY1oRGuGLnqNeAx0gmhJ6L6tCLq7qFwBu31QZE97S0YpDd+L0umq7e2246O7OwhPx0f3EI3oUtG2MmjbptA5gWimCLo3qlWBue5QFfTX3M1lpQaafqtAaw5UQVvrEyOwqKoImid7oiGa6LinHS3RRz+5vOiI1vFfU285DXvQVLkIMLwuvN2TAsdH85SkJ/R1QOt5hwnRiEY0ohGNaEQjGtGIRjSiEY1ordGKTDNzNVMF3W93oCWXphro7jSwYAXBbr2NAmgt708jGtGfdkKfUOKAWi8MVgPdG1VnLWCTgSpoHSf0w8Ut9Em3q4oqaCvshe8/6bYt+q4ImictJ/S1PE4j+nTQj8xhkMjqx1YEbfyY1UBd12rzsY4XtspcI/JUeLE7ooHpebMG0YhGNKIRjWhEIxrRiEb0aaHPpV5ulfQpblquG3+Sum68XYpZ7mJ38/5ns94sWry4k/nyMMNHRgrGKJO72L3kEP1Z0A6i92ixiyhrQtBE7JTc8+vLZfm9NoSiDcMTkCFwmpktckcUThjaXiZtAXXay2dxaNOCPr3Gmcg3orBEPg4kLCEr9OOpWLSQk0tMBaNFvDziyCz/3bfepMg9PWx/EdJFTyB6dR488LsPttqk9ysUiRbU/haCVuj9HSZEiw7RskK0rBAtK0TLCtGyQrSsEC0rRMsK0bI6UXT+d8kJ6w360NeyZaFXfyk9N33fg81zx84zv0vuIW7WJbae0X9I32Fio3ne8FEW2rQpo0Vn6bkm9CnbL875izbt3AcFdmNT6OP1H/rdEF2kk0FDv5tZWP9mtwDdbA+WvwloLZ6oiLP+9PqIMAdy0Ik6G/SwIfPwnFVjaHh1oOJ6UPYZTlJ/ACImLxKtAzmPAAAAAElFTkSuQmCC\"\r\n  />\r\n  <!--<button mat-button [matMenuTriggerFor]=\"order\">Užsakovai</button>\r\n\r\n  <mat-menu #order=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"order\">Naujas užsakovas</button>\r\n\r\n    <button mat-menu-item routerLink=\"log\">Užsakovų sąrašas</button>\r\n  </mat-menu>\r\n\r\n  <button mat-button [matMenuTriggerFor]=\"journals\">Rezultatai</button>\r\n  <mat-menu #journals=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"total-moisture-journal\">Visuminė drėgmė</button>\r\n    <button mat-menu-item routerLink=\"general-moisture-journal\">Bendroji drėgmė</button>\r\n    <button mat-menu-item routerLink=\"system\">Peleningumas</button>\r\n  </mat-menu> -->\r\n\r\n  <button *ngIf=\"token\" mat-button (click)=\"logOut()\">\r\n    Logout\r\n  </button>\r\n\r\n  <button *ngIf=\"!token\" mat-button routerLink=\"/user/login\">\r\n    Login\r\n  </button>\r\n\r\n  <button *ngIf=\"token && decoder.isAdmin() === true\" mat-button routerLink=\"/admin\">\r\n    Admin\r\n  </button>\r\n\r\n  <button *ngIf=\"token\" mat-button routerLink=\"/system\">\r\n    Results\r\n  </button>\r\n\r\n</mat-toolbar>\r\n<router-outlet></router-outlet>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-toolbar color=\"primary\">\r\n  <img\r\n    alt=\"Lei Logo\"\r\n    src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAulBMVEX///8Aru8And8ApugAouSew+Z+uuTr5fEAoN8AneChw+O3yue9zObS2e0And3I0une3e7/+/2uxOVcrNtvsuBds+E9qt98teH88PTw5vEAo9qYv+MApOUAo+AAk9OZv+Pg2unZ4eyLuNzv8PSpu9rG0up5u+V7rNekv+L86ewAndZ7sNiqvtre1+lTq9zq3eqMsdRgo9H+8/DbzOK0yN8EmczP1eKMt+Hu2uDX4PIkqt87oNWvutEAkdMPuM+DAAADoklEQVR4nO3dbVfaMBiA4TatkhYIFJkgfaEUFEQQ2eacuv3/vzVet53a4hPbhESe+/jN2HOdHmht04BhYNIaJGegfH9oDPu+DxvNkZ8MDc89d0GDk/oGnTAbVtQwahFwLFfRyIihGybtDfrMMmGRunFNgGO5Ii2jQqGDb7ZoG7rtutEQgnY40NY5oj/eqaEDkv1+DezgLTpnLE8BZdYbdODkjKZBFjoYt/yMQ6Xr+u4oTKN7k37x/NaFlULb44mfVd93x3YGmtRyTz+30xTauivnvDajKTSLc8fOnQy0fZY7PmZp9L1XCvopSKEP7LlqFpq6HOgLQWjnAJpl7el8dJMIQnd49jRRBZ1+I/K+PBCNaEQjGtGIRjSiEY1oRGuGLnqNeAx0gmhJ6L6tCLq7qFwBu31QZE97S0YpDd+L0umq7e2246O7OwhPx0f3EI3oUtG2MmjbptA5gWimCLo3qlWBue5QFfTX3M1lpQaafqtAaw5UQVvrEyOwqKoImid7oiGa6LinHS3RRz+5vOiI1vFfU285DXvQVLkIMLwuvN2TAsdH85SkJ/R1QOt5hwnRiEY0ohGNaEQjGtGIRjSiEY1ordGKTDNzNVMF3W93oCWXphro7jSwYAXBbr2NAmgt708jGtGfdkKfUOKAWi8MVgPdG1VnLWCTgSpoHSf0w8Ut9Em3q4oqaCvshe8/6bYt+q4ImictJ/S1PE4j+nTQj8xhkMjqx1YEbfyY1UBd12rzsY4XtspcI/JUeLE7ooHpebMG0YhGNKIRjWhEIxrRiEb0aaHPpV5ulfQpblquG3+Sum68XYpZ7mJ38/5ns94sWry4k/nyMMNHRgrGKJO72L3kEP1Z0A6i92ixiyhrQtBE7JTc8+vLZfm9NoSiDcMTkCFwmpktckcUThjaXiZtAXXay2dxaNOCPr3Gmcg3orBEPg4kLCEr9OOpWLSQk0tMBaNFvDziyCz/3bfepMg9PWx/EdJFTyB6dR488LsPttqk9ysUiRbU/haCVuj9HSZEiw7RskK0rBAtK0TLCtGyQrSsEC0rRMsK0bI6UXT+d8kJ6w360NeyZaFXfyk9N33fg81zx84zv0vuIW7WJbae0X9I32Fio3ne8FEW2rQpo0Vn6bkm9CnbL875izbt3AcFdmNT6OP1H/rdEF2kk0FDv5tZWP9mtwDdbA+WvwloLZ6oiLP+9PqIMAdy0Ik6G/SwIfPwnFVjaHh1oOJ6UPYZTlJ/ACImLxKtAzmPAAAAAElFTkSuQmCC\"\r\n  />\r\n  <!--<button mat-button [matMenuTriggerFor]=\"order\">Užsakovai</button>\r\n\r\n  <mat-menu #order=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"order\">Naujas užsakovas</button>\r\n\r\n    <button mat-menu-item routerLink=\"log\">Užsakovų sąrašas</button>\r\n  </mat-menu>\r\n\r\n  <button mat-button [matMenuTriggerFor]=\"journals\">Rezultatai</button>\r\n  <mat-menu #journals=\"matMenu\">\r\n    <button mat-menu-item routerLink=\"total-moisture-journal\">Visuminė drėgmė</button>\r\n    <button mat-menu-item routerLink=\"general-moisture-journal\">Bendroji drėgmė</button>\r\n    <button mat-menu-item routerLink=\"system\">Peleningumas</button>\r\n  </mat-menu> -->\r\n\r\n  <button *ngIf=\"token\" mat-button (click)=\"logOut()\">\r\n    Atsijungti\r\n  </button>\r\n\r\n  <button *ngIf=\"!token\" mat-button routerLink=\"/user/login\">\r\n    Prisijungti\r\n  </button>\r\n\r\n  <button *ngIf=\"token && decoder.isAdmin() === true\" mat-button routerLink=\"/admin\">\r\n    Admin\r\n  </button>\r\n\r\n  <button *ngIf=\"token\" mat-button routerLink=\"/system\">\r\n    Rezultatai\r\n  </button>\r\n\r\n</mat-toolbar>\r\n<router-outlet></router-outlet>\r\n");
 
 /***/ }),
 
@@ -279,6 +279,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _core_auth_guard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./core/auth.guard */ "./src/app/core/auth.guard.ts");
+/* harmony import */ var _core_auth_guard2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./core/auth.guard2 */ "./src/app/core/auth.guard2.ts");
+
 
 
 
@@ -295,7 +297,7 @@ const routes = [
     },
     {
         path: 'admin',
-        canActivate: [_core_auth_guard__WEBPACK_IMPORTED_MODULE_3__["AuthGuard"]],
+        canActivate: [_core_auth_guard2__WEBPACK_IMPORTED_MODULE_4__["AuthGuard2"]],
         loadChildren: () => Promise.all(/*! import() | admin-admin-module */[__webpack_require__.e("default~admin-admin-module~auth-user-module~system-system-module"), __webpack_require__.e("admin-admin-module")]).then(__webpack_require__.bind(null, /*! ./admin/admin.module */ "./src/app/admin/admin.module.ts")).then(m => m.AdminModule)
     }
 ];
@@ -438,7 +440,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialogModule"],
             mat_table_exporter__WEBPACK_IMPORTED_MODULE_9__["MatTableExporterModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatProgressSpinnerModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCardModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCardModule"]
         ],
         providers: [{ provide: _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatPaginatorIntl"], useClass: _system_shared_MatPaginatorIntlCro__WEBPACK_IMPORTED_MODULE_10__["MatPaginatorIntlCro"] }],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
@@ -489,6 +491,55 @@ AuthGuard = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         providedIn: 'root',
     })
 ], AuthGuard);
+
+
+
+/***/ }),
+
+/***/ "./src/app/core/auth.guard2.ts":
+/*!*************************************!*\
+  !*** ./src/app/core/auth.guard2.ts ***!
+  \*************************************/
+/*! exports provided: AuthGuard2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthGuard2", function() { return AuthGuard2; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth.service */ "./src/app/core/auth.service.ts");
+/* harmony import */ var _system_shared_decoder_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../system/shared/decoder.service */ "./src/app/system/shared/decoder.service.ts");
+
+
+
+
+
+let AuthGuard2 = class AuthGuard2 {
+    constructor(authService, router, decoder) {
+        this.authService = authService;
+        this.router = router;
+        this.decoder = decoder;
+    }
+    canActivate() {
+        if (this.authService.getToken() && this.decoder.isAdmin()) {
+            return true;
+        }
+        this.router.navigate(['user/login']);
+        return false;
+    }
+};
+AuthGuard2.ctorParameters = () => [
+    { type: _auth_service__WEBPACK_IMPORTED_MODULE_3__["AuthService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+    { type: _system_shared_decoder_service__WEBPACK_IMPORTED_MODULE_4__["DecoderService"] }
+];
+AuthGuard2 = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+        providedIn: 'root',
+    })
+], AuthGuard2);
 
 
 

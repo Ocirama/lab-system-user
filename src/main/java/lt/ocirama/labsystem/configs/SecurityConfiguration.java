@@ -10,9 +10,16 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final AuthEntryPoint authenticationEntryPoint;
@@ -44,12 +51,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .cors().and()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST,"/lei/results/**").authenticated()
-                .antMatchers(HttpMethod.DELETE,"/lei/results/**").authenticated()
-                .antMatchers(HttpMethod.PUT,"/lei/results/**").authenticated()
-                .antMatchers(HttpMethod.POST,"/lei/users/**").authenticated()
-                .antMatchers(HttpMethod.PUT,"/lei/users/**").authenticated()
-                .antMatchers(HttpMethod.GET,"/lei/users/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/lei/results/**").authenticated()
+                .antMatchers(HttpMethod.DELETE, "/lei/results/**").authenticated()
+                .antMatchers(HttpMethod.PUT, "/lei/results/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/lei/users/**").authenticated()
+                .antMatchers(HttpMethod.PUT, "/lei/users/**").authenticated()
+                .antMatchers(HttpMethod.GET, "/lei/users/**").authenticated()
+                /*.antMatchers(HttpMethod.POST, "/lei/excel/upload/**").authenticated()
+                .antMatchers(HttpMethod.PUT, "/lei/excel/upload/**").authenticated()
+                .antMatchers(HttpMethod.GET, "/lei/excel/upload/**").authenticated()*/
                 .anyRequest().permitAll()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)

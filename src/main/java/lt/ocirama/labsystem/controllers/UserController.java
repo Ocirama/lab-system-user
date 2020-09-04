@@ -6,6 +6,8 @@ import lt.ocirama.labsystem.model.dto.User;
 import lt.ocirama.labsystem.model.dto.UserForm;
 import lt.ocirama.labsystem.model.dto.UserSave;
 import lt.ocirama.labsystem.services.UserService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,5 +48,11 @@ public class UserController {
   @PostMapping
   public UserSave saveUser(@RequestBody @Valid UserForm user) {
     return userService.saveUser(user);
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable Integer id) {
+    userService.delete(id);
+    return ResponseEntity.status(HttpStatus.OK).build();
   }
 }

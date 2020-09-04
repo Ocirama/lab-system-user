@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 @Builder
 public class User {
+    private Integer id;
     private String name;
     private String username;
     private String role;

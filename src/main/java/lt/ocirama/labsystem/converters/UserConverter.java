@@ -18,6 +18,7 @@ public class UserConverter {
 
     public User convert(UserEntity userEntity) {
         return User.builder()
+                .id(userEntity.getId())
                 .username(userEntity.getUsername())
                 .name(userEntity.getName())
                 .role(userEntity.getRole())
@@ -33,10 +34,10 @@ public class UserConverter {
     ) {
         return UserSave.builder()
                 .results(resultMapper.apply(userEntity.getResults()))
+                .id(userEntity.getId())
                 .username(userEntity.getUsername())
                 .name(userEntity.getName())
                 .role(userEntity.getRole())
                 .build();
     }
-
 }

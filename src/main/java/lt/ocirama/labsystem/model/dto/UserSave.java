@@ -8,6 +8,7 @@ import java.util.List;
 @Setter
 @Builder
 public class UserSave {
+    private Integer id;
     private String name;
     private String username;
     private String role;

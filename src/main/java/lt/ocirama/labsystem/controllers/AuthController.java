@@ -36,6 +36,7 @@ public class AuthController {
       throw new HttpClientErrorException(HttpStatus.UNAUTHORIZED, "Bad credentials");
     }
 
+
     return new Token(securityService.generateToken(
             securityService.loadUserByUsername(userForm.getUsername())
     ));

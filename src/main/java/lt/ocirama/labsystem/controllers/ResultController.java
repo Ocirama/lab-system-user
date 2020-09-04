@@ -46,9 +46,4 @@ public class ResultController {
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-
-    @PostMapping("/import")
-    public List<Result> importExcel(@RequestPart(value = "file") MultipartFile excelFile) throws IOException {
-        return null;
-    }
 }

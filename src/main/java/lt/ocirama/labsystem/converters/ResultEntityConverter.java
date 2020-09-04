@@ -37,7 +37,6 @@ public class ResultEntityConverter {
             result.setAshValue(order.getAshValue());
             result.setTotalMoistureValue(order.getTotalMoistureValue());
             result.setCalorificValue(order.getCalorificValue());
-            result.setDate(order.getDate());
         }
 
         return result;
