@@ -5087,7 +5087,7 @@ let ApiService = class ApiService {
         this.http = http;
         this.router = router;
         this.authService = authService;
-        this.urlPrefix = 'http://192.168.1.84:8080';
+        this.urlPrefix = '';
     }
     upload(file) {
         const headers = {};
