@@ -697,6 +697,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
       }
     }, {
+      path: '',
+      loadChildren: function loadChildren() {
+        return Promise.all(
+        /*! import() | auth-user-module */
+        [__webpack_require__.e("default~admin-admin-module~auth-user-module~system-system-module"), __webpack_require__.e("auth-user-module")]).then(__webpack_require__.bind(null,
+        /*! ./auth/user.module */
+        "./src/app/auth/user.module.ts")).then(function (m) {
+          return m.UserModule;
+        });
+      }
+    }, {
       path: 'admin',
       canActivate: [_core_auth_guard2__WEBPACK_IMPORTED_MODULE_4__["AuthGuard2"]],
       loadChildren: function loadChildren() {
