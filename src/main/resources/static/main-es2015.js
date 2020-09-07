@@ -296,7 +296,7 @@ const routes = [
         loadChildren: () => Promise.all(/*! import() | auth-user-module */[__webpack_require__.e("default~admin-admin-module~auth-user-module~system-system-module"), __webpack_require__.e("auth-user-module")]).then(__webpack_require__.bind(null, /*! ./auth/user.module */ "./src/app/auth/user.module.ts")).then(m => m.UserModule)
     },
     {
-        path: '',
+        path: '/',
         loadChildren: () => Promise.all(/*! import() | auth-user-module */[__webpack_require__.e("default~admin-admin-module~auth-user-module~system-system-module"), __webpack_require__.e("auth-user-module")]).then(__webpack_require__.bind(null, /*! ./auth/user.module */ "./src/app/auth/user.module.ts")).then(m => m.UserModule)
     },
     {
