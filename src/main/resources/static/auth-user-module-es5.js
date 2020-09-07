@@ -364,6 +364,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var routes = [{
       path: 'login',
       component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
+    }, {
+      path: '*',
+      component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
     }];
 
     var UserRoutingModule = function UserRoutingModule() {
