@@ -1,0 +1,85 @@
+h3 {
+  text-align: center;
+}
+
+table {
+  margin: auto;
+  max-width: 1500px;
+  width: 100%;
+}
+
+table th:first-child {
+  width: 50px;
+}
+
+table th:last-child {
+  width: 10px;
+}
+
+.mat-row:hover {
+  background-color: lightgrey;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #3f51b5;
+  color: white;
+  text-align: center;
+
+}
+
+mat-form-field {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.mat-stroked-button {
+  background-color: white;
+  margin-right: 10px;
+}
+
+
+.mat-paginator {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.footer-icon {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.mat-card-title {
+  font-size: 10px;
+  padding: 0px;
+}
+
+.mat-card-content {
+  padding: 0px;
+  margin: 0px;
+}
+
+.mat-card-actions {
+  margin: 0px;
+}
+
+mat-card.example-card {
+  position: fixed;
+  right: 0;
+  bottom: 0px;
+  width: 20%;
+  background-color: #3f51b5;
+  color: white;
+  text-align: center;
+  height: 32px;
+  margin: 0px;
+
+}
+
+
+
+

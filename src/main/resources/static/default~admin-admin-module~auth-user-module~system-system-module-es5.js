@@ -6062,7 +6062,7 @@ function _classCallCheck2(instance, Constructor) { if (!(instance instanceof Con
         this.http = http;
         this.router = router;
         this.authService = authService;
-        this.urlPrefix = '';
+        this.urlPrefix = 'http://192.168.1.84:8080';
       }
 
       _createClass2(ApiService, [{

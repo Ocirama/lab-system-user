@@ -1,0 +1,115 @@
+<h3
+>Rezultatai</h3>
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtruoti">
+  </mat-form-field>
+  <table mat-table matTableExporter [dataSource]="dataSource" class="mat-elevation-z8" #exporter="matTableExporter">
+    <ng-container matColumnDef="no">
+      <th mat-header-cell *matHeaderCellDef> Nr.</th>
+      <td mat-cell *matCellDef="let index = index"> {{index + 1}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="protocolId">
+      <th mat-header-cell *matHeaderCellDef> Protokolas</th>
+      <td mat-cell
+          *matCellDef="let element"> {{element.protocolId}} {{'/' + year.toString().charAt(2) + year.toString().charAt(3) + '-8B'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sampleId">
+      <th mat-header-cell *matHeaderCellDef> Mėginys</th>
+      <td mat-cell *matCellDef="let element"> {{element.sampleId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ashValue">
+      <th mat-header-cell *matHeaderCellDef> Peleningumas, %</th>
+      <td mat-cell *matCellDef="let element"> {{element.ashValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalMoistureValue">
+      <th mat-header-cell *matHeaderCellDef> Drėgmė, %</th>
+      <td mat-cell *matCellDef="let element"> {{element.totalMoistureValue}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="calorificValue">
+      <th mat-header-cell *matHeaderCellDef> Sauso kuro apatinis šilumingumas, kJ/kg</th>
+      <td mat-cell *matCellDef="let element"> {{element.calorificValue}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Data</th>
+      <td mat-cell *matCellDef="let element"> {{element.date.toString().substring(0, 9).replace(",","").replace("\\s+","")}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openDialog(element)">
+            <mat-icon>edit</mat-icon>
+            <span>Redaguoti</span>
+          </button>
+          <button mat-menu-item (click)="swalOrderDelete()" (click)="delete(element.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Ištrinti</span>
+          </button>
+        </mat-menu>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+  <div  class="footer">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <div class="buttons">
+          <button mat-stroked-button color="primary" (click)="displayFilter('pilnas')" title="Pilna rezultatų lentelė">Pilnas</button>
+          <button mat-stroked-button color="primary" (click)="openDialog2()" title="Rodyti pasirinktos dienos užsakymus">
+            Rezultatai pagal dieną
+          </button>
+        </div>
+        <button mat-icon-button class="footer-icon" color="primary"
+                (click)="exporter.exportTable('xlsx', {fileName: 'Rezultatai ' + this.datePipe.transform(this.excelDate,'yyyy-MM-dd'), sheet: 'Rezultatai'})"
+                title="Išsaugoti XSLX formatu">
+          <mat-icon>save</mat-icon>
+        </button>
+
+        <mat-paginator showFirstLastButtons="true" class="paginator" [pageSizeOptions]="[10, 20, 50]"></mat-paginator>
+
+        <mat-card color="primary" *ngIf=" decoder.isAdmin() === true" class="example-card">
+          <mat-card-content>
+            <div *ngIf="currentFile" class="progress">
+              <div
+                class="progress-bar progress-bar-info progress-bar-striped"
+                role="progressbar"
+                attr.aria-valuenow="{{ progress }}"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                [ngStyle]="{ width: progress + '%' }"
+              >
+                {{ progress }}%
+              </div>
+            </div>
+            <div class="alert alert-light" role="alert">{{ message }}</div>
+          </mat-card-content>
+          <mat-card-actions>
+              <input type="file" (change)="selectFile($event)">
+              <button mat-button [disabled]="!selectedFiles" (click)="upload()"> Įkelti</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+</div>

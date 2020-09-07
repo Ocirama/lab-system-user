@@ -1,0 +1,35 @@
+<h3 mat-dialog-title>Protokolas: {{ data.oldProtocolId }}</h3>
+
+<div mat-dialog-content>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Protokolas" [(ngModel)]="data.protocolId" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Mėginio Id" [(ngModel)]="data.sampleId" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Peleningumas" [(ngModel)]="data.ashValue" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+  <mat-form-field>
+  <label>
+    <input matInput placeholder="Šilumingumas" [(ngModel)]="data.calorificValue" cdkFocusInitial>
+  </label>
+</mat-form-field>
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Visuminė drėgmė" [(ngModel)]="data.totalMoistureValue" cdkFocusInitial>
+    </label>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Atšaukti</button>
+  <button mat-button [mat-dialog-close]="data" (click)=" this.swalOrderUpdate();">Išsaugoti</button>
+</div>
+

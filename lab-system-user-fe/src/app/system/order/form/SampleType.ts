@@ -1,0 +1,69 @@
+import {SampleTypeGroup} from './form.component';
+
+export let sampleTypeGroups: SampleTypeGroup[] = [{
+  letter: 'A',
+  names: []
+}, {
+  letter: 'B',
+  names: []
+}, {
+  letter: 'C',
+  names: []
+}, {
+  letter: 'D',
+  names: ['']
+}, {
+  letter: 'E',
+  names: []
+}, {
+  letter: 'F',
+  names: []
+}, {
+  letter: 'G',
+  names: []
+}, {
+  letter: 'H',
+  names: []
+}, {
+  letter: 'I',
+  names: []
+}, {
+  letter: 'J',
+  names: []
+}, {
+  letter: 'K',
+  names: []
+}, {
+  letter: 'L',
+  names: []
+}, {
+  letter: 'M',
+  names: []
+}, {
+  letter: 'N',
+  names: []
+}, {
+  letter: 'O',
+  names: []
+}, {
+  letter: 'P',
+  names: []
+}, {
+  letter: 'R',
+  names: []
+}, {
+  letter: 'S',
+  names: []
+}, {
+  letter: 'Š',
+  names: []
+}, {
+  letter: 'T',
+  names: []
+}, {
+  letter: 'U',
+  names: []
+}, {
+  letter: 'V',
+  names: []
+}];
