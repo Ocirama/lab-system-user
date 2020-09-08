@@ -5,8 +5,6 @@ import {AuthGuard} from './core/auth.guard';
 import {AuthGuard2} from './core/auth.guard2';
 
 
-
-
 const routes: Routes = [
   {
     path: 'system',
@@ -15,10 +13,6 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () => import('./auth/user.module').then(m => m.UserModule)
-  },
-  {
-    path: '',
     loadChildren: () => import('./auth/user.module').then(m => m.UserModule)
   },
   {

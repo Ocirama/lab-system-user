@@ -22,15 +22,15 @@
     Atsijungti
   </button>
 
-  <button *ngIf="!token" mat-button routerLink="user/login">
+  <button *ngIf="!token" mat-button routerLink="/user/login">
     Prisijungti
   </button>
 
-  <button *ngIf="token && decoder.isAdmin() === true" mat-button routerLink="admin">
+  <button *ngIf="token && decoder.isAdmin() === true" mat-button routerLink="/admin">
     Admin
   </button>
 
-  <button *ngIf="token" mat-button routerLink="system">
+  <button *ngIf="token" mat-button routerLink="/system">
     Rezultatai
   </button>
 
