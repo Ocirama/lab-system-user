@@ -697,7 +697,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         });
       }
     }, {
-      path: '/',
+      path: '',
       loadChildren: function loadChildren() {
         return Promise.all(
         /*! import() | auth-user-module */
