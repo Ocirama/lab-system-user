@@ -57,9 +57,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/lei/users/**").authenticated()
                 .antMatchers(HttpMethod.PUT, "/lei/users/**").authenticated()
                 .antMatchers(HttpMethod.GET, "/lei/users/**").authenticated()
-                /*.antMatchers(HttpMethod.POST, "/lei/excel/upload/**").authenticated()
+                .antMatchers(HttpMethod.POST, "/lei/excel/upload/**").authenticated()
                 .antMatchers(HttpMethod.PUT, "/lei/excel/upload/**").authenticated()
-                .antMatchers(HttpMethod.GET, "/lei/excel/upload/**").authenticated()*/
+                .antMatchers(HttpMethod.GET, "/lei/excel/upload/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)

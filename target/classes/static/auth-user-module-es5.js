@@ -365,7 +365,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       path: 'login',
       component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
     }, {
-      path: '/',
+      path: '',
       component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
     }];
 

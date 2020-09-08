@@ -296,10 +296,6 @@ const routes = [
         loadChildren: () => Promise.all(/*! import() | auth-user-module */[__webpack_require__.e("default~admin-admin-module~auth-user-module~system-system-module"), __webpack_require__.e("auth-user-module")]).then(__webpack_require__.bind(null, /*! ./auth/user.module */ "./src/app/auth/user.module.ts")).then(m => m.UserModule)
     },
     {
-        path: '/',
-        loadChildren: () => Promise.all(/*! import() | auth-user-module */[__webpack_require__.e("default~admin-admin-module~auth-user-module~system-system-module"), __webpack_require__.e("auth-user-module")]).then(__webpack_require__.bind(null, /*! ./auth/user.module */ "./src/app/auth/user.module.ts")).then(m => m.UserModule)
-    },
-    {
         path: 'admin',
         canActivate: [_core_auth_guard2__WEBPACK_IMPORTED_MODULE_4__["AuthGuard2"]],
         loadChildren: () => Promise.all(/*! import() | admin-admin-module */[__webpack_require__.e("default~admin-admin-module~auth-user-module~system-system-module"), __webpack_require__.e("admin-admin-module")]).then(__webpack_require__.bind(null, /*! ./admin/admin.module */ "./src/app/admin/admin.module.ts")).then(m => m.AdminModule)
@@ -727,8 +723,8 @@ __webpack_require__.r(__webpack_exports__);
 // The list of file replacements can be found in `angular.json`.
 
 const environment = {
-    production: false,
-    hostUrl: 'http://localhost:8080'
+    production: true,
+    hostUrl: ''
 };
 /*
  * For easier debugging in development mode, you can import the following file
