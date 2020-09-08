@@ -200,13 +200,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [
     {
-        path: 'login',
+        path: '',
         component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
-    },
-    {
-        path: '/',
-        component: _login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
-    },
+    }
 ];
 let UserRoutingModule = class UserRoutingModule {
 };
