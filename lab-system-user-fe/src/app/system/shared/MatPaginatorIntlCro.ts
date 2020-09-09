@@ -1,5 +1,7 @@
 import {MatPaginatorIntl} from '@angular/material';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class MatPaginatorIntlCro extends MatPaginatorIntl {
   itemsPerPageLabel = 'Įrašų kiekis per puslapį';
   nextPageLabel = 'Sekantis puslapis';
