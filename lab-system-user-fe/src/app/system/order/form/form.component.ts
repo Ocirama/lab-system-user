@@ -7,7 +7,7 @@ import {DropdownList} from './DropdownList';
 import {customerGroups} from './Customers';
 import Swal from 'sweetalert2';
 import { MatDialog } from '@angular/material/dialog';
-import {ModalComponent} from '../modal/modal.component';
+import {ModalComponent2} from '../modal/modal.component';
 import 'sweetalert2/src/sweetalert2.scss';
 import {TabService} from '../../../tab.service';
 import {sampleTypeGroups} from './SampleType';
@@ -271,7 +271,7 @@ export class FormComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(ModalComponent, {
+    const dialogRef = this.dialog.open(ModalComponent2, {
       width: '250px',
       data: {}
     });
@@ -293,7 +293,7 @@ export class FormComponent implements OnInit {
   }
 
   openDialog2() {
-    const dialogRef = this.dialog.open(ModalComponent, {
+    const dialogRef = this.dialog.open(ModalComponent2, {
       width: '250px',
       data: {}
     });

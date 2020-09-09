@@ -11,10 +11,11 @@ interface DialogData {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
-export class ModalComponent implements OnInit {
+// tslint:disable-next-line:component-class-suffix
+export class ModalComponent2 implements OnInit {
 
   constructor(
-    public dialogRef: MatDialogRef<ModalComponent>,
+    public dialogRef: MatDialogRef<ModalComponent2>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
     data.title = data.title;

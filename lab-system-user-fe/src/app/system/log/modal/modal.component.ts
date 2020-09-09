@@ -24,6 +24,7 @@ interface DialogData {
   templateUrl: './modal.component.html',
   styleUrls: ['./modal.component.css']
 })
+// tslint:disable-next-line:component-class-suffix
 export class ModalComponent implements OnInit {
 
   constructor(

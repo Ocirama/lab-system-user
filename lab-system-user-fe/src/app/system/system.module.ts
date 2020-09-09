@@ -23,6 +23,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CreateComponent} from './create/create.component';
 
 import {ModalComponent} from './log/modal/modal.component';
+import {ModalComponent2} from './order/modal/modal.component';
 import {FormComponent} from './order/form/form.component';
 import {ListComponent} from './log/list/list.component';
 import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
@@ -33,7 +34,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
-  declarations: [DateModalComponent, ModalComponent, CreateComponent, FormComponent, ListComponent],
+  declarations: [DateModalComponent, ModalComponent, ModalComponent2, CreateComponent, FormComponent, ListComponent],
     imports: [
         CommonModule,
         SystemRoutingModule,
@@ -65,7 +66,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
   exports: [ListComponent],
   entryComponents: [
-    DateModalComponent, ModalComponent
+    DateModalComponent, ModalComponent, ModalComponent2
   ]
 })
 export class SystemModule {
