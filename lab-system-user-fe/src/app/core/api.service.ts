@@ -14,7 +14,7 @@ interface Headers {
 })
 export class ApiService {
 
-  private readonly urlPrefix = 'http://192.168.1.84:8080';
+  private readonly urlPrefix = '';
 
   constructor(private http: HttpClient, private router: Router, private authService: AuthService) {
   }
