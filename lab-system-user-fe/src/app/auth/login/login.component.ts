@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../core/auth.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {ApiService} from '../../core/api.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   error = '';
   form: FormGroup;
 
-  constructor(private api: ApiService, private router: Router, private formBuilder: FormBuilder, private dialog: MatDialog, private authService: AuthService) {
+  constructor(private api: ApiService, private router: Router, private formBuilder: FormBuilder,
+              private dialog: MatDialog, private authService: AuthService) {
   }
 
   ngOnInit(): void {

@@ -4,19 +4,19 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {
-  MatAutocompleteModule,
-  MatButtonModule, MatCardModule,
-  MatCheckboxModule,
-  MatDialogModule,
-  MatFormFieldModule,
-  MatIconModule,
-  MatInputModule,
-  MatMenuModule,
-  MatPaginatorIntl, MatProgressSpinnerModule, MatSpinner,
-  MatTableModule,
-  MatToolbarModule
-} from '@angular/material';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatTableExporterModule} from 'mat-table-exporter';

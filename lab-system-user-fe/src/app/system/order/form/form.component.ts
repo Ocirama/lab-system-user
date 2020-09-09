@@ -6,7 +6,7 @@ import {ApiService} from '../../../core/api.service';
 import {DropdownList} from './DropdownList';
 import {customerGroups} from './Customers';
 import Swal from 'sweetalert2';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import {ModalComponent} from '../modal/modal.component';
 import 'sweetalert2/src/sweetalert2.scss';
 import {TabService} from '../../../tab.service';
@@ -219,11 +219,7 @@ export class FormComponent implements OnInit {
   }
 
   validateType(value) {
-    if (value === 'default') {
-      this.typeHasError = true;
-    } else {
-      this.typeHasError = false;
-    }
+    this.typeHasError = value === 'default';
   }
 
   private _filterGroup(value: string): CustomerGroup[] {
