@@ -66,10 +66,10 @@ export class ListComponent implements OnInit {
 
 
   constructor(
-    private datePipe: DatePipe,
+    public datePipe: DatePipe,
     private api: ApiService,
     public dialog: MatDialog,
-    private decoder: DecoderService,
+    public decoder: DecoderService,
     private authService: AuthService
   ) {
     this.headers['Content-Type'] = 'application/json';

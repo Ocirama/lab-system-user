@@ -14,7 +14,7 @@ export class AppComponent {
   title = 'lab-system-backend-fe';
   token = '';
 
-  constructor(private router: Router, private authService: AuthService, private authGuard: AuthGuard, private decoder: DecoderService) {
+  constructor(private router: Router, private authService: AuthService, private authGuard: AuthGuard, public decoder: DecoderService) {
   }
 
   ngOnInit(): void {

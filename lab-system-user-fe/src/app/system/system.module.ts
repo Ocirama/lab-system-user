@@ -9,7 +9,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
@@ -30,6 +29,7 @@ import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import {MatTableExporterModule} from 'mat-table-exporter';
 import {DateModalComponent} from './log/date-modal/date-modal.component';
 import {FileUploadModule} from 'ng2-file-upload';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
