@@ -49,6 +49,7 @@ public class UserService {
         List<UserEntity> users = userRepository.findAll();
         return userConverter.convert(users);
     }
+
     public void delete(Integer id) {
         userRepository.deleteById(id);
     }

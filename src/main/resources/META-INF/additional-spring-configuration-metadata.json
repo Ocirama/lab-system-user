@@ -9,10 +9,5 @@
       "name": "app.authentication.validity.period",
       "type": "java.lang.String",
       "description": "Description for app.authentication.validity.period."
-    },
-    {
-      "name": "app.authentication.signature.secret",
-      "type": "java.lang.String",
-      "description": "Description for app.authentication.signature.secret."
     }
   ] }
