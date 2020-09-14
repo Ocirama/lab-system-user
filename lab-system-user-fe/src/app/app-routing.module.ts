@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./system/system.module').then(m => m.SystemModule)
   },
   {
-    path: 'user/login',
+    path: 'user',
     loadChildren: () => import('./auth/user.module').then(m => m.UserModule)
   },
   {

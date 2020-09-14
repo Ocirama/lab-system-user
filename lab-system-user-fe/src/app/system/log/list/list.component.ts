@@ -29,7 +29,7 @@ interface Result {
   date: string;
 }
 
-const URL = '/lei/results/import';
+const URL = 'http://localhost:8080/lei/results/import';
 
 interface Headers {
   [fieldName: string]: string;
