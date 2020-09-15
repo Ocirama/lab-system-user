@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
-@EnableWebMvc
+
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final AuthEntryPoint authenticationEntryPoint;

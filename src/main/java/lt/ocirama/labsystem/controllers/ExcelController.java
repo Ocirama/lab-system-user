@@ -15,6 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @Controller
+@RestController
 @RequestMapping("/lei/excel")
 public class ExcelController {
     @Autowired
