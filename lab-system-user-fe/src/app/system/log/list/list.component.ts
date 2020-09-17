@@ -26,7 +26,7 @@ interface Result {
   ashValue: number;
   totalMoistureValue: number;
   calorificValue: number;
-  date: string;
+  date: Date;
 }
 
 const URL = 'http://localhost:8080/lei/results/import';
@@ -106,10 +106,10 @@ export class ListComponent implements OnInit {
     if (this.decoder.getUser() !== 'admin') {
       this.api.get('/lei/results').subscribe(
         (data: Result[]) => this.dataSource.data = data.filter(
-          x => x.customerId = this.decoder.getUser()).filter(x => x.date = new Date(x.date).toLocaleString()));
+          x => x.customerId === this.decoder.getUser()));
     } else {
       this.api.get('/lei/results').subscribe((data: Result[]) =>
-        this.dataSource.data = data.filter(x => x.date = new Date(x.date).toLocaleString()));
+        this.dataSource.data = data);
     }
   }
 
@@ -175,6 +175,7 @@ export class ListComponent implements OnInit {
       width: '250px',
       data: {
         id: result ? result.id : null,
+        customerId: result ? result.customerId : null,
         protocolId: result ? result.protocolId : null,
         sampleId: result ? result.sampleId : null,
         ashValue: result ? result.ashValue : null,
@@ -190,6 +191,7 @@ export class ListComponent implements OnInit {
             const row = this.results.find(item => item.id === result.id);
             if (row) {
               row.protocolId = resultt.protocolId;
+              row.customerId = resultt.customerId;
               row.sampleId = resultt.sampleId;
               row.ashValue = resultt.ashValue;
               row.totalMoistureValue = resultt.totalMoistureValue;
@@ -201,6 +203,8 @@ export class ListComponent implements OnInit {
           }
         );
       }
+      this.dataSource.data = [];
+      setTimeout(() => this.getResults(), 1000);
     });
   }
 
@@ -216,9 +220,7 @@ export class ListComponent implements OnInit {
     if (value === 'pilnas') {
       this.api.get('/lei/results');
       this.api.get('/lei/results')
-        .subscribe((data: Result[]) => this.dataSource.data = data
-          .filter(x => ((x.date = new Date(x.date)
-            .toLocaleString()))));
+        .subscribe((data: Result[]) => this.dataSource.data = data);
       const date = new Date();
       console.log(date.getFullYear() + '-' + date.getMonth() + 1);
       console.log(this.dataSource.data[1].date.toString()
@@ -239,9 +241,7 @@ export class ListComponent implements OnInit {
 
         this.api.get('/lei/results')
           // tslint:disable-next-line:no-shadowed-variable
-          .subscribe((data: Result[]) => this.dataSource.data = data
-            .filter(x => ((x.date = new Date(x.date).toLocaleString()
-              .substring(0, 9).replace(',', '').replace('\\s+', '')) === dataa.date)));
+          .subscribe((data: Result[]) => this.dataSource.data = data);
         console.log(dataa.date);
       }
     });

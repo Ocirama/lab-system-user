@@ -31,6 +31,7 @@ export class ModalComponent implements OnInit {
     public dialogRef: MatDialogRef<ModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
+
     data.oldProtocolId = data.protocolId;
     data.oldSampleId = data.sampleId;
     data.oldAshValue = data.ashValue;

@@ -39,7 +39,7 @@
 
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Data</th>
-      <td mat-cell *matCellDef="let element"> {{element.date.toString().substring(0, 9).replace(",","").replace("\\s+","")}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.date.toString().substring(0, 10).replace(",","").replace("\\s+","")}} </td>
     </ng-container>
 
 

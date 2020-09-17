@@ -56,7 +56,6 @@ export class UserListComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
   delete(id: number) {
     this.api.delete(`/lei/users/${id}`).subscribe(
       () => this.users = this.users.filter(item => item.id !== id)
@@ -69,6 +68,7 @@ export class UserListComponent implements OnInit {
       'success'
     );
   }
+
 
   openDialog(user?: User) {
     const dialogRef = this.dialog.open(ModalComponent, {
@@ -95,6 +95,11 @@ export class UserListComponent implements OnInit {
       }
       this.dataSource.data = [];
       setTimeout(() => this.getUsers(), 1000);
+      Swal.fire(
+        'Užsakovo duomenys atnaujinti.',
+        '',
+        'success'
+      );
     });
   }
 

@@ -8,6 +8,7 @@ interface DialogData {
   name: string;
   oldUsername: string;
   username: string;
+  oldId: number;
 }
 
 @Component({
@@ -23,6 +24,7 @@ export class ModalComponent implements OnInit {
   ) {
     data.oldName = data.name;
     data.oldUsername = data.username;
+    data.oldId = data.id;
   }
 
   ngOnInit() {
@@ -30,12 +32,5 @@ export class ModalComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-  swalOrderUpdate() {
-    Swal.fire(
-      'Užsakovo duomenys atnaujinti.',
-      '',
-      'success'
-    );
   }
 }
